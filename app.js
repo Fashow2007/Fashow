@@ -1,21 +1,32 @@
 /* ==========================================================================
    FASHOW — Application Logic & State Management
    Vanilla JS · LocalStorage Persisted · Accessible Modals & Filters
+   100% Copyright-Free Original Ateliers & Zero Misleading Claims
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  // --- Initial Mock Data ---
+  // Helper to generate elegant, 100% original, copyright-free SVG brand logos
+  function createSvgLogo(initials, bg, fg) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+      <rect width="100" height="100" rx="8" fill="${bg}"/>
+      <rect x="5" y="5" width="90" height="90" rx="5" fill="none" stroke="${fg}" stroke-width="1.5" opacity="0.25"/>
+      <text x="50" y="56" text-anchor="middle" dominant-baseline="central" fill="${fg}" font-family="Playfair Display, Georgia, serif" font-size="34" font-weight="700" letter-spacing="2">${initials}</text>
+    </svg>`;
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+
+  // --- 100% Original, Copyright-Safe Mock Data ---
   const INITIAL_OPPORTUNITIES = [
     {
       id: 'opp-1',
       title: 'Fashion Marketing & Social Intern',
-      company: 'Zara Atelier',
+      company: 'Atelier Marais',
       companyId: 'comp-1',
-      logo: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=120&h=120&q=80',
+      logo: createSvgLogo('AM', '#0f172a', '#f8fafc'),
       banner: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80',
-      location: 'New York, NY',
+      location: 'Soho, New York',
       type: 'Internship',
       term: 'Part-Time',
       paid: true,
@@ -23,26 +34,26 @@
       deadline: 'Oct 15, 2026',
       category: 'Marketing',
       tags: ['Marketing', 'Social Media', 'Content Creation'],
-      description: 'Join our North America creative marketing team at Zara Atelier in Soho. You will assist in producing weekly editorial campaigns, analyzing viral TikTok and Instagram fashion trends, and coordinating showroom loans for editors and creators.',
+      description: 'Join the creative marketing team at Atelier Marais in Soho. You will assist in producing weekly editorial campaigns, analyzing viral digital fashion trends, and coordinating showroom lookbooks for stylists and creators.',
       responsibilities: [
         'Assist creative team with weekly social trend reports and influencer research',
-        'Help coordinate sample loans and showroom preparation for NYFW preview events',
+        'Help coordinate sample loans and showroom preparation for preview presentations',
         'Draft engaging social media copy and monitor engagement across platforms',
         'Support production logistics for seasonal digital lookbooks'
       ],
       requirements: [
         'Current undergraduate or graduate student in Marketing, Fashion, or Communications',
         'Deep appreciation for contemporary editorial fashion and digital storytelling',
-        'Proficiency with TikTok, Instagram Reels, and Adobe Creative Suite / Figma is a plus',
+        'Proficiency with social media video tools and digital asset creation',
         'Strong communication skills and attention to aesthetic detail'
       ]
     },
     {
       id: 'opp-2',
-      title: 'Editorial Runway & Lookbook Model',
-      company: 'Jacquemus Paris',
+      title: 'Runway & Lookbook Casting Model',
+      company: 'Maison Solène',
       companyId: 'comp-2',
-      logo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80',
+      logo: createSvgLogo('MS', '#1c1917', '#f5f5f4'),
       banner: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=80',
       location: 'New York, NY',
       type: 'Modeling',
@@ -52,25 +63,25 @@
       deadline: 'Nov 01, 2026',
       category: 'Modeling',
       tags: ['Modeling', 'Runway', 'Editorial'],
-      description: 'Open casting call for college students interested in runway modeling and showroom presentations for the Jacquemus Fall/Winter capsule presentation in New York.',
+      description: 'Open casting call for college students interested in runway modeling and showroom presentations for the Maison Solène Fall/Winter capsule presentation.',
       responsibilities: [
         'Participate in garment fitting and pre-show run-throughs',
         'Model ready-to-wear garments for editorial lookbook and showroom buyers',
-        'Collaborate with lead stylists and hair/makeup artists professionally'
+        'Collaborate with lead stylists and creative directors professionally'
       ],
       requirements: [
         'Enrolled college student with open availability during presentation week',
         'Comfortable walking on camera and collaborating in a fast-paced environment',
-        'All body types and backgrounds welcomed; strong personal style encouraged',
-        'Portfolio or clear headshots/polaroids required with application'
+        'All backgrounds and body types welcomed; personal style strongly encouraged',
+        'Portfolio or clear digital polaroids required with application'
       ]
     },
     {
       id: 'opp-3',
       title: 'Junior Fashion Styling Assistant',
-      company: 'Vogue Studio',
+      company: 'Revue Editorial',
       companyId: 'comp-3',
-      logo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&h=120&q=80',
+      logo: createSvgLogo('RE', '#1e293b', '#e2e8f0'),
       banner: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1000&q=80',
       location: 'New York, NY',
       type: 'Internship',
@@ -80,24 +91,24 @@
       deadline: 'Oct 30, 2026',
       category: 'Styling',
       tags: ['Styling', 'Editorial', 'Production'],
-      description: 'Support senior stylists on high-profile magazine editorials, digital cover shoots, and video content for upcoming seasonal features.',
+      description: 'Support senior stylists on high-profile independent fashion editorials, digital cover shoots, and video content for upcoming seasonal features.',
       responsibilities: [
         'Track couture and ready-to-wear fashion samples checking in and out of studio',
-        'Prep accessories, garments, and lookboards for on-set shoot days',
-        'Assist stylist during live studio shooting with swift outfit adjustments'
+        'Prep accessories, garments, and moodboards for on-set shoot days',
+        'Assist stylist during live studio shooting with outfit adjustments'
       ],
       requirements: [
         'Demonstrated passion for editorial styling, costume design, or fashion merchandising',
         'Organizational rigor and ability to thrive on active set environments',
-        'Familiarity with luxury fashion houses and contemporary streetwear labels'
+        'Familiarity with contemporary design houses and independent labels'
       ]
     },
     {
       id: 'opp-4',
       title: 'Fashion Design & Patternmaking Apprentice',
-      company: 'Acne Studios',
+      company: 'Nordic Studio',
       companyId: 'comp-4',
-      logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80',
+      logo: createSvgLogo('NS', '#09090b', '#fafafa'),
       banner: 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80',
       location: 'Remote / Hybrid',
       type: 'Internship',
@@ -107,26 +118,26 @@
       deadline: 'Nov 15, 2026',
       category: 'Design',
       tags: ['Design', 'Patternmaking', 'Textiles'],
-      description: 'Work directly alongside our New York atelier patternmakers and material sourcers as we construct prototypes for upcoming runway collections.',
+      description: 'Work alongside our atelier patternmakers and material sourcers as we construct prototypes and tailored silhouettes for upcoming seasonal collections.',
       responsibilities: [
-        'Translate conceptual sketches into digital CAD flats and muslin drapes',
+        'Translate conceptual sketches into digital garment flats and muslin drapes',
         'Catalog fabric swatches and compile sustainability assessment charts',
         'Assist senior designers in refining silhouettes and technical construction specs'
       ],
       requirements: [
         'Fashion Design or Apparel Construction major with coursework in patternmaking',
-        'Experience with sewing, draping, and Adobe Illustrator garment flats',
-        'Portfolio demonstrating design process, sketchbooks, or finished garments'
+        'Experience with sewing, draping, and digital fashion illustration tools',
+        'Portfolio demonstrating design process, sketchbooks, or completed garments'
       ]
     },
     {
       id: 'opp-5',
       title: 'Digital Editorial & Streetwear Photographer',
-      company: 'Kith NYC',
+      company: 'Kōhaku Apparel',
       companyId: 'comp-5',
-      logo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80',
+      logo: createSvgLogo('KA', '#18181b', '#f4f4f5'),
       banner: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=80',
-      location: 'New York, NY',
+      location: 'Soho, New York',
       type: 'Part-Time',
       term: 'Part-Time',
       paid: true,
@@ -134,24 +145,24 @@
       deadline: 'Oct 25, 2026',
       category: 'Photography',
       tags: ['Photography', 'Streetwear', 'Retouching'],
-      description: 'Capture street style, live sneaker launches, and studio product imagery for Kith campaigns and editorial channels.',
+      description: 'Capture street style, live collection drops, and on-model studio lookbooks for Kōhaku campaigns and digital publications.',
       responsibilities: [
-        'Photograph launch events, retail drops, and on-model studio lookbooks',
-        'Execute color correction, color grading, and asset delivery under tight deadlines',
-        'Collaborate with art director on shoot concepts and lighting set-ups'
+        'Photograph retail launches, collection drops, and studio lookbooks',
+        'Execute color correction, color grading, and asset delivery under deadlines',
+        'Collaborate with creative director on shoot lighting and concepts'
       ],
       requirements: [
         'Portfolio showcasing street photography, fashion portraiture, or footwear',
-        'Expert command of DSLR/mirrorless cameras and Adobe Lightroom/Capture One',
-        'Own equipment preferred or demonstrated experience with studio lighting'
+        'Command of modern digital cameras and professional editing suites',
+        'Ability to capture authentic street culture and editorial movement'
       ]
     },
     {
       id: 'opp-6',
       title: 'Fashion PR & Influencer Relations Associate',
-      company: 'Nike Culture Labs',
+      company: 'Aero Creative Labs',
       companyId: 'comp-6',
-      logo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&h=120&q=80',
+      logo: createSvgLogo('AC', '#030712', '#f9fafb'),
       banner: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80',
       location: 'Los Angeles, CA / Remote',
       type: 'Internship',
@@ -161,11 +172,11 @@
       deadline: 'Dec 01, 2026',
       category: 'PR',
       tags: ['PR', 'Influencer', 'Events'],
-      description: 'Connect Nike fashion collaborations with emerging college athletes, young fashion tastemakers, and creative community leaders.',
+      description: 'Connect fashion capsule collaborations with emerging college creatives, young stylists, and cultural tastemakers.',
       responsibilities: [
         'Maintain media contact lists and influencer seeding databases',
-        'Draft pitch notes for creative media outlets (Hypebeast, Highsnobiety, Complex)',
-        'Coordinate product seeding shipments and track social coverage analytics'
+        'Draft pitch notes for independent creative fashion media outlets',
+        'Coordinate editorial sample shipments and track social coverage'
       ],
       requirements: [
         'Enthusiastic relationship-builder with knowledge of youth culture and fashion',
@@ -178,74 +189,74 @@
   const INITIAL_COMPANIES = [
     {
       id: 'comp-1',
-      name: 'Zara Atelier',
-      category: 'Luxury High-Street & Tailoring',
+      name: 'Atelier Marais',
+      category: 'Contemporary Tailoring & Ready-to-Wear',
       location: 'Soho, New York',
-      website: 'https://zara.com',
-      instagram: '@zara',
+      website: 'https://fashow2007.github.io/Fashow/',
+      instagram: '@ateliermarais',
       banner: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
-      logo: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=120&h=120&q=80',
-      description: 'Zara Atelier produces exclusive capsule collections featuring premium fabrics, artisanal craftsmanship, and elevated silhouettes.',
+      logo: createSvgLogo('AM', '#0f172a', '#f8fafc'),
+      description: 'Atelier Marais produces modern ready-to-wear collections blending architectural lines with sustainable artisanal textiles.',
       activeRoles: 3
     },
     {
       id: 'comp-2',
-      name: 'Jacquemus',
-      category: 'French Haute Couture & Ready-to-Wear',
+      name: 'Maison Solène',
+      category: 'Independent Haute Couture & Lookbooks',
       location: 'Paris & New York',
-      website: 'https://jacquemus.com',
-      instagram: '@jacquemus',
+      website: 'https://fashow2007.github.io/Fashow/',
+      instagram: '@maisonsolene',
       banner: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80',
-      logo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80',
-      description: 'Celebrated for modernist minimalism, sun-drenched southern French aesthetics, and groundbreaking runway productions.',
+      logo: createSvgLogo('MS', '#1c1917', '#f5f5f4'),
+      description: 'Celebrated for modernist minimalism, organic silhouettes, and evocative seasonal runway presentations.',
       activeRoles: 2
     },
     {
       id: 'comp-3',
-      name: 'Vogue Studio',
-      category: 'Editorial Publishing & Creative Direction',
-      location: 'One World Trade, New York',
-      website: 'https://vogue.com',
-      instagram: '@voguemagazine',
+      name: 'Revue Editorial',
+      category: 'Fashion Publishing & Creative Direction',
+      location: 'Lower Manhattan, New York',
+      website: 'https://fashow2007.github.io/Fashow/',
+      instagram: '@revueeditorial',
       banner: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80',
-      logo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&h=120&q=80',
-      description: 'The global authority in fashion journalism, styling, and cultural photography shaping the industry for over a century.',
+      logo: createSvgLogo('RE', '#1e293b', '#e2e8f0'),
+      description: 'An independent creative studio and digital journal championing emerging stylists, photographers, and writers.',
       activeRoles: 4
     },
     {
       id: 'comp-4',
-      name: 'Acne Studios',
-      category: 'Contemporary Scandinavian Luxury',
+      name: 'Nordic Studio',
+      category: 'Contemporary Scandinavian Tailoring',
       location: 'Stockholm & New York',
-      website: 'https://acnestudios.com',
-      instagram: '@acnestudios',
+      website: 'https://fashow2007.github.io/Fashow/',
+      instagram: '@nordicstudio',
       banner: 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=800&q=80',
-      logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80',
-      description: 'A multidisciplinary luxury fashion house known for tailored denim, avant-garde textures, and signature accessories.',
+      logo: createSvgLogo('NS', '#09090b', '#fafafa'),
+      description: 'A multidisciplinary design house known for minimalist denim, textured knitwear, and clean geometric cuts.',
       activeRoles: 1
     },
     {
       id: 'comp-5',
-      name: 'Kith NYC',
-      category: 'Contemporary Streetwear & Lifestyle',
+      name: 'Kōhaku Apparel',
+      category: 'Contemporary Streetwear & Visual Culture',
       location: 'Soho, New York',
-      website: 'https://kith.com',
-      instagram: '@kith',
+      website: 'https://fashow2007.github.io/Fashow/',
+      instagram: '@kohakuapparel',
       banner: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
-      logo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80',
-      description: 'Leading lifestyle brand bridging high fashion, athletic collaborations, and curated contemporary streetwear.',
+      logo: createSvgLogo('KA', '#18181b', '#f4f4f5'),
+      description: 'A contemporary lifestyle label bridging high fashion, subcultural aesthetics, and curated lookbooks.',
       activeRoles: 2
     },
     {
       id: 'comp-6',
-      name: 'Nike Culture Labs',
-      category: 'Athletic Luxury & Brand Partnerships',
-      location: 'Los Angeles & Beaverton',
-      website: 'https://nike.com',
-      instagram: '@nike',
+      name: 'Aero Creative Labs',
+      category: 'Experimental Apparel & Footwear Design',
+      location: 'Los Angeles, CA',
+      website: 'https://fashow2007.github.io/Fashow/',
+      instagram: '@aerocreativelabs',
       banner: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
-      logo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&h=120&q=80',
-      description: 'Spearheading future-facing fashion collaborations, limited designer capsule drops, and emerging creative talent incubators.',
+      logo: createSvgLogo('AC', '#030712', '#f9fafb'),
+      description: 'Incubating future-facing fashion collaborations, technical performance fabrics, and emerging student talent.',
       activeRoles: 3
     }
   ];
@@ -255,34 +266,34 @@
       id: 'app-1',
       opportunityId: 'opp-1',
       title: 'Fashion Marketing & Social Intern',
-      company: 'Zara Atelier',
+      company: 'Atelier Marais',
       appliedDate: 'Sep 24, 2026',
       status: 'Interview',
       statusLabel: 'Interview Scheduled',
       statusClass: 'status-interview',
-      note: 'Interview via Zoom on Friday at 2:00 PM EST with Lead Art Director.'
+      note: 'Virtual interview scheduled with Creative Director.'
     },
     {
       id: 'app-2',
       opportunityId: 'opp-3',
       title: 'Junior Fashion Styling Assistant',
-      company: 'Vogue Studio',
+      company: 'Revue Editorial',
       appliedDate: 'Sep 26, 2026',
       status: 'Under Review',
       statusLabel: 'Under Review',
       statusClass: 'status-review',
-      note: 'Portfolio reviewed by senior styling coordinator.'
+      note: 'Portfolio under evaluation by lead styling coordinator.'
     },
     {
       id: 'app-3',
       opportunityId: 'opp-5',
       title: 'Digital Editorial & Streetwear Photographer',
-      company: 'Kith NYC',
+      company: 'Kōhaku Apparel',
       appliedDate: 'Sep 19, 2026',
       status: 'Accepted',
       statusLabel: 'Offer Extended',
       statusClass: 'status-accepted',
-      note: 'Congratulations! Official onboarding invitation sent to your email.'
+      note: 'Offer details sent to student registered email.'
     }
   ];
 
@@ -292,7 +303,7 @@
     major: 'Fashion Marketing & Visual Arts',
     gradYear: 'Class of 2028',
     location: 'Boston & New York',
-    bio: 'Aspiring fashion creative and marketing student passionate about digital campaigns, editorial styling, and sustainable luxury. Experienced in visual storytelling, photography, and social media production.',
+    bio: 'Aspiring fashion creative and marketing student passionate about digital campaigns, editorial styling, and sustainable fashion. Experienced in visual storytelling, photography, and social media production.',
     interests: ['Marketing', 'Social Media', 'Styling', 'Photography', 'Content Creation'],
     skills: ['Photoshop', 'InDesign', 'Lightroom', 'Trend Forecasting', 'Campaign Production', 'Social Strategy'],
     experience: [
@@ -300,25 +311,25 @@
         role: 'Campus Fashion Ambassador',
         org: 'University Fashion Collective',
         period: '2025 - Present',
-        description: 'Organized biannual student runway presentation and managed Instagram content reaching 8,000+ students.'
+        description: 'Organized student runway presentation and managed digital lookbook campaigns.'
       },
       {
-        role: 'Social Media Assistant',
+        role: 'Creative Assistant',
         org: 'Amherst Vintage Studio',
         period: 'Summer 2025',
-        description: 'Created daily styling reels and curated vintage apparel drops resulting in 40% growth in online inquiries.'
+        description: 'Curated styling lookbooks and managed digital photography drops.'
       }
     ],
     portfolio: [
       {
         title: 'Editorial Styling: Soho Echoes',
         img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80',
-        caption: 'Lookbook series styled with archival vintage and contemporary silhouettes.'
+        caption: 'Lookbook series styled with archival and contemporary silhouettes.'
       },
       {
         title: 'Streetwear Portrait Series',
         img: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80',
-        caption: '35mm analogue campaign exploring architectural outerwear in Lower Manhattan.'
+        caption: '35mm analogue campaign exploring architectural outerwear.'
       },
       {
         title: 'Capsule Collection Moodboard',
@@ -332,19 +343,28 @@
       }
     ],
     links: {
-      linkedin: 'https://linkedin.com/in/alex-johnson-fashion',
-      instagram: 'https://instagram.com/alexjohnson.style',
-      portfolio: 'https://alexjohnson.fashion'
+      linkedin: 'https://linkedin.com',
+      instagram: 'https://instagram.com',
+      portfolio: 'https://fashow2007.github.io/Fashow/'
     }
   };
+
+  // Check version to ensure old trademarked cache is cleanly migrated
+  const DATA_VERSION = 'fashow_v2_clean';
+  if (localStorage.getItem('fashow_version') !== DATA_VERSION) {
+    localStorage.removeItem('fashow_opportunities');
+    localStorage.removeItem('fashow_companies');
+    localStorage.removeItem('fashow_applications');
+    localStorage.setItem('fashow_version', DATA_VERSION);
+  }
 
   // --- State Initialization ---
   let opportunities = JSON.parse(localStorage.getItem('fashow_opportunities')) || INITIAL_OPPORTUNITIES;
   let companies = JSON.parse(localStorage.getItem('fashow_companies')) || INITIAL_COMPANIES;
   let applications = JSON.parse(localStorage.getItem('fashow_applications')) || INITIAL_APPLICATIONS;
   let savedOppIds = JSON.parse(localStorage.getItem('fashow_saved_opps')) || ['opp-1'];
-  let currentRole = localStorage.getItem('fashow_user_role') || 'student'; // 'student' or 'company'
-  let currentView = 'home'; // 'home', 'discover', 'companies', 'applications', 'profile', 'company-portal'
+  let currentRole = localStorage.getItem('fashow_user_role') || 'student';
+  let currentView = 'home';
 
   function saveState() {
     localStorage.setItem('fashow_opportunities', JSON.stringify(opportunities));
@@ -426,13 +446,11 @@
     if (!featuredGrid) return;
     featuredGrid.innerHTML = '';
     
-    // Pick 3 high-impact opportunities
     const featured = opportunities.slice(0, 3);
     featured.forEach(opp => {
       featuredGrid.appendChild(createOpportunityCard(opp));
     });
 
-    // Render Featured Brands
     const brandsGrid = document.getElementById('home-brands-grid');
     if (brandsGrid) {
       brandsGrid.innerHTML = '';
@@ -454,7 +472,7 @@
       <div>
         <div class="opp-card-header">
           <div class="opp-company-brand">
-            <img src="${opp.logo}" alt="Logo of ${opp.company}" class="opp-logo-img" loading="lazy">
+            <img src="${opp.logo}" alt="Original insignia monogram for ${opp.company}" class="opp-logo-img" loading="lazy">
             <div>
               <h4 class="opp-company-name">${opp.company}</h4>
               <span class="opp-location">${opp.location}</span>
@@ -509,10 +527,10 @@
 
     card.innerHTML = `
       <div class="company-card-banner">
-        <img src="${comp.banner}" alt="Editorial lookbook banner for ${comp.name}" loading="lazy">
+        <img src="${comp.banner}" alt="Editorial lookbook showcase for ${comp.name}" loading="lazy">
       </div>
       <div class="company-card-body">
-        <img src="${comp.logo}" alt="Official brand logo of ${comp.name}" class="company-card-logo" loading="lazy">
+        <img src="${comp.logo}" alt="Original insignia monogram for ${comp.name}" class="company-card-logo" loading="lazy">
         <div class="company-card-meta">
           <h3 id="comp-name-${comp.id}" class="company-card-name">${comp.name}</h3>
           <p class="company-card-tag">${comp.category} · ${comp.location}</p>
@@ -571,7 +589,6 @@
     const compFilter = document.getElementById('filter-compensation')?.value || 'All';
 
     const filtered = opportunities.filter(opp => {
-      // Search text match
       const textMatch = !query || 
         opp.title.toLowerCase().includes(query) ||
         opp.company.toLowerCase().includes(query) ||
@@ -579,18 +596,11 @@
         opp.category.toLowerCase().includes(query) ||
         opp.tags.some(t => t.toLowerCase().includes(query));
 
-      // Category chip match
       const catMatch = selectedCategoryFilter === 'All' || opp.category.toLowerCase() === selectedCategoryFilter.toLowerCase();
-
-      // Type dropdown match
       const typeMatch = typeFilter === 'All' || opp.type === typeFilter;
-
-      // Location match
       const locMatch = locFilter === 'All' || 
         (locFilter === 'Remote' && (opp.location.includes('Remote') || opp.location.includes('Hybrid'))) ||
         opp.location.includes(locFilter);
-
-      // Compensation match
       const payMatch = compFilter === 'All' || 
         (compFilter === 'Paid' && opp.paid) || 
         (compFilter === 'Unpaid' && !opp.paid);
@@ -813,7 +823,7 @@
         </div>
         <div>
           <span style="font-size: 0.8rem; color: var(--color-text-light);">Applicants</span>
-          <p style="font-size: 0.9rem; font-weight: 600;">3 Under Review</p>
+          <p style="font-size: 0.9rem; font-weight: 600;">3 In Evaluation</p>
         </div>
         <div>
           <button class="btn btn-sm btn-outline-dark" onclick="window.fashow.showOpportunityDetail('${opp.id}')">Inspect</button>
@@ -910,7 +920,7 @@
       status: 'Submitted',
       statusLabel: 'Submitted',
       statusClass: 'status-submitted',
-      note: 'Application successfully received by brand hiring team.',
+      note: 'Application received by brand creative team.',
       intro: intro,
       portfolio: portfolioLink
     };
@@ -927,7 +937,7 @@
   function handlePostOpportunity(e) {
     e.preventDefault();
     const title = document.getElementById('post-title')?.value;
-    const companyName = document.getElementById('post-company')?.value || 'Zara Atelier';
+    const companyName = document.getElementById('post-company')?.value || 'Atelier Marais';
     const type = document.getElementById('post-type')?.value;
     const category = document.getElementById('post-category')?.value;
     const location = document.getElementById('post-location')?.value;
@@ -943,7 +953,7 @@
       title,
       company: companyName,
       companyId: 'comp-1',
-      logo: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=120&h=120&q=80',
+      logo: createSvgLogo(companyName.slice(0, 2).toUpperCase(), '#0f172a', '#f8fafc'),
       banner: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80',
       location,
       type,
@@ -954,7 +964,7 @@
       category,
       tags: [category, type, term],
       description: desc,
-      responsibilities: resp.length ? resp : ['Assist in everyday team operations', 'Contribute directly to creative campaigns'],
+      responsibilities: resp.length ? resp : ['Assist in everyday studio operations', 'Contribute directly to creative lookbooks'],
       requirements: req.length ? req : ['Current college student with strong fashion interest']
     };
 
@@ -996,7 +1006,7 @@
     }
 
     input.value = '';
-    showToast('Message sent to employer representative!');
+    showToast('Message sent to studio representative!');
   }
 
   // --- Cookie Banner Consent Handling ---
@@ -1037,7 +1047,6 @@
 
   // --- Event Binding ---
   function bindGlobalEvents() {
-    // Navigation items
     document.querySelectorAll('[data-nav-view]').forEach(el => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1046,7 +1055,6 @@
       });
     });
 
-    // Close buttons for modals
     document.querySelectorAll('.modal-close-btn, .modal-cancel-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const modal = btn.closest('.modal-overlay');
@@ -1054,14 +1062,12 @@
       });
     });
 
-    // Click backdrop to close
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
       overlay.addEventListener('click', (e) => {
         if (e.target === overlay) closeModal(overlay.id);
       });
     });
 
-    // Esc key closes active modals
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         const activeModal = document.querySelector('.modal-overlay.active');
@@ -1069,19 +1075,16 @@
       }
     });
 
-    // Search input typing
     const searchInput = document.getElementById('search-query');
     if (searchInput) {
       searchInput.addEventListener('input', () => renderDiscoverFeed());
     }
 
-    // Filter dropdowns
     ['filter-type', 'filter-location', 'filter-compensation'].forEach(id => {
       const select = document.getElementById(id);
       if (select) select.addEventListener('change', () => renderDiscoverFeed());
     });
 
-    // Category pills in Discover
     document.querySelectorAll('.filter-pill').forEach(pill => {
       pill.addEventListener('click', () => {
         selectedCategoryFilter = pill.getAttribute('data-category');
@@ -1090,20 +1093,16 @@
       });
     });
 
-    // Apply button inside opp detail
     document.getElementById('opp-detail-apply-btn')?.addEventListener('click', openApplyModal);
 
-    // Forms
     document.getElementById('apply-form')?.addEventListener('submit', handleApplicationSubmit);
     document.getElementById('post-opp-form')?.addEventListener('submit', handlePostOpportunity);
     document.getElementById('chat-form')?.addEventListener('submit', handleSendMessage);
 
-    // Open Post Opportunity Modal button
     document.querySelectorAll('.open-post-opp-btn').forEach(btn => {
       btn.addEventListener('click', () => openModal('post-opp-modal'));
     });
 
-    // Open Auth Modals
     document.getElementById('nav-login-btn')?.addEventListener('click', () => openModal('login-modal'));
     document.getElementById('nav-signup-btn')?.addEventListener('click', () => openModal('signup-choice-modal'));
     
@@ -1117,7 +1116,6 @@
       openModal('company-signup-modal');
     });
 
-    // Footer Policy Modals
     document.getElementById('footer-privacy-link')?.addEventListener('click', (e) => {
       e.preventDefault();
       openModal('privacy-modal');
@@ -1135,7 +1133,6 @@
       openModal('refund-modal');
     });
 
-    // Fake Review / Unsupported claims prevention
     document.getElementById('student-reg-form')?.addEventListener('submit', (e) => {
       e.preventDefault();
       closeModal('student-signup-modal');
@@ -1164,7 +1161,6 @@
     setView('home');
   });
 
-  // Expose API for inline handler bindings if needed
   window.fashow = {
     setView,
     openModal,
