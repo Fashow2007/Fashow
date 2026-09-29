@@ -3,58 +3,951 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fashow</title>
+  <title>FASHOW — Fashion Career & Creative Marketplace</title>
+  <meta name="description" content="A two-sided fashion career networking platform connecting college students and emerging talent directly with leading fashion houses, luxury ateliers, and creative brands.">
+  
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
-    body {
-      background: #0f172a;
-      color: #f8fafc;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-    .container {
-      max-width: 600px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    p {
-      font-size: 1.25rem;
-      color: #94a3b8;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-    .badge {
-      display: inline-block;
+    /* Skip to content link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 1rem;
+      background: var(--color-primary);
+      color: #ffffff;
       padding: 0.5rem 1rem;
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      color: #38bdf8;
-      margin-bottom: 1.5rem;
+      z-index: 1000;
+      border-radius: var(--radius-sm);
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="badge">🚀 Site is live</div>
-    <h1>Welcome to Fashow</h1>
-    <p>Your new site connected with GitHub. Ready to be customized!</p>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Site Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand-logo" data-nav-view="home" aria-label="Fashow Homepage">FASHOW</a>
+      
+      <nav role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#discover" class="nav-link" data-view="discover" data-nav-view="discover">Discover</a></li>
+          <li><a href="#opportunities" class="nav-link" data-view="discover" data-nav-view="discover">Opportunities</a></li>
+          <li><a href="#companies" class="nav-link" data-view="companies" data-nav-view="companies">Companies</a></li>
+          <li><a href="#applications" class="nav-link" data-view="applications" data-nav-view="applications">My Applications</a></li>
+          <li><a href="#profile" class="nav-link" data-view="profile" data-nav-view="profile">Student Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="nav-role-toggle" class="btn btn-sm btn-secondary" aria-label="Switch between student and company portals">
+          Switch to Company Mode
+        </button>
+        <button id="nav-login-btn" class="btn btn-sm btn-outline-dark">Log In</button>
+        <button id="nav-signup-btn" class="btn btn-sm btn-primary">Join Fashow</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Main Content Area -->
+  <main id="main-content" role="main">
+
+    <!-- ====================================================================
+         VIEW: HOME (LANDING PAGE)
+         ==================================================================== -->
+    <section id="view-home" class="view-section">
+      
+      <!-- Hero Section -->
+      <section class="hero-section" aria-label="Hero Overview">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <span class="hero-tagline">✨ The Fashion Career Marketplace</span>
+            <h1 class="hero-title">Start Your Fashion Career.</h1>
+            <p class="hero-subtitle">
+              Connect directly with fashion brands, discover creative internships, modeling castings, styling apprenticeships, and build industry experience while you're still in school.
+            </p>
+            
+            <div class="hero-actions">
+              <button class="btn btn-lg btn-primary" data-nav-view="discover">
+                Find Opportunities →
+              </button>
+              <button class="btn btn-lg btn-secondary open-post-opp-btn">
+                Post as a Brand
+              </button>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <h3>450+</h3>
+                <p>Fashion Houses</p>
+              </div>
+              <div class="stat-item">
+                <h3>1,200+</h3>
+                <p>Student Castings & Roles</p>
+              </div>
+              <div class="stat-item">
+                <h3>92%</h3>
+                <p>Paid Placements</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-image-frame">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=85" alt="Editorial fashion portrait of model dressed in high-concept contemporary tailoring" loading="eager">
+            </div>
+            <div class="hero-overlay-card">
+              <span class="overlay-brand">Zara Atelier</span>
+              <p class="overlay-role">Fashion Marketing & Social Intern</p>
+              <span class="overlay-meta">New York, NY · $22 / hr</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Opportunities Section -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <span class="section-label">Curated Roles</span>
+              <h2 class="section-title">Featured Opportunities</h2>
+              <p class="section-desc">Hand-selected positions and castings from respected ateliers and emerging labels.</p>
+            </div>
+            <button class="btn btn-outline-dark" data-nav-view="discover">View All Opportunities →</button>
+          </div>
+
+          <div id="home-featured-grid" class="opportunities-grid">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Explore Fashion Careers (Visual Categories) -->
+      <section class="section section-subtle">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <span class="section-label">Disciplines</span>
+              <h2 class="section-title">Explore Fashion Disciplines</h2>
+              <p class="section-desc">Find your specialization across creative, editorial, business, and production pathways.</p>
+            </div>
+          </div>
+
+          <div class="categories-grid">
+            <div class="category-card" data-nav-view="discover">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Fashion model in runway lighting" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Modeling</h3>
+                <span class="category-count">Runway & Editorial</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-nav-view="discover">
+              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=400&q=80" alt="Fashion designer sketching and measuring garment fabrics" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Fashion Design</h3>
+                <span class="category-count">Atelier & Technical</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-nav-view="discover">
+              <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=400&q=80" alt="Wardrobe stylist arranging high fashion accessories on set" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Styling</h3>
+                <span class="category-count">Editorial & Commercial</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-nav-view="discover">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Fashion photographer with studio lighting and medium format camera" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Photography</h3>
+                <span class="category-count">Lookbook & Studio</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-nav-view="discover">
+              <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=400&q=80" alt="Creative team collaborating on fashion campaign moodboard" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Marketing & PR</h3>
+                <span class="category-count">Digital & Influencer</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-nav-view="discover">
+              <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=400&q=80" alt="Art director inspecting textile prints and editorial layout" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Creative Direction</h3>
+                <span class="category-count">Concept & Strategy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Brands Section -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <span class="section-label">Partners</span>
+              <h2 class="section-title">Hiring Fashion Brands</h2>
+              <p class="section-desc">Leading fashion houses actively seeking students and emerging college creatives.</p>
+            </div>
+            <button class="btn btn-outline-dark" data-nav-view="companies">Explore Brand Directory →</button>
+          </div>
+
+          <div id="home-brands-grid" class="companies-grid">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="section section-subtle">
+        <div class="container">
+          <div class="section-header" style="text-align: center; max-width: 650px; margin: 0 auto 3.5rem;">
+            <span class="section-label">Direct Workflow</span>
+            <h2 class="section-title">How Fashow Works</h2>
+            <p class="section-desc">Built as a professional fashion networking environment, not a generic resume drop.</p>
+          </div>
+
+          <div class="how-it-works-grid">
+            <div class="how-step">
+              <div class="step-num">01</div>
+              <h3 class="step-title">Create Your Portfolio Profile</h3>
+              <p>Showcase your visual lookbooks, editorial photography, design flats, and campus experience alongside your university credentials.</p>
+            </div>
+
+            <div class="how-step">
+              <div class="step-num">02</div>
+              <h3 class="step-title">Discover Verified Positions</h3>
+              <p>Filter paid internships, runway casting calls, styling apprenticeships, and marketing roles curated directly by fashion houses.</p>
+            </div>
+
+            <div class="how-step">
+              <div class="step-num">03</div>
+              <h3 class="step-title">Apply & Connect Directly</h3>
+              <p>Submit your profile in one click, track your application review stages in real-time, and message company coordinators directly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Editorial Call to Action -->
+      <section class="section" style="text-align: center; padding: 6rem 0;">
+        <div class="container" style="max-width: 720px;">
+          <h2 class="font-serif" style="font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.2;">Your fashion career starts here.</h2>
+          <p style="font-size: 1.2rem; color: var(--color-text-muted); margin-bottom: 2.5rem;">
+            Join thousands of college students building real-world fashion portfolios and landing early-career opportunities.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <button class="btn btn-lg btn-primary" onclick="window.fashow.openModal('student-signup-modal')">
+              Create Student Profile
+            </button>
+            <button class="btn btn-lg btn-secondary" onclick="window.fashow.openModal('company-signup-modal')">
+              Register as a Brand
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ====================================================================
+         VIEW: DISCOVER / OPPORTUNITIES FEED
+         ==================================================================== -->
+    <section id="view-discover" class="view-section" style="display: none; padding: 3rem 0 5rem;">
+      <div class="container">
+        
+        <div style="margin-bottom: 2.5rem;">
+          <span class="section-label">Marketplace Feed</span>
+          <h1 class="font-serif" style="font-size: 2.75rem; margin-bottom: 0.5rem;">Discover Opportunities</h1>
+          <p id="discover-results-count" style="font-size: 1rem; color: var(--color-text-muted);">
+            Explore all verified fashion roles, internships, and castings.
+          </p>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="filter-container">
+          <div class="search-input-group">
+            <div class="search-field-wrapper">
+              <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="search-query" class="search-input" placeholder="Search opportunities, companies, titles, or skills (e.g., Marketing, Zara, Styling)..." aria-label="Search opportunities">
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <div>
+              <label for="filter-type" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-light); display: block; margin-bottom: 0.25rem;">Type</label>
+              <select id="filter-type" class="filter-select">
+                <option value="All">All Types</option>
+                <option value="Internship">Internship</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Modeling">Modeling</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="filter-location" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-light); display: block; margin-bottom: 0.25rem;">Location</label>
+              <select id="filter-location" class="filter-select">
+                <option value="All">All Locations</option>
+                <option value="New York">New York, NY</option>
+                <option value="Los Angeles">Los Angeles, CA</option>
+                <option value="Remote">Remote / Hybrid</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="filter-compensation" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-light); display: block; margin-bottom: 0.25rem;">Compensation</label>
+              <select id="filter-compensation" class="filter-select">
+                <option value="All">All Compensation</option>
+                <option value="Paid">Paid Only</option>
+                <option value="Unpaid">Unpaid</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quick Category Filter Pills -->
+          <div class="filter-pills-row">
+            <button class="filter-pill active" data-category="All">All Disciplines</button>
+            <button class="filter-pill" data-category="Marketing">Marketing</button>
+            <button class="filter-pill" data-category="Modeling">Modeling</button>
+            <button class="filter-pill" data-category="Styling">Styling</button>
+            <button class="filter-pill" data-category="Design">Design</button>
+            <button class="filter-pill" data-category="Photography">Photography</button>
+            <button class="filter-pill" data-category="PR">PR & Influencer</button>
+          </div>
+        </div>
+
+        <!-- Opportunities Grid -->
+        <div id="discover-opportunities-grid" class="opportunities-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW: COMPANIES DIRECTORY
+         ==================================================================== -->
+    <section id="view-companies" class="view-section" style="display: none; padding: 3rem 0 5rem;">
+      <div class="container">
+        
+        <div style="margin-bottom: 2.5rem;">
+          <span class="section-label">Brand Directory</span>
+          <h1 class="font-serif" style="font-size: 2.75rem; margin-bottom: 0.5rem;">Discover Fashion Houses</h1>
+          <p style="font-size: 1rem; color: var(--color-text-muted);">
+            Browse ateliers, luxury labels, and streetwear innovators actively partnering with students.
+          </p>
+        </div>
+
+        <div id="companies-directory-grid" class="companies-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW: STUDENT APPLICATION TRACKER ("MY APPLICATIONS")
+         ==================================================================== -->
+    <section id="view-applications" class="view-section" style="display: none; padding: 3rem 0 5rem;">
+      <div class="container">
+        
+        <div class="dashboard-title-row" style="margin-bottom: 1.5rem;">
+          <div>
+            <span class="section-label">Application Pipeline</span>
+            <h1 class="font-serif" style="font-size: 2.5rem; margin-bottom: 0.5rem;">My Applications</h1>
+            <p style="color: var(--color-text-muted);">Track your active fashion job and casting applications in real-time.</p>
+          </div>
+          <button class="btn btn-primary" data-nav-view="discover">Discover More Roles</button>
+        </div>
+
+        <div class="dashboard-tabs">
+          <div class="dashboard-tab active">All Applications</div>
+          <div class="dashboard-tab">Interviews</div>
+          <div class="dashboard-tab">Under Review</div>
+          <div class="dashboard-tab">Saved Opportunities</div>
+        </div>
+
+        <div id="applications-tracker-list" class="applications-list">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW: STUDENT PROFILE / PORTFOLIO
+         ==================================================================== -->
+    <section id="view-profile" class="view-section" style="display: none; padding-bottom: 5rem;">
+      <div id="student-profile-view">
+        <!-- Dynamically populated via JS -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW: COMPANY PORTAL / DASHBOARD
+         ==================================================================== -->
+    <section id="view-company-portal" class="view-section" style="display: none; padding: 3rem 0 5rem;">
+      <div class="container">
+        
+        <div class="dashboard-title-row" style="margin-bottom: 2rem;">
+          <div>
+            <span class="section-label">Employer Dashboard</span>
+            <h1 class="font-serif" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Zara Atelier · NYC</h1>
+            <p style="color: var(--color-text-muted);">Manage posted positions, evaluate student lookbooks, and communicate with applicants.</p>
+          </div>
+          <button class="btn btn-primary open-post-opp-btn">
+            + Post an Opportunity
+          </button>
+        </div>
+
+        <div class="dashboard-tabs">
+          <div class="dashboard-tab active">Active Job Posts</div>
+          <div class="dashboard-tab">Student Applicants (3)</div>
+          <div class="dashboard-tab">Brand Profile</div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h3 class="font-serif" style="font-size: 1.35rem; margin-bottom: 1rem;">Currently Active Positions</h3>
+          <div id="company-active-roles-list" class="applications-list">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       MODALS & DIALOGS
+       ==================================================================== -->
+
+  <!-- Opportunity Detail Modal -->
+  <div id="opp-detail-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="opp-detail-modal-title">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <h3 id="opp-detail-modal-title" class="modal-title">Opportunity Details</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="opp-detail-modal-body" class="modal-body">
+        <!-- Populated via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel-btn">Back</button>
+        <button id="opp-detail-apply-btn" class="btn btn-primary">Apply Now →</button>
+      </div>
+    </div>
   </div>
+
+  <!-- In-Platform Application Modal -->
+  <div id="apply-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="apply-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="apply-modal-title" class="modal-title">Submit Application</h3>
+          <p id="apply-modal-subtitle" style="font-size: 0.85rem; color: var(--color-text-muted);"></p>
+        </div>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="apply-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="apply-student-name">Applying As</label>
+            <input type="text" id="apply-student-name" class="form-input" value="Alex Johnson (UMass Amherst · Marketing)" readonly>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="apply-portfolio">Portfolio / Lookbook Link</label>
+            <input type="url" id="apply-portfolio" class="form-input" value="https://alexjohnson.fashion" required>
+            <p class="form-hint">Links to your digital portfolio, Instagram work profile, or Behance.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="apply-resume">Select Resume</label>
+            <select id="apply-resume" class="form-select">
+              <option value="default">Alex_Johnson_Fashion_Resume_2026.pdf (Verified)</option>
+              <option value="upload">+ Upload new resume document</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="apply-intro">Short Pitch / Cover Note</label>
+            <textarea id="apply-intro" class="form-textarea" rows="4" placeholder="Briefly describe why this fashion house inspires you and what practical creative skills you bring..." required></textarea>
+          </div>
+
+          <label class="form-checkbox-label">
+            <input type="checkbox" id="apply-consent" required>
+            <span>I agree to share my student profile, educational records, and creative portfolio with this employer in accordance with Fashow's Privacy Policy.</span>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Post Opportunity Modal (Company) -->
+  <div id="post-opp-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="post-opp-modal-title">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <h3 id="post-opp-modal-title" class="modal-title">Post a Fashion Opportunity</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="post-opp-form">
+        <div class="modal-body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="post-title">Position / Casting Title</label>
+              <input type="text" id="post-title" class="form-input" placeholder="e.g. Social Media & Styling Intern" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="post-company">Company Brand Name</label>
+              <input type="text" id="post-company" class="form-input" value="Zara Atelier" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="post-type">Opportunity Type</label>
+              <select id="post-type" class="form-select">
+                <option value="Internship">Internship</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Modeling">Modeling Casting</option>
+                <option value="Brand Ambassador">Brand Ambassador</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="post-category">Discipline Category</label>
+              <select id="post-category" class="form-select">
+                <option value="Marketing">Marketing</option>
+                <option value="Design">Fashion Design</option>
+                <option value="Styling">Styling</option>
+                <option value="Photography">Photography</option>
+                <option value="Modeling">Modeling</option>
+                <option value="PR">PR & Influencer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="post-term">Schedule / Term</label>
+              <select id="post-term" class="form-select">
+                <option value="Part-Time">Part-Time</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Freelance">Freelance</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="post-location">Location</label>
+              <input type="text" id="post-location" class="form-input" placeholder="e.g. New York, NY or Remote" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="post-compensation">Compensation</label>
+              <input type="text" id="post-compensation" class="form-input" placeholder="e.g. $24 / hour" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="post-deadline">Application Deadline</label>
+              <input type="text" id="post-deadline" class="form-input" placeholder="e.g. Nov 20, 2026" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="post-desc">Role Description</label>
+            <textarea id="post-desc" class="form-textarea" rows="3" placeholder="Describe the day-to-day creative work, team structure, and impact..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="post-resp">Key Responsibilities (one per line)</label>
+            <textarea id="post-resp" class="form-textarea" rows="3" placeholder="Assist styling coordinator&#10;Research weekly trend reports&#10;Archive runway lookbooks"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="post-req">Requirements (one per line)</label>
+            <textarea id="post-req" class="form-textarea" rows="3" placeholder="Current college student&#10;Portfolio or visual reel&#10;Passion for contemporary fashion"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Opportunity</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Direct Messaging Modal -->
+  <div id="messaging-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="msg-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="msg-modal-title" class="modal-title">Direct Messages</h3>
+          <p id="msg-recipient-label" style="font-size: 0.85rem; color: var(--color-text-muted);"></p>
+        </div>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 1.5rem;">
+        <div id="chat-history" style="display: flex; flex-direction: column; gap: 1rem; max-height: 280px; overflow-y: auto; padding-right: 0.5rem; margin-bottom: 1.5rem;">
+          <div style="align-self: flex-start; background: #f1f5f9; padding: 0.75rem 1rem; border-radius: var(--radius-sm); max-width: 80%; font-size: 0.9rem;">
+            <strong>Recruiting Team:</strong> Hello Alex, we were thoroughly impressed by your visual portfolio. Would you be available for a brief virtual interview this week?
+          </div>
+        </div>
+        <form id="chat-form" style="display: flex; gap: 0.75rem;">
+          <input type="text" id="msg-input" class="form-input" placeholder="Type your response to the brand..." required>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Choice Modal -->
+  <div id="signup-choice-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="signup-choice-title">
+    <div class="modal-card" style="max-width: 520px; text-align: center;">
+      <div class="modal-header" style="justify-content: center; position: relative;">
+        <h3 id="signup-choice-title" class="modal-title">Join Fashow</h3>
+        <button class="modal-close-btn" style="position: absolute; right: 1.5rem;" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 2.5rem 2rem;">
+        <p style="margin-bottom: 2rem; color: var(--color-text-muted);">Select your account profile type to get started:</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <button id="signup-student-choice" class="btn btn-lg btn-outline-dark" style="padding: 1.5rem; justify-content: flex-start; text-align: left;">
+            <div>
+              <strong style="display: block; font-size: 1.1rem; margin-bottom: 0.25rem;">🎓 I am a College Student</strong>
+              <span style="font-size: 0.85rem; color: var(--color-text-muted); font-weight: normal;">Discover internships, castings, build your portfolio, and connect with brands.</span>
+            </div>
+          </button>
+
+          <button id="signup-company-choice" class="btn btn-lg btn-primary" style="padding: 1.5rem; justify-content: flex-start; text-align: left;">
+            <div>
+              <strong style="display: block; font-size: 1.1rem; margin-bottom: 0.25rem;">✨ I represent a Fashion Company</strong>
+              <span style="font-size: 0.85rem; color: #cbd5e1; font-weight: normal;">Post opportunities, scout student lookbooks, and hire emerging fashion talent.</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Registration Modal -->
+  <div id="student-signup-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="student-reg-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="student-reg-title" class="modal-title">Student Registration</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="student-reg-form">
+        <div class="modal-body">
+          <div class="wizard-steps">
+            <div class="wizard-step-indicator active"></div>
+            <div class="wizard-step-indicator active"></div>
+            <div class="wizard-step-indicator"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-input" value="Alex Johnson" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="reg-email">University Email</label>
+              <input type="email" id="reg-email" class="form-input" placeholder="student@university.edu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-grad">Graduation Year</label>
+              <select id="reg-grad" class="form-select">
+                <option value="2027">Class of 2027</option>
+                <option value="2028" selected>Class of 2028</option>
+                <option value="2029">Class of 2029</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="reg-school">College / University</label>
+              <input type="text" id="reg-school" class="form-input" value="UMass Amherst" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-major">Major</label>
+              <input type="text" id="reg-major" class="form-input" value="Marketing & Fashion Design" required>
+            </div>
+          </div>
+
+          <label class="form-checkbox-label">
+            <input type="checkbox" required checked>
+            <span>I accept the Terms of Service and Privacy Policy, and certify that I am a college student.</span>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Complete Profile Setup</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Company Registration Modal -->
+  <div id="company-signup-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="comp-reg-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="comp-reg-title" class="modal-title">Register Fashion Brand</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="company-reg-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="comp-name">Company / Label Name</label>
+            <input type="text" id="comp-name" class="form-input" placeholder="e.g. Celine Atelier" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="comp-industry">Industry Category</label>
+              <input type="text" id="comp-industry" class="form-input" placeholder="Haute Couture / Streetwear" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="comp-hq">Headquarters</label>
+              <input type="text" id="comp-hq" class="form-input" placeholder="Soho, New York" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="comp-web">Official Website</label>
+            <input type="url" id="comp-web" class="form-input" placeholder="https://yourbrand.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="comp-about">Brand Bio</label>
+            <textarea id="comp-about" class="form-textarea" rows="3" placeholder="Briefly describe your brand identity and creative philosophy..." required></textarea>
+          </div>
+          <label class="form-checkbox-label">
+            <input type="checkbox" required checked>
+            <span>I certify that I am an authorized representative of this fashion business.</span>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Brand Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 id="login-modal-title" class="modal-title">Welcome Back</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form onsubmit="event.preventDefault(); window.fashow.closeModal('login-modal'); window.fashow.showToast('Logged in successfully!');">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email Address</label>
+            <input type="email" id="login-email" class="form-input" value="sales@gennis.shop" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="login-pwd">Password</label>
+            <input type="password" id="login-pwd" class="form-input" value="••••••••••••" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Legal & Compliance Modals (Prompt Checklist Items) -->
+  
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <h3 id="privacy-title" class="modal-title">Privacy Policy</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-main);">
+        <p><strong>Effective Date: September 28, 2026</strong></p>
+        <p style="margin-top: 1rem;">Fashow Technologies Inc. ("Fashow", "we", "us", or "our") respects your privacy. This policy outlines how we collect, use, and protect your information across our fashion career marketplace.</p>
+        
+        <h4 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">1. Data We Collect</h4>
+        <p>We collect only necessary information required to facilitate career opportunities:</p>
+        <ul style="padding-left: 1.25rem; margin: 0.5rem 0;">
+          <li>Student profile data (name, university, major, graduation year, portfolio links)</li>
+          <li>Application materials submitted directly by users (resumes, lookbook URLs, cover notes)</li>
+          <li>Company business information (business email, brand name, verified website)</li>
+        </ul>
+
+        <h4 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">2. Purpose of Processing</h4>
+        <p>Information is used exclusively to connect students with employers, manage job applications, and prevent platform misuse. We never sell your personal data to third-party data brokers or advertisers.</p>
+
+        <h4 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">3. User Rights & Data Deletion</h4>
+        <p>You have the right to inspect, download, or permanently delete your student profile and application history at any time by contacting our privacy compliance officer at <strong>sales@gennis.shop</strong>.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary modal-cancel-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms & Conditions Modal -->
+  <div id="terms-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <h3 id="terms-title" class="modal-title">Terms & Conditions</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-main);">
+        <p><strong>Last Updated: September 2026</strong></p>
+        
+        <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.1rem;">1. Platform Nature</h4>
+        <p>Fashow serves as a direct matchmaking venue connecting emerging creative talent with verified fashion brands. Fashow is not an employer, employment agency, or party to individual employment contracts formed between students and brands.</p>
+
+        <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.1rem;">2. Intellectual Property of Student Portfolios</h4>
+        <p>Students retain 100% full ownership, copyright, and moral rights to all creative works, photographs, designs, and portfolio material shared on the platform. Brands may only review portfolio assets for hiring and casting evaluation.</p>
+
+        <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.1rem;">3. Fair Labor Compliance</h4>
+        <p>All posted positions must comply with federal, state, and local fair labor standards. Compensation transparency is strictly enforced across all listings.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary modal-cancel-btn">Accept & Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookies Policy Modal -->
+  <div id="cookies-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cookies-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="cookies-title" class="modal-title">Cookie & Local Storage Policy</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-main);">
+        <p>We use essential browser cookies and local storage tokens solely to maintain your login session, save your bookmarked opportunities, and preserve your cookie preferences.</p>
+        <p style="margin-top: 1rem;">We do not deploy cross-site tracking beacons or invasive commercial ad tracking cookies.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary modal-cancel-btn">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Refund Policy Modal -->
+  <div id="refund-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="refund-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="refund-title" class="modal-title">Refund & Billing Policy</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-main);">
+        <p><strong>Students:</strong> Fashow is 100% free for college students and emerging candidates.</p>
+        <p style="margin-top: 1rem;"><strong>Companies:</strong> For paid enterprise job posting packages, cancellations requested within 14 days of purchase with no active candidate contact will receive a full refund. Contact <strong>sales@gennis.shop</strong> for billing inquiries.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary modal-cancel-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent-banner" class="cookie-banner hidden" role="region" aria-label="Cookie Consent Banner">
+    <div class="cookie-content">
+      <p>
+        We use essential cookies and local storage to provide authentic session management and save your opportunity bookmarks. Read our <a href="#" id="cookie-banner-link" onclick="window.fashow.openModal('cookies-modal'); return false;">Cookies Policy</a> for details.
+      </p>
+    </div>
+    <div class="cookie-buttons">
+      <button id="cookie-decline-btn" class="btn btn-sm btn-secondary" style="color: #ffffff; border-color: #475569;">Decline Optional</button>
+      <button id="cookie-accept-btn" class="btn btn-sm btn-primary" style="background: #ffffff; color: #0f172a; border-color: #ffffff;">Accept All</button>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>FASHOW</h2>
+          <p>
+            The two-sided marketplace connecting emerging college creatives with leading fashion houses, ateliers, and cultural agencies.
+          </p>
+          <div class="footer-business-details">
+            <p><strong>Fashow Technologies Inc.</strong></p>
+            <p>540 Broadway, Soho, New York, NY 10012</p>
+            <p>Direct Inquiries: <a href="mailto:sales@gennis.shop" style="color: #cbd5e1; text-decoration: underline;">sales@gennis.shop</a></p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-title">Platform</h3>
+          <ul class="footer-links">
+            <li><a href="#discover" data-nav-view="discover">Discover Opportunities</a></li>
+            <li><a href="#companies" data-nav-view="companies">Fashion Brands</a></li>
+            <li><a href="#applications" data-nav-view="applications">My Applications</a></li>
+            <li><a href="#profile" data-nav-view="profile">Student Lookbooks</a></li>
+            <li><a href="#" class="open-post-opp-btn">Post a Position</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-title">Disciplines</h3>
+          <ul class="footer-links">
+            <li><a href="#discover" data-nav-view="discover">Runway & Modeling</a></li>
+            <li><a href="#discover" data-nav-view="discover">Atelier Fashion Design</a></li>
+            <li><a href="#discover" data-nav-view="discover">Editorial Styling</a></li>
+            <li><a href="#discover" data-nav-view="discover">Fashion Photography</a></li>
+            <li><a href="#discover" data-nav-view="discover">Digital Marketing & PR</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-title">Compliance & Legal</h3>
+          <ul class="footer-links">
+            <li><a href="#" id="footer-privacy-link">Privacy Policy</a></li>
+            <li><a href="#" id="footer-terms-link">Terms & Conditions</a></li>
+            <li><a href="#" id="footer-cookies-link">Cookie Policy</a></li>
+            <li><a href="#" id="footer-refund-link">Refund Policy</a></li>
+            <li><a href="mailto:sales@gennis.shop">Support & Inquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Fashow Technologies Inc. All rights reserved. High-contrast WCAG AA accessible.</p>
+        <p>Photographic imagery provided via royalty-free editorial attribution.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
 </body>
 </html>
