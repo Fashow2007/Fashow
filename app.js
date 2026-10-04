@@ -460,49 +460,49 @@
     }
   }
 
-  // --- Opportunity Card Component ---
+  // --- Opportunity Card Component (Lookbook Editorial Style) ---
   function createOpportunityCard(opp) {
     const card = document.createElement('article');
-    card.className = 'opportunity-card';
+    card.className = 'roster-card opportunity-card';
     card.setAttribute('aria-labelledby', `opp-title-${opp.id}`);
     
     const isSaved = savedOppIds.includes(opp.id);
+    const roleCredit = opp.category ? opp.category.toUpperCase() : 'CREATIVE';
+    const locCredit = opp.location ? opp.location.toUpperCase() : 'NYC';
 
     card.innerHTML = `
-      <div>
-        <div class="opp-card-header">
-          <div class="opp-company-brand">
-            <img src="${opp.logo}" alt="Original insignia monogram for ${opp.company}" class="opp-logo-img" loading="lazy">
-            <div>
-              <h4 class="opp-company-name">${opp.company}</h4>
-              <span class="opp-location">${opp.location}</span>
-            </div>
-          </div>
+      <div class="card-media-slot">
+        <img src="${opp.banner || opp.logo}" alt="Editorial lookbook showcase for ${opp.title}" loading="lazy">
+        <div class="card-media-badge">
+          <span class="badge-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> VERIFIED</span>
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-2);">
+          <span class="mono-credit">${roleCredit} — ${locCredit}</span>
           <button class="opp-bookmark-btn ${isSaved ? 'saved' : ''}" data-id="${opp.id}" aria-label="${isSaved ? 'Remove from saved' : 'Save opportunity'}">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
               <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
             </svg>
           </button>
         </div>
-        
-        <h3 id="opp-title-${opp.id}" class="opp-title">${opp.title}</h3>
-        
-        <div class="opp-badges">
-          <span class="badge ${opp.paid ? 'badge-paid' : 'badge-neutral'}">${opp.paid ? 'Paid · ' + opp.compensation : 'Unpaid'}</span>
-          <span class="badge badge-neutral">${opp.type}</span>
-          <span class="badge badge-neutral">${opp.term}</span>
-        </div>
-        
-        <p class="opp-tags">
-          <span>${opp.tags.join(' · ')}</span>
-        </p>
-      </div>
 
-      <div class="opp-footer">
-        <span class="opp-deadline">Apply by <strong>${opp.deadline}</strong></span>
-        <button class="btn btn-sm btn-primary view-opp-btn" data-id="${opp.id}">
-          View & Apply →
-        </button>
+        <h3 id="opp-title-${opp.id}" class="card-title">${opp.title}</h3>
+        <p style="font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-bottom: var(--space-3);">${opp.company}</p>
+
+        <div class="card-tags-row">
+          <span class="badge ${opp.paid ? 'badge-paid' : 'badge-neutral'}">${opp.paid ? opp.compensation : 'Unpaid'}</span>
+          <span class="badge badge-neutral">${opp.type}</span>
+          ${opp.tags ? opp.tags.slice(0, 2).map(t => `<span class="badge badge-neutral">${t}</span>`).join('') : ''}
+        </div>
+
+        <div class="card-footer">
+          <span class="opp-deadline" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em;">DEADLINE: ${opp.deadline}</span>
+          <button class="btn btn-sm btn-primary view-opp-btn" data-id="${opp.id}">
+            View & Apply →
+          </button>
+        </div>
       </div>
     `;
 
@@ -519,7 +519,7 @@
     return card;
   }
 
-  // --- Company Card Component ---
+  // --- Company Card Component (Lookbook Editorial Style) ---
   function createCompanyCard(comp) {
     const card = document.createElement('article');
     card.className = 'company-card';
@@ -531,15 +531,16 @@
       </div>
       <div class="company-card-body">
         <img src="${comp.logo}" alt="Original insignia monogram for ${comp.name}" class="company-card-logo" loading="lazy">
-        <div class="company-card-meta">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-1);">
           <h3 id="comp-name-${comp.id}" class="company-card-name">${comp.name}</h3>
-          <p class="company-card-tag">${comp.category} · ${comp.location}</p>
+          <span class="badge-verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> VERIFIED</span>
         </div>
+        <p class="company-card-tag">${comp.category} — ${comp.location.toUpperCase()}</p>
         <p class="company-card-desc">${comp.description}</p>
         <div class="company-card-footer">
           <span class="badge badge-neutral">${comp.activeRoles} active positions</span>
-          <button class="btn btn-sm btn-outline-dark view-company-roles-btn" data-comp-name="${comp.name}">
-            View Roles
+          <button class="btn btn-sm btn-secondary view-company-roles-btn" data-comp-name="${comp.name}">
+            Explore Roles →
           </button>
         </div>
       </div>
@@ -718,85 +719,100 @@
     if (!container) return;
 
     container.innerHTML = `
-      <div class="profile-cover"></div>
-      <div class="container">
-        <div class="profile-header-card">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&h=240&q=80" alt="Alex Johnson professional student portrait" class="profile-avatar-large">
-          <div class="profile-info">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-              <div>
-                <h2 class="profile-name">${DEFAULT_STUDENT.name}</h2>
-                <p class="profile-sub">${DEFAULT_STUDENT.school} · ${DEFAULT_STUDENT.major} · <strong>${DEFAULT_STUDENT.gradYear}</strong></p>
-                <p style="font-size: 0.9rem; color: var(--color-text-light);">📍 ${DEFAULT_STUDENT.location}</p>
-              </div>
-              <div>
-                <button class="btn btn-sm btn-outline-dark" id="edit-profile-btn">Edit Portfolio</button>
-              </div>
+      <section class="profile-hero">
+        <div class="container">
+          <div class="profile-hero-grid">
+            <div class="profile-portrait-slot">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=480&h=640&q=80" alt="Alex Johnson professional student portrait">
             </div>
-
-            <p style="margin: 1.25rem 0; font-size: 1rem; color: var(--color-text-main); line-height: 1.6;">${DEFAULT_STUDENT.bio}</p>
-
-            <div style="margin-bottom: 1rem;">
-              <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-light); display: block; margin-bottom: 0.4rem;">Specialized Areas</span>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <div class="profile-header-meta">
+              <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2); flex-wrap: wrap;">
+                <span class="mono-credit">TALENT ROSTER · ID #FJ-2849</span>
+                <span class="badge-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> VERIFIED CREATIVE</span>
+              </div>
+              <h1 style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; margin-bottom: var(--space-1);">${DEFAULT_STUDENT.name}</h1>
+              <p class="mono-credit" style="color: var(--gold); margin-bottom: var(--space-4); font-size: 0.8rem;">
+                ${DEFAULT_STUDENT.major.toUpperCase()} — ${DEFAULT_STUDENT.school.toUpperCase()} — ${DEFAULT_STUDENT.location.toUpperCase()}
+              </p>
+              <p style="font-size: 1rem; color: var(--muted); line-height: 1.65; max-width: 680px; margin-bottom: var(--space-5);">
+                ${DEFAULT_STUDENT.bio}
+              </p>
+              <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-5);">
                 ${DEFAULT_STUDENT.interests.map(i => `<span class="badge badge-neutral">${i}</span>`).join('')}
               </div>
+              <div style="display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap;">
+                <a href="${DEFAULT_STUDENT.links.portfolio}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                  Portfolio Site ↗
+                </a>
+                <a href="${DEFAULT_STUDENT.links.instagram}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                  Instagram ↗
+                </a>
+                <a href="${DEFAULT_STUDENT.links.linkedin}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                  LinkedIn ↗
+                </a>
+              </div>
             </div>
-
-            <div class="profile-social-links">
-              <a href="${DEFAULT_STUDENT.links.linkedin}" target="_blank" rel="noopener noreferrer" class="social-link">
-                <span>LinkedIn</span> ↗
-              </a>
-              <a href="${DEFAULT_STUDENT.links.instagram}" target="_blank" rel="noopener noreferrer" class="social-link">
-                <span>Instagram</span> ↗
-              </a>
-              <a href="${DEFAULT_STUDENT.links.portfolio}" target="_blank" rel="noopener noreferrer" class="social-link">
-                <span>Portfolio Site</span> ↗
-              </a>
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <button class="btn btn-primary" id="connect-profile-btn" style="min-width: 140px;">Connect</button>
+              <button class="btn btn-secondary" id="edit-profile-btn">Edit Portfolio</button>
             </div>
           </div>
         </div>
+      </section>
 
-        <div style="margin-bottom: 4rem;">
-          <div class="section-header">
+      <section class="section">
+        <div class="container">
+          <div class="section-header-row">
             <div>
-              <span class="section-label">Visual Creative Portfolio</span>
-              <h3 class="section-title">Curated Work & Lookbooks</h3>
+              <span class="section-eyebrow">VISUAL LOOKBOOK</span>
+              <h2 class="section-title">Curated Work & Campaigns</h2>
             </div>
           </div>
 
-          <div class="portfolio-gallery-grid">
+          <div class="lookbook-grid">
             ${DEFAULT_STUDENT.portfolio.map(item => `
-              <div class="portfolio-item">
-                <img src="${item.img}" alt="${item.title}" loading="lazy">
-                <div class="portfolio-caption">
-                  <h4 style="font-weight: 600; font-size: 0.95rem;">${item.title}</h4>
-                  <p style="font-size: 0.8rem; opacity: 0.9;">${item.caption}</p>
+              <div class="roster-card">
+                <div class="card-media-slot">
+                  <img src="${item.img}" alt="${item.title}" loading="lazy">
+                </div>
+                <div class="card-body">
+                  <h4 style="font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin-bottom: var(--space-1);">${item.title}</h4>
+                  <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.5;">${item.caption}</p>
                 </div>
               </div>
             `).join('')}
           </div>
         </div>
+      </section>
 
-        <div style="margin-bottom: 4rem;">
-          <h3 class="font-serif" style="font-size: 1.5rem; margin-bottom: 1.5rem;">Experience & Highlights</h3>
-          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+      <section class="section section-line-top" style="padding-top: 4rem;">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">BACKGROUND</span>
+              <h2 class="section-title">Experience & Highlights</h2>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 860px;">
             ${DEFAULT_STUDENT.experience.map(exp => `
-              <div style="padding: 1.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
-                  <h4 style="font-weight: 700;">${exp.role} · <span style="font-weight: 500; color: var(--color-text-muted);">${exp.org}</span></h4>
-                  <span style="font-size: 0.85rem; color: var(--color-text-light);">${exp.period}</span>
+              <div style="padding: var(--space-6); background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-2); flex-wrap: wrap; gap: var(--space-2);">
+                  <h4 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;">${exp.role} <span style="font-family: var(--font-body); font-weight: 500; color: var(--gold);">· ${exp.org}</span></h4>
+                  <span class="mono-credit">${exp.period}</span>
                 </div>
-                <p style="font-size: 0.95rem; color: var(--color-text-muted);">${exp.description}</p>
+                <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.6;">${exp.description}</p>
               </div>
             `).join('')}
           </div>
         </div>
-      </div>
+      </section>
     `;
 
     document.getElementById('edit-profile-btn')?.addEventListener('click', () => {
       showToast('Profile editing mode enabled (saved locally)');
+    });
+    document.getElementById('connect-profile-btn')?.addEventListener('click', () => {
+      openMessagingModal('Alex Johnson', 'Creative Inquiry');
     });
   }
 
@@ -1542,8 +1558,122 @@
     });
   }
 
+  // --- Step 2: Full-Screen Logo Intro Animation (Runway Curtain Exit) ---
+  function initLogoIntro() {
+    const curtain = document.getElementById('logo-intro-curtain');
+    if (!curtain) return;
+
+    const skipBtn = document.getElementById('intro-skip-btn');
+    const introSeen = sessionStorage.getItem('fashow_intro_seen');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let curtainTimer = null;
+
+    function finishIntro(immediate = false) {
+      if (curtainTimer) clearTimeout(curtainTimer);
+
+      if (immediate) {
+        curtain.classList.add('hidden');
+        document.body.classList.add('skip-intro', 'intro-complete');
+        document.body.style.overflow = '';
+      } else {
+        curtain.classList.add('curtain-opening');
+        document.body.classList.add('intro-revealed');
+        setTimeout(() => {
+          curtain.classList.add('hidden');
+          document.body.classList.add('intro-complete');
+          document.body.style.overflow = '';
+        }, 500);
+      }
+      try {
+        sessionStorage.setItem('fashow_intro_seen', 'true');
+      } catch (e) {
+        // sessionStorage restricted
+      }
+    }
+
+    if (introSeen) {
+      finishIntro(true);
+      return;
+    }
+
+    if (prefersReducedMotion) {
+      document.body.style.overflow = 'hidden';
+      curtainTimer = setTimeout(() => {
+        finishIntro(false);
+      }, 300);
+      return;
+    }
+
+    // Normal full sequence: ~2.4s drawing & wordmark, then curtain split
+    document.body.style.overflow = 'hidden';
+
+    curtainTimer = setTimeout(() => {
+      finishIntro(false);
+    }, 2400);
+
+    skipBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      finishIntro(true);
+    });
+  }
+
+  // --- Step 3: Sticky Navigation Bar & Mobile Menu Drawer ---
+  function initNavHandlers() {
+    const header = document.querySelector('.site-header');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
+
+    const mobileToggle = document.getElementById('mobile-nav-toggle-btn');
+    const mobileOverlay = document.getElementById('mobile-nav-overlay');
+    const mobileClose = document.getElementById('mobile-nav-close-btn');
+
+    mobileToggle?.addEventListener('click', () => {
+      mobileOverlay?.classList.add('active');
+    });
+
+    mobileClose?.addEventListener('click', () => {
+      mobileOverlay?.classList.remove('active');
+    });
+
+    mobileOverlay?.querySelectorAll('[data-nav-view]').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileOverlay?.classList.remove('active');
+      });
+    });
+  }
+
+  // --- Scroll-Reveal Motion Observer ---
+  function initScrollReveal() {
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.section, .two-sides-section, .credibility-strip').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+      });
+    }
+  }
+
   // --- Init on DOM Load ---
   document.addEventListener('DOMContentLoaded', async () => {
+    initLogoIntro();
+    initNavHandlers();
+    initScrollReveal();
     renderHomeFeatured();
     initCookieConsent();
     initRoleControls();
