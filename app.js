@@ -898,7 +898,351 @@
     openModal('apply-modal');
   }
 
-  function handleApplicationSubmit(e) {
+  // --- Supabase Backend Sync & Auth Integration ---
+  let currentUser = null;
+  let currentUserProfile = null;
+
+  async function initBackendIntegration() {
+    const backendBtn = document.getElementById('nav-backend-btn');
+    const statusDot = document.getElementById('backend-status-dot');
+    const statusText = document.getElementById('backend-status-text');
+    const statusDesc = document.getElementById('supabase-status-desc');
+    const disconnectBtn = document.getElementById('supabase-disconnect-btn');
+    const urlInput = document.getElementById('supabase-url-input');
+    const anonInput = document.getElementById('supabase-anon-input');
+
+    const isConnected = window.FashowBackend && window.FashowBackend.isConfigured();
+
+    if (isConnected) {
+      if (statusDot) statusDot.style.background = '#22c55e'; // Green
+      if (statusText) statusText.textContent = 'Supabase Live';
+      if (statusDesc) statusDesc.innerHTML = '<span style="color: #15803d; font-weight: 600;">✓ Connected</span> to your live Supabase cloud database.';
+      if (disconnectBtn) disconnectBtn.style.display = 'inline-block';
+    } else {
+      if (statusDot) statusDot.style.background = '#eab308'; // Yellow
+      if (statusText) statusText.textContent = 'Connect Backend';
+      if (statusDesc) statusDesc.innerHTML = '<span style="color: #b45309;">Not connected.</span> Paste your Supabase Project URL & Anon Key to enable live cloud accounts and applications.';
+      if (disconnectBtn) disconnectBtn.style.display = 'none';
+    }
+
+    // Populate inputs with current stored values if available
+    if (window.FashowBackend) {
+      const creds = window.FashowBackend.getStoredCredentials();
+      if (urlInput && creds.url) urlInput.value = creds.url;
+      if (anonInput && creds.anonKey) anonInput.value = creds.anonKey;
+    }
+
+    // Open modal on backend button click
+    backendBtn?.addEventListener('click', () => {
+      openModal('supabase-modal');
+    });
+
+    // Handle Supabase config form submit
+    document.getElementById('supabase-config-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const saveBtn = document.getElementById('supabase-save-btn');
+      if (saveBtn) saveBtn.textContent = 'Connecting...';
+
+      const url = urlInput?.value || '';
+      const anonKey = anonInput?.value || '';
+
+      if (window.FashowBackend) {
+        const success = window.FashowBackend.setStoredCredentials(url, anonKey);
+        if (success) {
+          showToast('Supabase backend connected successfully!');
+          closeModal('supabase-modal');
+          initBackendIntegration();
+          await checkAuthState();
+          await loadBackendData();
+        } else {
+          alert('Could not initialize Supabase. Please verify your Project URL and Anon Key.');
+        }
+      }
+
+      if (saveBtn) saveBtn.textContent = 'Save & Connect';
+    });
+
+    // Handle disconnect
+    disconnectBtn?.addEventListener('click', () => {
+      if (confirm('Disconnect Supabase? The site will revert to local demo mode.')) {
+        if (window.FashowBackend) {
+          window.FashowBackend.setStoredCredentials('', '');
+        }
+        closeModal('supabase-modal');
+        showToast('Disconnected from Supabase.');
+        initBackendIntegration();
+        checkAuthState();
+      }
+    });
+  }
+
+  // --- Real Auth State Checking ---
+  async function checkAuthState() {
+    const loggedOutNav = document.getElementById('nav-auth-logged-out');
+    const loggedInNav = document.getElementById('nav-auth-logged-in');
+    const emailLabel = document.getElementById('nav-user-email');
+    const roleBadge = document.getElementById('nav-user-role-badge');
+    const avatarEl = document.getElementById('nav-user-avatar');
+
+    if (!window.FashowBackend || !window.FashowBackend.isConfigured()) {
+      // Unconfigured or demo mode
+      if (loggedOutNav) loggedOutNav.style.display = 'flex';
+      if (loggedInNav) loggedInNav.style.display = 'none';
+      currentUser = null;
+      currentUserProfile = null;
+      return;
+    }
+
+    try {
+      const session = await window.FashowBackend.getSession();
+      if (session && session.user) {
+        currentUser = session.user;
+        const profile = await window.FashowBackend.getProfile(session.user.id);
+        currentUserProfile = profile;
+
+        if (loggedOutNav) loggedOutNav.style.display = 'none';
+        if (loggedInNav) loggedInNav.style.display = 'flex';
+
+        const displayEmail = session.user.email || 'user';
+        if (emailLabel) emailLabel.textContent = displayEmail;
+        if (avatarEl) avatarEl.textContent = displayEmail.charAt(0).toUpperCase();
+
+        const role = (profile && profile.role) || (session.user.user_metadata && session.user.user_metadata.role) || 'student';
+        currentRole = role;
+        if (roleBadge) {
+          roleBadge.textContent = role === 'company' ? 'Atelier / Brand' : 'Student';
+          roleBadge.className = role === 'company' ? 'badge badge-highlight' : 'badge badge-neutral';
+        }
+
+        // Sync student profile view with live user details
+        if (role === 'student' && profile) {
+          DEFAULT_STUDENT.name = profile.full_name || displayEmail.split('@')[0];
+          DEFAULT_STUDENT.school = profile.school || DEFAULT_STUDENT.school;
+          DEFAULT_STUDENT.major = profile.major || DEFAULT_STUDENT.major;
+          DEFAULT_STUDENT.gradYear = profile.grad_year ? `Class of ${profile.grad_year}` : DEFAULT_STUDENT.gradYear;
+          if (profile.bio) DEFAULT_STUDENT.bio = profile.bio;
+        }
+
+        saveState();
+      } else {
+        currentUser = null;
+        currentUserProfile = null;
+        if (loggedOutNav) loggedOutNav.style.display = 'flex';
+        if (loggedInNav) loggedInNav.style.display = 'none';
+      }
+    } catch (err) {
+      console.warn('Error checking Supabase auth:', err);
+    }
+  }
+
+  // --- Real Database Data Loading ---
+  async function loadBackendData() {
+    if (!window.FashowBackend || !window.FashowBackend.isConfigured()) return;
+
+    // 1. Fetch real opportunities from PostgreSQL
+    try {
+      const realOpps = await window.FashowBackend.fetchOpportunities();
+      if (realOpps && realOpps.length > 0) {
+        opportunities = realOpps.map(row => ({
+          id: row.id,
+          title: row.title,
+          company: row.company_name,
+          companyId: row.company_id,
+          logo: createSvgLogo(row.company_name.slice(0, 2).toUpperCase(), '#0f172a', '#f8fafc'),
+          banner: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80',
+          location: row.location,
+          type: row.type,
+          term: row.term,
+          paid: row.compensation && !row.compensation.toLowerCase().includes('unpaid'),
+          compensation: row.compensation,
+          deadline: row.deadline,
+          category: row.category,
+          tags: row.tags && row.tags.length ? row.tags : [row.category, row.type],
+          description: row.description,
+          responsibilities: row.responsibilities || [],
+          requirements: row.requirements || []
+        }));
+        renderHomeFeatured();
+        renderDiscoverFeed();
+      }
+    } catch (err) {
+      console.warn('Could not fetch Supabase opportunities:', err);
+    }
+
+    // 2. Fetch real applications for student or company
+    if (currentUser) {
+      try {
+        if (currentRole === 'student') {
+          const myApps = await window.FashowBackend.fetchMyApplications();
+          if (myApps && myApps.length > 0) {
+            applications = myApps.map(row => ({
+              id: row.id,
+              opportunityId: row.opportunities?.id,
+              title: row.opportunities?.title || 'Fashion Position',
+              company: row.opportunities?.company_name || 'Fashion Studio',
+              appliedDate: new Date(row.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+              status: row.status,
+              statusLabel: row.status,
+              statusClass: row.status === 'Accepted' ? 'status-accepted' : (row.status === 'Interview' ? 'status-interview' : (row.status === 'Under Review' ? 'status-review' : 'status-submitted')),
+              note: row.note || 'Application under review.'
+            }));
+            renderApplicationsTracker();
+          }
+        }
+      } catch (err) {
+        console.warn('Could not fetch Supabase applications:', err);
+      }
+    }
+  }
+
+  // --- Real Auth Form Handlers ---
+  async function handleStudentSignup(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('student-submit-btn');
+    const name = document.getElementById('reg-name')?.value || '';
+    const email = document.getElementById('reg-email')?.value || '';
+    const password = document.getElementById('reg-password')?.value || '';
+    const school = document.getElementById('reg-school')?.value || '';
+    const major = document.getElementById('reg-major')?.value || '';
+    const gradYear = document.getElementById('reg-grad')?.value || '2028';
+
+    if (window.FashowBackend && window.FashowBackend.isConfigured()) {
+      if (!password || password.length < 6) {
+        alert('Please enter a password with at least 6 characters.');
+        return;
+      }
+
+      if (submitBtn) submitBtn.textContent = 'Creating Account...';
+
+      try {
+        await window.FashowBackend.signUp(email, password, {
+          role: 'student',
+          full_name: name,
+          school: school,
+          major: major,
+          grad_year: gradYear
+        });
+
+        closeModal('student-signup-modal');
+        showToast('Student account created! Logging in...');
+        
+        // Try sign-in immediately if email confirmation is disabled
+        try {
+          await window.FashowBackend.signIn(email, password);
+        } catch (_) {
+          // If confirmation email is required, notify user
+          alert('Account created! Please check your email to confirm your account, then sign in.');
+        }
+
+        await checkAuthState();
+        setView('profile');
+      } catch (err) {
+        alert('Sign-up failed: ' + (err.message || 'Please check your information.'));
+      } finally {
+        if (submitBtn) submitBtn.textContent = 'Complete Profile Setup';
+      }
+    } else {
+      // Local fallback
+      closeModal('student-signup-modal');
+      currentRole = 'student';
+      saveState();
+      showToast('Welcome to Fashow! Student account initialized.');
+      setView('profile');
+    }
+  }
+
+  async function handleCompanySignup(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('company-submit-btn');
+    const compName = document.getElementById('comp-name')?.value || '';
+    const email = document.getElementById('comp-email')?.value || '';
+    const password = document.getElementById('comp-password')?.value || '';
+    const industry = document.getElementById('comp-industry')?.value || '';
+    const hq = document.getElementById('comp-hq')?.value || '';
+    const website = document.getElementById('comp-web')?.value || '';
+    const about = document.getElementById('comp-about')?.value || '';
+
+    if (window.FashowBackend && window.FashowBackend.isConfigured()) {
+      if (!password || password.length < 6) {
+        alert('Please enter a password with at least 6 characters.');
+        return;
+      }
+
+      if (submitBtn) submitBtn.textContent = 'Registering Brand...';
+
+      try {
+        await window.FashowBackend.signUp(email, password, {
+          role: 'company',
+          company_name: compName,
+          industry: industry,
+          location: hq,
+          website: website,
+          company_bio: about
+        });
+
+        closeModal('company-signup-modal');
+        showToast('Brand registered! Logging into Employer Portal...');
+
+        try {
+          await window.FashowBackend.signIn(email, password);
+        } catch (_) {
+          alert('Brand account created! Please check your email to confirm your account, then sign in.');
+        }
+
+        await checkAuthState();
+        setView('company-portal');
+      } catch (err) {
+        alert('Brand registration failed: ' + (err.message || 'Please check your information.'));
+      } finally {
+        if (submitBtn) submitBtn.textContent = 'Create Brand Profile';
+      }
+    } else {
+      closeModal('company-signup-modal');
+      currentRole = 'company';
+      saveState();
+      showToast('Brand registered! Welcome to the Employer Portal.');
+      setView('company-portal');
+    }
+  }
+
+  async function handleLoginSubmit(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('login-submit-btn');
+    const email = document.getElementById('login-email')?.value || '';
+    const password = document.getElementById('login-pwd')?.value || '';
+
+    if (window.FashowBackend && window.FashowBackend.isConfigured()) {
+      if (submitBtn) submitBtn.textContent = 'Signing In...';
+
+      try {
+        await window.FashowBackend.signIn(email, password);
+        closeModal('login-modal');
+        showToast('Signed in successfully!');
+        await checkAuthState();
+        await loadBackendData();
+        setView(currentRole === 'company' ? 'company-portal' : 'discover');
+      } catch (err) {
+        alert('Sign-in failed: ' + (err.message || 'Invalid email or password.'));
+      } finally {
+        if (submitBtn) submitBtn.textContent = 'Sign In';
+      }
+    } else {
+      closeModal('login-modal');
+      showToast('Logged in successfully!');
+    }
+  }
+
+  async function handleLogout() {
+    if (window.FashowBackend && window.FashowBackend.isConfigured()) {
+      await window.FashowBackend.signOut();
+    }
+    await checkAuthState();
+    showToast('Signed out successfully.');
+    setView('home');
+  }
+
+  // --- Real Application Submission ---
+  async function handleApplicationSubmit(e) {
     e.preventDefault();
     if (!activeOpportunity) return;
 
@@ -911,30 +1255,55 @@
       return;
     }
 
-    const newApp = {
-      id: 'app-' + Date.now(),
-      opportunityId: activeOpportunity.id,
-      title: activeOpportunity.title,
-      company: activeOpportunity.company,
-      appliedDate: 'Just now',
-      status: 'Submitted',
-      statusLabel: 'Submitted',
-      statusClass: 'status-submitted',
-      note: 'Application received by brand creative team.',
-      intro: intro,
-      portfolio: portfolioLink
-    };
+    if (window.FashowBackend && window.FashowBackend.isConfigured()) {
+      if (!currentUser) {
+        alert('Please log in with your student account first to submit your official application.');
+        closeModal('apply-modal');
+        openModal('login-modal');
+        return;
+      }
 
-    applications.unshift(newApp);
-    saveState();
+      try {
+        await window.FashowBackend.submitApplication({
+          opportunity_id: activeOpportunity.id,
+          portfolio_link: portfolioLink,
+          pitch: intro
+        });
 
-    closeModal('apply-modal');
-    showToast(`Application submitted to ${activeOpportunity.company}!`);
-    setView('applications');
+        closeModal('apply-modal');
+        showToast(`Application saved to Supabase cloud for ${activeOpportunity.company}!`);
+        await loadBackendData();
+        setView('applications');
+      } catch (err) {
+        alert('Application submission error: ' + (err.message || 'Please verify your session.'));
+      }
+    } else {
+      // Local fallback
+      const newApp = {
+        id: 'app-' + Date.now(),
+        opportunityId: activeOpportunity.id,
+        title: activeOpportunity.title,
+        company: activeOpportunity.company,
+        appliedDate: 'Just now',
+        status: 'Submitted',
+        statusLabel: 'Submitted',
+        statusClass: 'status-submitted',
+        note: 'Application received by brand creative team.',
+        intro: intro,
+        portfolio: portfolioLink
+      };
+
+      applications.unshift(newApp);
+      saveState();
+
+      closeModal('apply-modal');
+      showToast(`Application submitted to ${activeOpportunity.company}!`);
+      setView('applications');
+    }
   }
 
-  // --- Company Post Opportunity Flow ---
-  function handlePostOpportunity(e) {
+  // --- Real Opportunity Posting ---
+  async function handlePostOpportunity(e) {
     e.preventDefault();
     const title = document.getElementById('post-title')?.value;
     const companyName = document.getElementById('post-company')?.value || 'Atelier Marais';
@@ -948,32 +1317,66 @@
     const resp = (document.getElementById('post-resp')?.value || '').split('\n').filter(Boolean);
     const req = (document.getElementById('post-req')?.value || '').split('\n').filter(Boolean);
 
-    const newOpp = {
-      id: 'opp-' + Date.now(),
-      title,
-      company: companyName,
-      companyId: 'comp-1',
-      logo: createSvgLogo(companyName.slice(0, 2).toUpperCase(), '#0f172a', '#f8fafc'),
-      banner: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80',
-      location,
-      type,
-      term,
-      paid: true,
-      compensation: comp,
-      deadline,
-      category,
-      tags: [category, type, term],
-      description: desc,
-      responsibilities: resp.length ? resp : ['Assist in everyday studio operations', 'Contribute directly to creative lookbooks'],
-      requirements: req.length ? req : ['Current college student with strong fashion interest']
-    };
+    if (window.FashowBackend && window.FashowBackend.isConfigured()) {
+      if (!currentUser) {
+        alert('Please log in with your brand account first to publish an opportunity.');
+        closeModal('post-opp-modal');
+        openModal('login-modal');
+        return;
+      }
 
-    opportunities.unshift(newOpp);
-    saveState();
+      try {
+        await window.FashowBackend.insertOpportunity({
+          title,
+          company_name: companyName,
+          type,
+          term,
+          category,
+          location,
+          compensation: comp,
+          deadline,
+          description: desc,
+          responsibilities: resp.length ? resp : ['Assist in everyday studio operations'],
+          requirements: req.length ? req : ['Current college student with strong fashion interest'],
+          tags: [category, type, term]
+        });
 
-    closeModal('post-opp-modal');
-    showToast('Opportunity published live across Fashow!');
-    setView('discover');
+        closeModal('post-opp-modal');
+        showToast('Opportunity saved to Supabase cloud & published live!');
+        await loadBackendData();
+        setView('discover');
+      } catch (err) {
+        alert('Could not post opportunity: ' + (err.message || 'Please check your connection.'));
+      }
+    } else {
+      // Local fallback
+      const newOpp = {
+        id: 'opp-' + Date.now(),
+        title,
+        company: companyName,
+        companyId: 'comp-1',
+        logo: createSvgLogo(companyName.slice(0, 2).toUpperCase(), '#0f172a', '#f8fafc'),
+        banner: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80',
+        location,
+        type,
+        term,
+        paid: true,
+        compensation: comp,
+        deadline,
+        category,
+        tags: [category, type, term],
+        description: desc,
+        responsibilities: resp.length ? resp : ['Assist in everyday studio operations', 'Contribute directly to creative lookbooks'],
+        requirements: req.length ? req : ['Current college student with strong fashion interest']
+      };
+
+      opportunities.unshift(newOpp);
+      saveState();
+
+      closeModal('post-opp-modal');
+      showToast('Opportunity published live across Fashow!');
+      setView('discover');
+    }
   }
 
   // --- Direct Messaging Drawer ---
@@ -1043,6 +1446,8 @@
         setView(currentRole === 'student' ? 'discover' : 'company-portal');
       });
     }
+
+    document.getElementById('nav-logout-btn')?.addEventListener('click', handleLogout);
   }
 
   // --- Event Binding ---
@@ -1098,6 +1503,9 @@
     document.getElementById('apply-form')?.addEventListener('submit', handleApplicationSubmit);
     document.getElementById('post-opp-form')?.addEventListener('submit', handlePostOpportunity);
     document.getElementById('chat-form')?.addEventListener('submit', handleSendMessage);
+    document.getElementById('login-form')?.addEventListener('submit', handleLoginSubmit);
+    document.getElementById('student-reg-form')?.addEventListener('submit', handleStudentSignup);
+    document.getElementById('company-reg-form')?.addEventListener('submit', handleCompanySignup);
 
     document.querySelectorAll('.open-post-opp-btn').forEach(btn => {
       btn.addEventListener('click', () => openModal('post-opp-modal'));
@@ -1132,32 +1540,17 @@
       e.preventDefault();
       openModal('refund-modal');
     });
-
-    document.getElementById('student-reg-form')?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      closeModal('student-signup-modal');
-      currentRole = 'student';
-      saveState();
-      showToast('Welcome to Fashow! Student account initialized.');
-      setView('profile');
-    });
-
-    document.getElementById('company-reg-form')?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      closeModal('company-signup-modal');
-      currentRole = 'company';
-      saveState();
-      showToast('Brand registered! Welcome to the Employer Portal.');
-      setView('company-portal');
-    });
   }
 
   // --- Init on DOM Load ---
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     renderHomeFeatured();
     initCookieConsent();
     initRoleControls();
     bindGlobalEvents();
+    await initBackendIntegration();
+    await checkAuthState();
+    await loadBackendData();
     setView('home');
   });
 
@@ -1171,3 +1564,4 @@
   };
 
 })();
+
