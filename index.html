@@ -196,7 +196,7 @@
 
         <div class="container hero-inner">
           <div class="hero-eyebrow-pill">
-            <span>EDITORIAL NETWORK · EST. 2026</span>
+            <span>FOUNDING COHORT · PRE-LAUNCH ACCESS OPEN</span>
           </div>
 
           <h1 class="hero-title-main">
@@ -205,7 +205,7 @@
           </h1>
 
           <p class="hero-subline">
-            Direct matchmaking for college designers, models, marketers, and micro-influencers with verified fashion houses.
+            Fashow connects college designers, models, stylists, and marketers directly with verified fashion houses. Claim your handle and build your profile today to be first in line when brand castings launch.
           </p>
 
           <!-- Two Clear Entry Paths Side by Side -->
@@ -213,12 +213,12 @@
             <!-- Creator Path Card -->
             <div class="entry-path-card" onclick="window.fashow.openModal('student-signup-modal')" role="button" tabindex="0" aria-label="Join as a creator">
               <div>
-                <span class="entry-path-label">COLLEGE TALENT · STUDENTS · CREATIVES</span>
-                <h2 class="entry-path-title">I'm a creator</h2>
-                <p class="entry-path-desc">Build your visual lookbook, apply for castings, styling roles, and creative apprenticeships with zero middlemen.</p>
+                <span class="entry-path-label">FOR STUDENTS & CREATIVES</span>
+                <h2 class="entry-path-title">Claim Your Creator Profile</h2>
+                <p class="entry-path-desc">Build your visual lookbook, add your bio and university, and reserve your founding creator profile before brand castings open.</p>
               </div>
               <div class="entry-path-cta">
-                <span>Create Free Profile</span>
+                <span>Claim Your Free Profile</span>
                 <span class="entry-path-arrow">→</span>
               </div>
             </div>
@@ -226,9 +226,9 @@
             <!-- Brand Path Card -->
             <div class="entry-path-card" onclick="window.fashow.openModal('company-signup-modal')" role="button" tabindex="0" aria-label="Join as a fashion brand">
               <div>
-                <span class="entry-path-label">ATELIERS · FASHION HOUSES · LABELS</span>
-                <h2 class="entry-path-title">I'm a brand</h2>
-                <p class="entry-path-desc">Scout university designers, runway models, content creators, and marketing interns across premier fashion programs.</p>
+                <span class="entry-path-label">FOR ATELIERS & FASHION LABELS</span>
+                <h2 class="entry-path-title">Register Your Brand</h2>
+                <p class="entry-path-desc">Get priority early access to scout the inaugural cohort of university fashion talent with zero recruiter markups.</p>
               </div>
               <div class="entry-path-cta">
                 <span>Register Your Brand</span>
@@ -259,52 +259,99 @@
 
       <!-- Step 4: Core Sections -->
 
-      <!-- The Roster: Featured Lookbook Opportunities -->
+      <!-- The Roster: Profile Preview & Activation -->
       <section class="section">
         <div class="container">
           <div class="section-header-row">
             <div>
-              <span class="section-eyebrow">THE ROSTER</span>
-              <h2 class="section-title">Curated Opportunities</h2>
-              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Hand-selected positions and castings from respected ateliers and emerging labels.</p>
+              <span class="section-eyebrow">FOUNDING DIRECTORY · PROFILE PREVIEW</span>
+              <h2 class="section-title">See what your profile looks like on Fashow.</h2>
+              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Every creator gets an editorial lookbook card, verified student credential, and a high-fashion portfolio spread.</p>
             </div>
-            <button class="btn btn-secondary" data-nav-view="discover">View All Opportunities →</button>
+            <button class="btn btn-primary" onclick="window.fashow.openModal('student-signup-modal')">Create Your Profile Now →</button>
           </div>
 
           <div id="home-featured-grid" class="roster-grid">
-            <!-- Dynamically populated via JS -->
+            <!-- Dynamically populated via JS: Activation card + sample lookbooks -->
           </div>
         </div>
       </section>
 
-      <!-- How It Works Section: 01 / 02 / 03 Row -->
+      <!-- Pre-Launch Perks: Why Build Your Profile Before Launch -->
+      <section class="section section-line-top">
+        <div class="container">
+          <div class="section-header-row" style="margin-bottom: var(--space-4);">
+            <div>
+              <span class="section-eyebrow">EARLY ACCESS ADVANTAGE</span>
+              <h2 class="section-title">Why build your profile before launch?</h2>
+              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Be among the first college creatives and brands shaping the future of fashion networking.</p>
+            </div>
+          </div>
+
+          <div class="perks-grid">
+            <div class="perk-card">
+              <div>
+                <span class="perk-num">01 / BADGE</span>
+                <h3 class="perk-title">Founding Creator Status</h3>
+                <p class="perk-desc">Early members receive a permanent verified founding status on their profile and in brand searches.</p>
+              </div>
+            </div>
+
+            <div class="perk-card">
+              <div>
+                <span class="perk-num">02 / LOOKBOOK</span>
+                <h3 class="perk-title">Dedicated Portfolio Link</h3>
+                <p class="perk-desc">Get an editorial profile URL to share with brands, casting directors, and in your social bio.</p>
+              </div>
+            </div>
+
+            <div class="perk-card">
+              <div>
+                <span class="perk-num">03 / PRIORITY</span>
+                <h3 class="perk-title">First in Line for Castings</h3>
+                <p class="perk-desc">Partner ateliers and fashion labels scout the founding cohort first before public drops.</p>
+              </div>
+            </div>
+
+            <div class="perk-card">
+              <div>
+                <span class="perk-num">04 / ZERO COST</span>
+                <h3 class="perk-title">100% Free Forever</h3>
+                <p class="perk-desc">College students always retain free access and 100% copyright ownership of all photos and designs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section: Onboarding Workflow -->
       <section id="how-it-works-sec" class="section section-line-top">
         <div class="container">
           <div class="section-header-row" style="margin-bottom: var(--space-8);">
             <div>
-              <span class="section-eyebrow">DIRECT WORKFLOW</span>
-              <h2 class="section-title">How Fashow Works</h2>
-              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Built as a professional fashion networking environment, not a generic resume drop.</p>
+              <span class="section-eyebrow">ONBOARDING WORKFLOW</span>
+              <h2 class="section-title">How to Claim Your Profile</h2>
+              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Designed specifically for emerging creative talent to get discovered.</p>
             </div>
           </div>
 
           <div class="how-it-works-row">
             <div class="how-step-col">
               <span class="step-num-mono">01</span>
-              <h3 class="step-heading">Make your profile</h3>
-              <p class="step-body">Showcase your visual lookbooks, editorial photography, design flats, and campus experience in an authentic creative format.</p>
+              <h3 class="step-heading">Create your account</h3>
+              <p class="step-body">Sign up in under 60 seconds with your university or business email to reserve your custom fashion handle.</p>
             </div>
 
             <div class="how-step-col">
               <span class="step-num-mono">02</span>
-              <h3 class="step-heading">Get visible</h3>
-              <p class="step-body">Verified fashion brands, creative directors, and atelier recruiters discover your profile directly across our curated disciplines.</p>
+              <h3 class="step-heading">Add your bio & work</h3>
+              <p class="step-body">Write your creative bio, select your disciplines (Design, Modeling, Styling, Marketing), and upload 3:4 lookbook photos.</p>
             </div>
 
             <div class="how-step-col">
               <span class="step-num-mono">03</span>
-              <h3 class="step-heading">Connect directly</h3>
-              <p class="step-body">Apply in one click, receive direct interview invitations, and communicate with brand casting coordinators without agency fees.</p>
+              <h3 class="step-heading">Get scouted at launch</h3>
+              <p class="step-body">When fashion houses and creative directors search our inaugural roster, your verified profile is front and center.</p>
             </div>
           </div>
         </div>
@@ -330,11 +377,11 @@
               </li>
               <li>
                 <span class="bullet-dash">—</span>
-                <span><strong>Verified listings only</strong> with transparent hourly compensation, clear schedules, and direct brand contact.</span>
+                <span><strong>Direct brand discovery</strong> with verified labels, transparent compensation, and zero agency fees.</span>
               </li>
             </ul>
 
-            <button class="btn btn-primary" onclick="window.fashow.openModal('student-signup-modal')">Join as Creator →</button>
+            <button class="btn btn-primary" onclick="window.fashow.openModal('student-signup-modal')">Claim Your Creator Profile →</button>
           </div>
 
           <!-- Right: Brands (Paper) -->
@@ -354,7 +401,7 @@
               </li>
               <li>
                 <span class="bullet-dash">—</span>
-                <span><strong>Post castings & internships</strong> with zero recruiter markups, agency commissions, or platform lock-in.</span>
+                <span><strong>Reserve early scouting access</strong> with zero recruiter markups, agency commissions, or platform lock-in.</span>
               </li>
             </ul>
 
@@ -453,16 +500,16 @@
         </div>
       </section>
 
-      <!-- Featured Brands Section -->
+      <!-- Partner Brands & Ateliers Section -->
       <section class="section section-line-top">
         <div class="container">
           <div class="section-header-row">
             <div>
-              <span class="section-eyebrow">PARTNERS</span>
-              <h2 class="section-title">Hiring Fashion Brands</h2>
-              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Leading fashion houses actively seeking students and emerging college creatives.</p>
+              <span class="section-eyebrow">FOUNDING ATELIERS · RECRUITER NETWORK</span>
+              <h2 class="section-title">Fashion Houses Reserving Early Scouting Access</h2>
+              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Ateliers, independent labels, and creative agencies onboarding to discover our inaugural student lookbook drop.</p>
             </div>
-            <button class="btn btn-secondary" data-nav-view="companies">Explore Brand Directory →</button>
+            <button class="btn btn-primary" onclick="window.fashow.openModal('company-signup-modal')">Register Your Brand →</button>
           </div>
 
           <div id="home-brands-grid" class="companies-grid">
@@ -1242,6 +1289,112 @@
       </div>
     </div>
   </footer>
+
+  <!-- Edit Creator Profile & Lookbook Modal -->
+  <div id="edit-profile-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="edit-profile-modal-title">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div>
+          <span class="section-eyebrow" style="margin-bottom: 0.25rem;">CREATOR PROFILE</span>
+          <h3 id="edit-profile-modal-title" class="modal-title">Edit Lookbook & Bio</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="edit-profile-form">
+        <div class="modal-body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-name">Full Name</label>
+              <input type="text" id="edit-profile-name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-location">Location / City</label>
+              <input type="text" id="edit-profile-location" class="form-input" placeholder="e.g. New York, NY or Boston & NYC" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-school">College / University</label>
+              <input type="text" id="edit-profile-school" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-major">Major / Area of Study</label>
+              <input type="text" id="edit-profile-major" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-grad">Graduation Year</label>
+              <select id="edit-profile-grad" class="form-select">
+                <option value="Class of 2026">Class of 2026</option>
+                <option value="Class of 2027">Class of 2027</option>
+                <option value="Class of 2028">Class of 2028</option>
+                <option value="Class of 2029">Class of 2029</option>
+                <option value="Class of 2030">Class of 2030</option>
+                <option value="Alumni">Alumni / Graduate</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-profile-avatar">Profile Portrait Image URL (3:4 Portrait)</label>
+            <input type="url" id="edit-profile-avatar" class="form-input" placeholder="https://images.unsplash.com/..." required>
+            <p class="form-hint">Direct URL to a high-resolution 3:4 portrait photo.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-profile-bio">Creative Bio & Statement</label>
+            <textarea id="edit-profile-bio" class="form-textarea" rows="4" placeholder="Write your creative statement, aesthetic philosophy, and what roles/collaborations you are seeking..." required></textarea>
+            <p class="form-hint">Tell fashion houses about your design perspective, backstage experience, or visual style.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-profile-interests">Creative Disciplines & Skills (comma-separated)</label>
+            <input type="text" id="edit-profile-interests" class="form-input" placeholder="Fashion Design, Editorial Styling, Runway, 35mm Photography, Marketing">
+            <p class="form-hint">Tags appear as editorial pills on your profile card.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-portfolio">Portfolio Website Link</label>
+              <input type="url" id="edit-profile-portfolio" class="form-input" placeholder="https://yourportfolio.fashion">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-instagram">Instagram Profile Link</label>
+              <input type="text" id="edit-profile-instagram" class="form-input" placeholder="https://instagram.com/username">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-profile-linkedin">LinkedIn Link</label>
+              <input type="url" id="edit-profile-linkedin" class="form-input" placeholder="https://linkedin.com/in/username">
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid var(--line); padding-top: 1.25rem; margin-top: 1rem;">
+            <span class="section-eyebrow" style="margin-bottom: 0.5rem; color: var(--gold);">+ ADD LOOKBOOK WORK</span>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">Add a new editorial photo to your 3:4 lookbook gallery:</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="edit-new-lookbook-title">Work Title</label>
+                <input type="text" id="edit-new-lookbook-title" class="form-input" placeholder="e.g. Autumn / Winter Editorial Look 01">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="edit-new-lookbook-img">Image URL (3:4 aspect ratio)</label>
+                <input type="url" id="edit-new-lookbook-img" class="form-input" placeholder="https://images.unsplash.com/...">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-new-lookbook-caption">Caption / Credit Details</label>
+              <input type="text" id="edit-new-lookbook-caption" class="form-input" placeholder="e.g. Styled with archival denim and hand-draped textiles.">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="save-profile-btn">Save Profile & Lookbook</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Supabase Backend Settings Modal -->
   <div id="supabase-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="supabase-modal-title">

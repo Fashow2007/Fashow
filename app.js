@@ -303,6 +303,7 @@
     major: 'Fashion Marketing & Visual Arts',
     gradYear: 'Class of 2028',
     location: 'Boston & New York',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=480&h=640&q=80',
     bio: 'Aspiring fashion creative and marketing student passionate about digital campaigns, editorial styling, and sustainable fashion. Experienced in visual storytelling, photography, and social media production.',
     interests: ['Marketing', 'Social Media', 'Styling', 'Photography', 'Content Creation'],
     skills: ['Photoshop', 'InDesign', 'Lightroom', 'Trend Forecasting', 'Campaign Production', 'Social Strategy'],
@@ -363,8 +364,16 @@
   let companies = JSON.parse(localStorage.getItem('fashow_companies')) || INITIAL_COMPANIES;
   let applications = JSON.parse(localStorage.getItem('fashow_applications')) || INITIAL_APPLICATIONS;
   let savedOppIds = JSON.parse(localStorage.getItem('fashow_saved_opps')) || ['opp-1'];
+  let studentProfile = JSON.parse(localStorage.getItem('fashow_student_profile')) || DEFAULT_STUDENT;
+  if (!studentProfile.avatar) {
+    studentProfile.avatar = DEFAULT_STUDENT.avatar;
+  }
   let currentRole = localStorage.getItem('fashow_user_role') || 'student';
   let currentView = 'home';
+
+  function saveStudentProfile() {
+    localStorage.setItem('fashow_student_profile', JSON.stringify(studentProfile));
+  }
 
   function saveState() {
     localStorage.setItem('fashow_opportunities', JSON.stringify(opportunities));
@@ -440,16 +449,158 @@
     if (viewName === 'company-portal') renderCompanyDashboard();
   }
 
-  // --- Render Featured on Homepage ---
+  // --- Render Featured on Homepage (Founding Cohort Roster Preview) ---
   function renderHomeFeatured() {
     const featuredGrid = document.getElementById('home-featured-grid');
     if (!featuredGrid) return;
     featuredGrid.innerHTML = '';
     
-    const featured = opportunities.slice(0, 3);
-    featured.forEach(opp => {
-      featuredGrid.appendChild(createOpportunityCard(opp));
+    // 1. Activation Card: Prompt visitors to claim their profile slot
+    const activationCard = document.createElement('article');
+    activationCard.className = 'activation-card';
+    activationCard.setAttribute('tabindex', '0');
+    activationCard.setAttribute('role', 'button');
+    activationCard.setAttribute('aria-label', 'Claim your founding creator profile');
+    activationCard.innerHTML = `
+      <div class="activation-media-slot">
+        <div class="activation-icon-circle">+</div>
+        <span class="mono-credit" style="color: var(--gold); font-weight: 700;">CLAIM THIS LOOKBOOK SLOT</span>
+        <p style="font-size: 0.82rem; color: var(--muted); max-width: 220px; line-height: 1.5;">Upload your 3:4 editorial work, bio statement, and campus credentials</p>
+      </div>
+      <div class="card-body" style="background: var(--ink-2); display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-2);">
+            <span class="mono-credit">CREATOR ROSTER — YOUR CITY</span>
+            <span class="badge-verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> PREVIEW</span>
+          </div>
+          <h3 class="card-title" style="color: var(--gold);">Your Name Here</h3>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: var(--space-3);">Your University · Design / Model / Styling</p>
+          <div class="card-tags-row">
+            <span class="badge badge-highlight">Founding Creator</span>
+            <span class="badge badge-neutral">Class of 2028</span>
+            <span class="badge badge-neutral">Portfolio</span>
+          </div>
+        </div>
+        <div class="card-footer" style="margin-top: var(--space-4);">
+          <span class="opp-deadline" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold); letter-spacing: 0.05em;">FOUNDING COHORT</span>
+          <button class="btn btn-sm btn-primary claim-profile-btn" style="min-width: 120px;">
+            Claim Profile →
+          </button>
+        </div>
+      </div>
+    `;
+    activationCard.addEventListener('click', () => openModal('student-signup-modal'));
+    activationCard.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal('student-signup-modal');
+      }
     });
+    featuredGrid.appendChild(activationCard);
+
+    // 2. Student Creator Lookbook Card (Alex Johnson / live studentProfile)
+    const creatorCard = document.createElement('article');
+    creatorCard.className = 'roster-card';
+    creatorCard.innerHTML = `
+      <div class="card-media-slot">
+        <img src="${studentProfile.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'}" alt="${studentProfile.name} editorial lookbook" loading="lazy">
+        <div class="card-media-badge">
+          <span class="badge-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> VERIFIED CREATIVE</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-2);">
+          <span class="mono-credit">DESIGN & STYLING — ${(studentProfile.location || 'NEW YORK').toUpperCase()}</span>
+        </div>
+        <h3 class="card-title">${studentProfile.name}</h3>
+        <p style="font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-bottom: var(--space-3);">${studentProfile.school} · ${studentProfile.gradYear}</p>
+        <div class="card-tags-row">
+          <span class="badge badge-highlight">Founding Creator</span>
+          ${(studentProfile.interests || []).slice(0, 2).map(t => `<span class="badge badge-neutral">${t}</span>`).join('')}
+        </div>
+        <div class="card-footer" style="margin-top: var(--space-4);">
+          <span class="opp-deadline" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em;">${studentProfile.portfolio ? studentProfile.portfolio.length : 4} LOOKBOOK PIECES</span>
+          <button class="btn btn-sm btn-secondary view-creator-profile-btn">
+            View Profile →
+          </button>
+        </div>
+      </div>
+    `;
+    creatorCard.querySelector('.view-creator-profile-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      setView('profile');
+    });
+    featuredGrid.appendChild(creatorCard);
+
+    // 3. Sample Model & Visual Creator (Jordan Rivera)
+    const modelCard = document.createElement('article');
+    modelCard.className = 'roster-card';
+    modelCard.innerHTML = `
+      <div class="card-media-slot">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Jordan Rivera runway and lookbook model" loading="lazy">
+        <div class="card-media-badge">
+          <span class="badge-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> VERIFIED TALENT</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-2);">
+          <span class="mono-credit">MODELING & RUNWAY — LOS ANGELES</span>
+        </div>
+        <h3 class="card-title">Jordan Rivera</h3>
+        <p style="font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-bottom: var(--space-3);">USC School of Dramatic Arts · Class of 2027</p>
+        <div class="card-tags-row">
+          <span class="badge badge-highlight">Founding Creator</span>
+          <span class="badge badge-neutral">Runway</span>
+          <span class="badge badge-neutral">Editorial</span>
+        </div>
+        <div class="card-footer" style="margin-top: var(--space-4);">
+          <span class="opp-deadline" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em;">6 CAMPAIGNS</span>
+          <button class="btn btn-sm btn-secondary view-model-btn">
+            View Profile →
+          </button>
+        </div>
+      </div>
+    `;
+    modelCard.querySelector('.view-model-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      setView('profile');
+    });
+    featuredGrid.appendChild(modelCard);
+
+    // 4. Sample Atelier / Fashion House (Atelier Marais)
+    const brandCard = document.createElement('article');
+    brandCard.className = 'roster-card';
+    brandCard.innerHTML = `
+      <div class="card-media-slot">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80" alt="Atelier Marais ready-to-wear studio" loading="lazy">
+        <div class="card-media-badge">
+          <span class="badge-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> VERIFIED BRAND</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-2);">
+          <span class="mono-credit">ATELIER & TAILORING — SOHO NYC</span>
+        </div>
+        <h3 class="card-title">Atelier Marais</h3>
+        <p style="font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-bottom: var(--space-3);">Contemporary Ready-to-Wear</p>
+        <div class="card-tags-row">
+          <span class="badge badge-highlight">Founding Atelier</span>
+          <span class="badge badge-neutral">Scouting Talent</span>
+          <span class="badge badge-neutral">Couture</span>
+        </div>
+        <div class="card-footer" style="margin-top: var(--space-4);">
+          <span class="opp-deadline" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em;">SCOUTING COHORT</span>
+          <button class="btn btn-sm btn-primary register-brand-btn">
+            Register Brand →
+          </button>
+        </div>
+      </div>
+    `;
+    brandCard.querySelector('.register-brand-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal('company-signup-modal');
+    });
+    featuredGrid.appendChild(brandCard);
 
     const brandsGrid = document.getElementById('home-brands-grid');
     if (brandsGrid) {
@@ -718,43 +869,60 @@
     const container = document.getElementById('student-profile-view');
     if (!container) return;
 
+    const currentAvatar = studentProfile.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=480&h=640&q=80';
+    const currentName = studentProfile.name || 'Alex Johnson';
+    const currentMajor = (studentProfile.major || 'FASHION MARKETING').toUpperCase();
+    const currentSchool = (studentProfile.school || 'UMASS AMHERST').toUpperCase();
+    const currentLocation = (studentProfile.location || 'BOSTON & NEW YORK').toUpperCase();
+    const currentBio = studentProfile.bio || 'Aspiring fashion creative and marketing student passionate about digital campaigns, editorial styling, and sustainable fashion.';
+    const currentInterests = studentProfile.interests && studentProfile.interests.length ? studentProfile.interests : ['Marketing', 'Styling', 'Photography'];
+    const currentPortfolio = studentProfile.portfolio && studentProfile.portfolio.length ? studentProfile.portfolio : [];
+    const currentExperience = studentProfile.experience && studentProfile.experience.length ? studentProfile.experience : [];
+    const links = studentProfile.links || {};
+
     container.innerHTML = `
       <section class="profile-hero">
         <div class="container">
           <div class="profile-hero-grid">
             <div class="profile-portrait-slot">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=480&h=640&q=80" alt="Alex Johnson professional student portrait">
+              <img src="${currentAvatar}" alt="${currentName} professional student portrait" loading="lazy">
             </div>
             <div class="profile-header-meta">
               <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2); flex-wrap: wrap;">
-                <span class="mono-credit">TALENT ROSTER · ID #FJ-2849</span>
+                <span class="mono-credit">TALENT ROSTER · FOUNDING COHORT</span>
                 <span class="badge-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> VERIFIED CREATIVE</span>
               </div>
-              <h1 style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; margin-bottom: var(--space-1);">${DEFAULT_STUDENT.name}</h1>
+              <h1 style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; margin-bottom: var(--space-1);">${currentName}</h1>
               <p class="mono-credit" style="color: var(--gold); margin-bottom: var(--space-4); font-size: 0.8rem;">
-                ${DEFAULT_STUDENT.major.toUpperCase()} — ${DEFAULT_STUDENT.school.toUpperCase()} — ${DEFAULT_STUDENT.location.toUpperCase()}
+                ${currentMajor} — ${currentSchool} — ${currentLocation}
               </p>
               <p style="font-size: 1rem; color: var(--muted); line-height: 1.65; max-width: 680px; margin-bottom: var(--space-5);">
-                ${DEFAULT_STUDENT.bio}
+                ${currentBio}
               </p>
               <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-5);">
-                ${DEFAULT_STUDENT.interests.map(i => `<span class="badge badge-neutral">${i}</span>`).join('')}
+                ${currentInterests.map(i => `<span class="badge badge-neutral">${i}</span>`).join('')}
               </div>
               <div style="display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap;">
-                <a href="${DEFAULT_STUDENT.links.portfolio}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary" style="font-family: var(--font-mono); font-size: 0.75rem;">
-                  Portfolio Site ↗
-                </a>
-                <a href="${DEFAULT_STUDENT.links.instagram}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost" style="font-family: var(--font-mono); font-size: 0.75rem;">
-                  Instagram ↗
-                </a>
-                <a href="${DEFAULT_STUDENT.links.linkedin}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost" style="font-family: var(--font-mono); font-size: 0.75rem;">
-                  LinkedIn ↗
-                </a>
+                ${links.portfolio ? `
+                  <a href="${links.portfolio}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                    Portfolio Site ↗
+                  </a>
+                ` : ''}
+                ${links.instagram ? `
+                  <a href="${links.instagram}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                    Instagram ↗
+                  </a>
+                ` : ''}
+                ${links.linkedin ? `
+                  <a href="${links.linkedin}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                    LinkedIn ↗
+                  </a>
+                ` : ''}
               </div>
             </div>
             <div style="display: flex; flex-direction: column; gap: var(--space-3);">
               <button class="btn btn-primary" id="connect-profile-btn" style="min-width: 140px;">Connect</button>
-              <button class="btn btn-secondary" id="edit-profile-btn">Edit Portfolio</button>
+              <button class="btn btn-secondary" id="edit-profile-btn">Edit Portfolio & Bio</button>
             </div>
           </div>
         </div>
@@ -767,10 +935,11 @@
               <span class="section-eyebrow">VISUAL LOOKBOOK</span>
               <h2 class="section-title">Curated Work & Campaigns</h2>
             </div>
+            <button class="btn btn-sm btn-secondary" id="add-work-shortcut-btn">+ Add Work</button>
           </div>
 
           <div class="lookbook-grid">
-            ${DEFAULT_STUDENT.portfolio.map(item => `
+            ${currentPortfolio.map(item => `
               <div class="roster-card">
                 <div class="card-media-slot">
                   <img src="${item.img}" alt="${item.title}" loading="lazy">
@@ -794,7 +963,7 @@
             </div>
           </div>
           <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 860px;">
-            ${DEFAULT_STUDENT.experience.map(exp => `
+            ${currentExperience.map(exp => `
               <div style="padding: var(--space-6); background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius-sm);">
                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-2); flex-wrap: wrap; gap: var(--space-2);">
                   <h4 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;">${exp.role} <span style="font-family: var(--font-body); font-weight: 500; color: var(--gold);">· ${exp.org}</span></h4>
@@ -808,11 +977,44 @@
       </section>
     `;
 
-    document.getElementById('edit-profile-btn')?.addEventListener('click', () => {
-      showToast('Profile editing mode enabled (saved locally)');
+    function populateAndOpenEditModal() {
+      const nameInput = document.getElementById('edit-profile-name');
+      const locInput = document.getElementById('edit-profile-location');
+      const schoolInput = document.getElementById('edit-profile-school');
+      const majorInput = document.getElementById('edit-profile-major');
+      const gradInput = document.getElementById('edit-profile-grad');
+      const avatarInput = document.getElementById('edit-profile-avatar');
+      const bioInput = document.getElementById('edit-profile-bio');
+      const interestsInput = document.getElementById('edit-profile-interests');
+      const portfolioInput = document.getElementById('edit-profile-portfolio');
+      const instaInput = document.getElementById('edit-profile-instagram');
+      const linkedInput = document.getElementById('edit-profile-linkedin');
+
+      if (nameInput) nameInput.value = studentProfile.name || '';
+      if (locInput) locInput.value = studentProfile.location || 'New York, NY';
+      if (schoolInput) schoolInput.value = studentProfile.school || '';
+      if (majorInput) majorInput.value = studentProfile.major || '';
+      if (gradInput) gradInput.value = studentProfile.gradYear || 'Class of 2028';
+      if (avatarInput) avatarInput.value = studentProfile.avatar || '';
+      if (bioInput) bioInput.value = studentProfile.bio || '';
+      if (interestsInput) interestsInput.value = (studentProfile.interests || []).join(', ');
+      if (portfolioInput) portfolioInput.value = studentProfile.links?.portfolio || '';
+      if (instaInput) instaInput.value = studentProfile.links?.instagram || '';
+      if (linkedInput) linkedInput.value = studentProfile.links?.linkedin || '';
+
+      openModal('edit-profile-modal');
+    }
+
+    document.getElementById('edit-profile-btn')?.addEventListener('click', populateAndOpenEditModal);
+    document.getElementById('add-work-shortcut-btn')?.addEventListener('click', () => {
+      populateAndOpenEditModal();
+      setTimeout(() => {
+        document.getElementById('edit-new-lookbook-title')?.focus();
+      }, 100);
     });
+
     document.getElementById('connect-profile-btn')?.addEventListener('click', () => {
-      openMessagingModal('Alex Johnson', 'Creative Inquiry');
+      openMessagingModal(studentProfile.name, 'Creative Collaboration');
     });
   }
 
@@ -1032,11 +1234,13 @@
 
         // Sync student profile view with live user details
         if (role === 'student' && profile) {
-          DEFAULT_STUDENT.name = profile.full_name || displayEmail.split('@')[0];
-          DEFAULT_STUDENT.school = profile.school || DEFAULT_STUDENT.school;
-          DEFAULT_STUDENT.major = profile.major || DEFAULT_STUDENT.major;
-          DEFAULT_STUDENT.gradYear = profile.grad_year ? `Class of ${profile.grad_year}` : DEFAULT_STUDENT.gradYear;
-          if (profile.bio) DEFAULT_STUDENT.bio = profile.bio;
+          studentProfile.name = profile.full_name || displayEmail.split('@')[0];
+          studentProfile.school = profile.school || studentProfile.school;
+          studentProfile.major = profile.major || studentProfile.major;
+          studentProfile.gradYear = profile.grad_year ? `Class of ${profile.grad_year}` : studentProfile.gradYear;
+          if (profile.bio) studentProfile.bio = profile.bio;
+          saveStudentProfile();
+          renderStudentProfile();
         }
 
         saveState();
@@ -1122,6 +1326,12 @@
     const major = document.getElementById('reg-major')?.value || '';
     const gradYear = document.getElementById('reg-grad')?.value || '2028';
 
+    studentProfile.name = name;
+    studentProfile.school = school;
+    studentProfile.major = major;
+    studentProfile.gradYear = `Class of ${gradYear}`;
+    saveStudentProfile();
+
     if (window.FashowBackend && window.FashowBackend.isConfigured()) {
       if (!password || password.length < 6) {
         alert('Please enter a password with at least 6 characters.');
@@ -1151,6 +1361,8 @@
         }
 
         await checkAuthState();
+        renderStudentProfile();
+        renderHomeFeatured();
         setView('profile');
       } catch (err) {
         alert('Sign-up failed: ' + (err.message || 'Please check your information.'));
@@ -1162,7 +1374,9 @@
       closeModal('student-signup-modal');
       currentRole = 'student';
       saveState();
-      showToast('Welcome to Fashow! Student account initialized.');
+      showToast(`Welcome to Fashow, ${name}! Your creator profile is ready.`);
+      renderStudentProfile();
+      renderHomeFeatured();
       setView('profile');
     }
   }
@@ -1263,7 +1477,7 @@
     if (!activeOpportunity) return;
 
     const intro = document.getElementById('apply-intro')?.value || '';
-    const portfolioLink = document.getElementById('apply-portfolio')?.value || DEFAULT_STUDENT.links.portfolio;
+    const portfolioLink = document.getElementById('apply-portfolio')?.value || (studentProfile.links && studentProfile.links.portfolio) || 'https://fashow2007.github.io/Fashow/';
     const consent = document.getElementById('apply-consent')?.checked;
 
     if (!consent) {
@@ -1428,6 +1642,79 @@
     showToast('Message sent to studio representative!');
   }
 
+  // --- Profile & Lookbook Update Handler ---
+  async function handleProfileUpdate(e) {
+    e.preventDefault();
+    const saveBtn = document.getElementById('save-profile-btn');
+    if (saveBtn) saveBtn.textContent = 'Saving...';
+
+    const name = document.getElementById('edit-profile-name')?.value.trim() || studentProfile.name;
+    const location = document.getElementById('edit-profile-location')?.value.trim() || studentProfile.location;
+    const school = document.getElementById('edit-profile-school')?.value.trim() || studentProfile.school;
+    const major = document.getElementById('edit-profile-major')?.value.trim() || studentProfile.major;
+    const gradYear = document.getElementById('edit-profile-grad')?.value || studentProfile.gradYear;
+    const avatar = document.getElementById('edit-profile-avatar')?.value.trim() || studentProfile.avatar;
+    const bio = document.getElementById('edit-profile-bio')?.value.trim() || studentProfile.bio;
+    const interestsRaw = document.getElementById('edit-profile-interests')?.value.trim() || '';
+    const portfolioLink = document.getElementById('edit-profile-portfolio')?.value.trim() || studentProfile.links?.portfolio;
+    const instagramLink = document.getElementById('edit-profile-instagram')?.value.trim() || studentProfile.links?.instagram;
+    const linkedinLink = document.getElementById('edit-profile-linkedin')?.value.trim() || studentProfile.links?.linkedin;
+
+    studentProfile.name = name;
+    studentProfile.location = location;
+    studentProfile.school = school;
+    studentProfile.major = major;
+    studentProfile.gradYear = gradYear;
+    studentProfile.avatar = avatar;
+    studentProfile.bio = bio;
+    if (interestsRaw) {
+      studentProfile.interests = interestsRaw.split(',').map(s => s.trim()).filter(Boolean);
+    }
+    studentProfile.links = {
+      portfolio: portfolioLink,
+      instagram: instagramLink,
+      linkedin: linkedinLink
+    };
+
+    // Check if new lookbook piece was added
+    const newTitle = document.getElementById('edit-new-lookbook-title')?.value.trim();
+    const newImg = document.getElementById('edit-new-lookbook-img')?.value.trim();
+    const newCaption = document.getElementById('edit-new-lookbook-caption')?.value.trim();
+
+    if (newTitle && newImg) {
+      if (!studentProfile.portfolio) studentProfile.portfolio = [];
+      studentProfile.portfolio.unshift({
+        title: newTitle,
+        img: newImg,
+        caption: newCaption || 'Editorial Lookbook piece'
+      });
+      document.getElementById('edit-new-lookbook-title').value = '';
+      document.getElementById('edit-new-lookbook-img').value = '';
+      document.getElementById('edit-new-lookbook-caption').value = '';
+    }
+
+    saveStudentProfile();
+
+    if (window.FashowBackend && window.FashowBackend.isConfigured() && currentUser) {
+      try {
+        await window.FashowBackend.updateUserProfile(currentUser.id, {
+          full_name: studentProfile.name,
+          school: studentProfile.school,
+          major: studentProfile.major,
+          bio: studentProfile.bio
+        });
+      } catch (err) {
+        console.warn('Could not sync profile to Supabase:', err);
+      }
+    }
+
+    closeModal('edit-profile-modal');
+    if (saveBtn) saveBtn.textContent = 'Save Profile & Lookbook';
+    showToast('Lookbook profile and bio updated successfully!');
+    renderStudentProfile();
+    renderHomeFeatured();
+  }
+
   // --- Cookie Banner Consent Handling ---
   function initCookieConsent() {
     const banner = document.getElementById('cookie-consent-banner');
@@ -1522,6 +1809,7 @@
     document.getElementById('login-form')?.addEventListener('submit', handleLoginSubmit);
     document.getElementById('student-reg-form')?.addEventListener('submit', handleStudentSignup);
     document.getElementById('company-reg-form')?.addEventListener('submit', handleCompanySignup);
+    document.getElementById('edit-profile-form')?.addEventListener('submit', handleProfileUpdate);
 
     document.querySelectorAll('.open-post-opp-btn').forEach(btn => {
       btn.addEventListener('click', () => openModal('post-opp-modal'));
