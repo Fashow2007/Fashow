@@ -21,6 +21,7 @@ html {
   background-color: var(--ink);
   color: var(--text-main);
   color-scheme: dark;
+  overflow-x: hidden;
 }
 
 body {
