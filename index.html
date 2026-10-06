@@ -3,33 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FASHOW — Fashion Talent & Creator Marketplace</title>
-  <meta name="description" content="Fashow connects fashion brands with college models, creators, and microinfluencers ready to collaborate. Built around college culture.">
+  <title>FASHOW — Fashion Talent & Creator Network</title>
+  <meta name="description" content="Fashow connects fashion brands with college models, creators and microinfluencers ready to collaborate. Starting in Amherst, expanding everywhere.">
   
-  <!-- Typography (Google Fonts, display=swap, preconnect) -->
+  <!-- Typography: Instrument Serif (Display) + Source Sans 3 (Interface) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- Design System Tokens & Main Stylesheet -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="style.css">
   
   <style>
-    /* Accessible skip link */
+    /* Skip link for accessibility */
     .skip-link {
       position: absolute;
-      top: -50px;
-      left: 1rem;
-      background: var(--gold);
-      color: var(--ink);
-      font-weight: 700;
+      top: -60px;
+      left: 1.5rem;
+      background: var(--text);
+      color: var(--bg);
+      font-weight: 600;
       padding: 0.5rem 1rem;
       z-index: 10001;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-xs);
       transition: top 0.2s ease;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
     }
     .skip-link:focus {
       top: 1rem;
@@ -41,57 +40,16 @@
   <!-- Accessible Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Film-Grain Subtle Texture Overlay -->
+  <!-- Subtle Film-Grain Overlay -->
   <div class="film-grain" aria-hidden="true"></div>
 
-  <!-- Full-Screen Logo Intro Animation (Runway Curtain) -->
-  <div id="logo-intro-curtain" role="dialog" aria-label="Fashow Intro Animation">
-    <div class="curtain-half curtain-left"></div>
-    <div class="curtain-half curtain-right"></div>
-    <div class="intro-stage">
-      <div class="intro-logo-box">
-        <div class="intro-glow-circle"></div>
-        <svg viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="introLogoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#F6C453" />
-              <stop offset="50%" stop-color="#F4A83D" />
-              <stop offset="100%" stop-color="#F28A2E" />
-            </linearGradient>
-          </defs>
-          <g stroke="url(#introLogoGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <path id="intro-loop-outer" class="anim-stroke loop-stroke-1" d="M 126 172 C 95 172, 64 190, 64 220 C 64 254, 98 274, 136 274 C 174 274, 192 238, 200 200 C 208 162, 236 150, 276 150 C 315 150, 336 175, 336 208 C 336 244, 305 272, 270 272 C 238 272, 218 250, 216 226" />
-            <path id="intro-loop-mid" class="anim-stroke loop-stroke-2" d="M 136 186 C 110 186, 78 198, 78 220 C 78 244, 104 260, 136 260 C 166 260, 184 228, 200 200 C 216 172, 244 164, 276 164 C 304 164, 322 182, 322 208 C 322 234, 296 258, 270 258 C 248 258, 230 242, 228 226" />
-            <path id="intro-loop-inner" class="anim-stroke loop-stroke-3" d="M 136 200 C 122 200, 92 208, 92 220 C 92 234, 112 246, 136 246 C 158 246, 178 222, 200 200 C 222 178, 248 172, 274 172" />
-            <path id="intro-crown-body" class="anim-stroke crown-stroke" d="M 126 172 L 106 110 L 138 126 L 160 103 L 180 126 L 200 79 L 220 126 L 240 103 L 262 126 L 294 110 L 274 172" />
-            <path id="intro-crown-chevron" class="anim-stroke chevron-stroke" d="M 180 160 L 200 118 L 220 160" />
-          </g>
-        </svg>
-      </div>
-      <div class="intro-wordmark-box">
-        <span class="intro-brand-title">FASHOW</span>
-        <div class="intro-progress-bar">
-          <div class="intro-progress-fill"></div>
-        </div>
-      </div>
-      <button id="intro-skip-btn" class="intro-skip-btn" aria-label="Skip intro animation">SKIP ↵</button>
-    </div>
-  </div>
-
-  <!-- Global Header Navigation -->
+  <!-- Global Header Navigation (Section 21 & 22) -->
   <header class="site-header" role="banner">
     <div class="container nav-wrapper">
       <div class="brand-nav-group">
-        <a href="#home" class="brand-logo" data-nav-view="home" aria-label="Fashow Homepage" style="display: inline-flex; align-items: center; gap: 0.65rem;">
-          <svg class="nav-logo-svg" viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="navLogoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#F6C453" />
-                <stop offset="50%" stop-color="#F4A83D" />
-                <stop offset="100%" stop-color="#F28A2E" />
-              </linearGradient>
-            </defs>
-            <g stroke="url(#navLogoGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <a href="#home" class="brand-logo" data-nav-view="home" aria-label="Fashow Homepage">
+          <svg viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g stroke="#C87D32" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
               <path d="M 126 172 C 95 172, 64 190, 64 220 C 64 254, 98 274, 136 274 C 174 274, 192 238, 200 200 C 208 162, 236 150, 276 150 C 315 150, 336 175, 336 208 C 336 244, 305 272, 270 272 C 238 272, 218 250, 216 226" />
               <path d="M 136 186 C 110 186, 78 198, 78 220 C 78 244, 104 260, 136 260 C 166 260, 184 228, 200 200 C 216 172, 244 164, 276 164 C 304 164, 322 182, 322 208 C 322 234, 296 258, 270 258 C 248 258, 230 242, 228 226" />
               <path d="M 136 200 C 122 200, 92 208, 92 220 C 92 234, 112 246, 136 246 C 158 246, 178 222, 200 200 C 222 178, 248 172, 274 172" />
@@ -99,82 +57,66 @@
               <path d="M 180 160 L 200 118 L 220 160" />
             </g>
           </svg>
-          <span style="font-family: var(--font-display); font-weight: 800; letter-spacing: 0.12em;">FASHOW</span>
+          <span>FASHOW</span>
         </a>
       </div>
       
+      <!-- Public Main Navigation Links -->
       <nav role="navigation" aria-label="Main Navigation">
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-public-links">
           <li><a href="#discover" class="nav-link" data-view="discover">Discover</a></li>
           <li><a href="#for-brands" class="nav-link" data-view="for-brands">For Brands</a></li>
           <li><a href="#for-creators" class="nav-link" data-view="for-creators">For Creators</a></li>
           <li><a href="#campaigns" class="nav-link" data-view="campaigns">Campaigns</a></li>
-          <li><a href="#how-it-works-sec" class="nav-link" data-view="home">How It Works</a></li>
+          <li><a href="#about" class="nav-link" data-view="about">About</a></li>
+        </ul>
+
+        <!-- Logged In Navigation Links (Brand Perspective) -->
+        <ul class="nav-links" id="nav-brand-links" style="display: none;">
+          <li><a href="#discover" class="nav-link" data-view="discover">Discover</a></li>
+          <li><a href="#campaigns" class="nav-link" data-view="campaigns">Campaigns</a></li>
+          <li><a href="#brand/dashboard" class="nav-link" data-view="brand-dashboard">Applications</a></li>
+          <li><a href="#collaborations" class="nav-link" data-view="collaborations">Collaborations</a></li>
+          <li><a href="#my-talent" class="nav-link" data-view="my-talent">My Talent</a></li>
+          <li><a href="#messages" class="nav-link" data-view="messages">Messages</a></li>
+        </ul>
+
+        <!-- Logged In Navigation Links (Creator Perspective) -->
+        <ul class="nav-links" id="nav-creator-links" style="display: none;">
+          <li><a href="#discover" class="nav-link" data-view="discover">Discover</a></li>
+          <li><a href="#campaigns" class="nav-link" data-view="campaigns">Open Castings</a></li>
+          <li><a href="#collaborations" class="nav-link" data-view="collaborations">Collaborations</a></li>
+          <li><a href="#messages" class="nav-link" data-view="messages">Messages</a></li>
+          <li><a href="#profile" class="nav-link" data-view="creator-profile">Portfolio</a></li>
         </ul>
       </nav>
 
+      <!-- Nav Actions -->
       <div class="nav-actions">
-        <!-- Guest View Auth Buttons -->
+        <!-- Logged-out Public Actions -->
         <div id="nav-guest-actions" style="display: flex; gap: 0.5rem; align-items: center;">
           <button id="nav-login-btn" class="btn btn-sm btn-ghost">Log In</button>
           <button id="nav-get-started-btn" class="btn btn-sm btn-primary">Get Started</button>
         </div>
 
-        <!-- Logged In / Role View Context Actions (Populated dynamically) -->
-        <div id="nav-auth-actions" style="display: none; align-items: center; gap: 0.65rem;">
-          <a href="#brand/dashboard" id="nav-brand-hub-link" class="btn btn-sm btn-secondary" style="display: none;">Brand Hub</a>
-          <a href="#profile" id="nav-creator-profile-link" class="btn btn-sm btn-secondary" style="display: none;">My Profile</a>
-          <a href="#collaborations" id="nav-collab-link" class="btn btn-sm btn-ghost" style="position: relative;">
-            Collabs <span id="nav-collab-badge" class="badge badge-gold" style="font-size: 0.65rem; padding: 0.1rem 0.35rem; display: none;">1</span>
-          </a>
-          <a href="#messages" id="nav-msg-link" class="btn btn-sm btn-ghost">
-            Messages <span id="nav-msg-badge" class="badge badge-gold" style="font-size: 0.65rem; padding: 0.1rem 0.35rem; display: none;">2</span>
-          </a>
+        <!-- Logged-in User Pill -->
+        <div id="nav-auth-actions" style="display: none; align-items: center; gap: 0.75rem;">
           <div class="user-menu-pill">
-            <span id="nav-user-avatar" style="width: 22px; height: 22px; border-radius: 50%; background: var(--gradient-brand); color: var(--ink); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700;">A</span>
-            <span id="nav-user-name" style="max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8rem; font-weight: 600;">Atelier Marais</span>
-            <span id="nav-user-badge" class="badge badge-neutral" style="font-size: 0.65rem; padding: 0.1rem 0.35rem;">Brand</span>
+            <span class="user-avatar-mini" id="nav-user-avatar">A</span>
+            <span id="nav-user-name" style="font-size: 0.85rem; font-weight: 600; color: var(--text);">Atelier Marais</span>
+            <span id="nav-user-role-badge" class="badge badge-neutral" style="font-size: 0.68rem; padding: 0.1rem 0.4rem;">Brand</span>
           </div>
-          <button id="nav-logout-btn" class="btn btn-sm btn-ghost" title="Sign out" style="color: var(--muted); padding: 0.4rem 0.6rem;">✕</button>
+          <button id="nav-logout-btn" class="btn btn-sm btn-ghost" title="Sign Out">Sign Out</button>
         </div>
 
-        <!-- Backend Settings Indicator Modal Trigger -->
-        <button id="nav-backend-btn" class="btn btn-sm btn-secondary" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.75rem;" title="Configure Supabase Database">
-          <span id="backend-status-dot" style="width: 7px; height: 7px; border-radius: 50%; background: #eab308; display: inline-block;"></span>
-          <span id="backend-status-text" style="font-size: 0.75rem; font-family: var(--font-mono);">DB</span>
-        </button>
-
-        <!-- Mobile Nav Hamburger Button -->
+        <!-- Mobile Nav Toggle -->
         <button id="mobile-nav-toggle-btn" class="mobile-nav-toggle" aria-label="Open Mobile Menu">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
         </button>
-      </div>
-    </div>
-
-    <!-- Demo Role Switcher Bar (Interactive 1-Click Perspective Switching) -->
-    <div class="demo-mode-bar" role="region" aria-label="Simulated Role Switcher">
-      <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <span style="font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); font-weight: 700;">
-            SIMULATED PERSPECTIVE:
-          </span>
-          <span id="demo-role-desc" style="font-size: 0.75rem; color: var(--muted);">Switch between Brand and Creator marketplace flows</span>
-        </div>
-        <div class="demo-role-pills">
-          <button class="demo-role-btn active" data-role="brand" id="demo-role-brand">
-            Brand View <span style="opacity: 0.75; font-size: 0.7rem;">(Atelier Marais)</span>
-          </button>
-          <button class="demo-role-btn" data-role="creator" id="demo-role-creator">
-            Creator View <span style="opacity: 0.75; font-size: 0.7rem;">(Maya Chen)</span>
-          </button>
-          <button class="demo-role-btn" data-role="guest" id="demo-role-guest">
-            Guest View
-          </button>
-        </div>
       </div>
     </div>
   </header>
@@ -183,14 +125,13 @@
   <div id="mobile-nav-overlay" class="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
     <button id="mobile-nav-close-btn" class="mobile-nav-close" aria-label="Close Mobile Menu">&times;</button>
     <ul class="mobile-nav-links">
-      <li><a href="#discover" data-nav-view="discover">Discover Creators</a></li>
+      <li><a href="#discover" data-nav-view="discover">Discover</a></li>
       <li><a href="#for-brands" data-nav-view="for-brands">For Brands</a></li>
       <li><a href="#for-creators" data-nav-view="for-creators">For Creators</a></li>
-      <li><a href="#campaigns" data-nav-view="campaigns">Open Campaigns</a></li>
+      <li><a href="#campaigns" data-nav-view="campaigns">Campaigns</a></li>
       <li><a href="#collaborations" data-nav-view="collaborations">Collaborations</a></li>
       <li><a href="#messages" data-nav-view="messages">Messages</a></li>
-      <li><a href="#brand/dashboard" data-nav-view="brand-dashboard">Brand Hub</a></li>
-      <li><a href="#profile" data-nav-view="profile">Creator Profile</a></li>
+      <li><a href="#about" data-nav-view="about">About</a></li>
     </ul>
     <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto;">
       <button class="btn btn-primary" onclick="window.fashow.openModal('signup-choice-modal'); document.getElementById('mobile-nav-overlay').classList.remove('active');">Get Started</button>
@@ -205,373 +146,494 @@
   <main id="main-content" role="main">
 
     <!-- ====================================================================
-         VIEW 1: HOME (EDITORIAL LANDING PAGE)
+         VIEW 1: HOMEPAGE (EDITORIAL SEQUENCE - SECTION 53)
          ==================================================================== -->
     <section id="view-home" class="view-section">
       
-      <!-- Hero Section -->
-      <section class="hero-section" aria-label="Hero Overview">
-        <div class="hero-glow-bg" aria-hidden="true"></div>
-        <div class="hero-watermark" aria-hidden="true">
-          <svg viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g stroke="#F6C453" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
-              <path d="M 126 172 C 95 172, 64 190, 64 220 C 64 254, 98 274, 136 274 C 174 274, 192 238, 200 200 C 208 162, 236 150, 276 150 C 315 150, 336 175, 336 208 C 336 244, 305 272, 270 272 C 238 272, 218 250, 216 226" />
-              <path d="M 136 186 C 110 186, 78 198, 78 220 C 78 244, 104 260, 136 260 C 166 260, 184 228, 200 200 C 216 172, 244 164, 276 164 C 304 164, 322 182, 322 208 C 322 234, 296 258, 270 258 C 248 258, 230 242, 228 226" />
-              <path d="M 136 200 C 122 200, 92 208, 92 220 C 92 234, 112 246, 136 246 C 158 246, 178 222, 200 200 C 222 178, 248 172, 274 172" />
-              <path d="M 126 172 L 106 110 L 138 126 L 160 103 L 180 126 L 200 79 L 220 126 L 240 103 L 262 126 L 294 110 L 274 172" />
-              <path d="M 180 160 L 200 118 L 220 160" />
-            </g>
-          </svg>
-        </div>
+      <!-- 1. Hero Section (Section 9) -->
+      <section class="hero-editorial" aria-label="Hero Overview">
+        <div class="container">
+          <div class="hero-content-center">
+            <!-- Eyebrow from Spec -->
+            <span class="hero-editorial-eyebrow">Fashow — Fashion talent, connected.</span>
+            
+            <!-- Primary Homepage Headline from Spec -->
+            <h1 class="hero-editorial-title">
+              Your next campaign starts with the <span class="editorial-italic">right people.</span>
+            </h1>
 
-        <div class="container hero-inner">
-          <div class="hero-eyebrow-pill">
-            <span>FASHION TALENT & CREATOR MARKETPLACE · COLLEGE CULTURE</span>
+            <!-- Subheadline from Spec -->
+            <p class="hero-editorial-subline">
+              Fashow connects fashion brands with college models, creators and microinfluencers ready to collaborate.
+            </p>
+
+            <!-- Primary CTAs -->
+            <div class="hero-cta-row">
+              <a href="#for-brands" class="btn btn-lg btn-primary">For Brands</a>
+              <a href="#for-creators" class="btn btn-lg btn-secondary">For Creators</a>
+            </div>
           </div>
 
-          <!-- Primary Homepage Headline & Subline from Spec -->
-          <h1 class="hero-title-main">
-            <span class="hero-line"><span>Your next campaign starts</span></span>
-            <span class="hero-line"><span>with the <span class="editorial-italic">right people.</span></span></span>
-          </h1>
-
-          <p class="hero-subline">
-            Fashow connects fashion brands with college models, creators, and microinfluencers ready to collaborate.
-          </p>
-
-          <!-- Primary CTAs & Supporting Text -->
-          <div style="display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
-            <a href="#for-brands" class="btn btn-lg btn-primary" style="padding: 0.9rem 2rem; font-size: 1rem;">
-              I'm a Brand
-            </a>
-            <a href="#for-creators" class="btn btn-lg btn-secondary" style="padding: 0.9rem 2rem; font-size: 1rem;">
-              I'm a Creator
-            </a>
-          </div>
-
-          <div style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 2.5rem;">
-            Models · Creators · Microinfluencers · Campus Talent
-          </div>
-
-          <!-- Editorial Collage of Diverse Young Fashion Talent -->
-          <div class="hero-talent-collage" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1100px; margin: 0 auto;">
-            <div class="collage-item" style="border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; background: var(--ink-2); position: relative; aspect-ratio: 3/4; transition: transform var(--duration-normal) var(--ease-out);">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Maya Chen - Editorial Model" style="width: 100%; height: 100%; object-fit: cover;">
-              <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(180deg, transparent, rgba(15,17,21,0.92));">
-                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.25rem;">MODEL · CREATOR</span>
-                <h4 style="font-size: 0.95rem; margin: 0; font-family: var(--font-display);">Maya Chen</h4>
-                <p style="font-size: 0.72rem; color: var(--muted); margin: 0; font-family: var(--font-mono);">UMass Amherst '28</p>
+          <!-- Editorial Collage of Real-Looking Fashion Talent (Section 9) -->
+          <div class="hero-collage-grid" aria-label="Featured Fashion Talent">
+            <!-- Collage Card 1: Maya Chen -->
+            <div class="collage-card" onclick="window.location.hash='#creators/maya-chen'" style="cursor: pointer;">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" alt="Maya Chen, UMass Amherst Model" loading="lazy">
+              <div class="collage-card-overlay">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.2rem;">Model / Creator</span>
+                <h4 class="collage-card-name">Maya Chen</h4>
+                <p class="collage-card-meta">UMass Amherst '28 · Streetwear</p>
               </div>
             </div>
 
-            <div class="collage-item" style="border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; background: var(--ink-2); position: relative; aspect-ratio: 3/4; transition: transform var(--duration-normal) var(--ease-out);">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Jordan Williams - Menswear Model" style="width: 100%; height: 100%; object-fit: cover;">
-              <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(180deg, transparent, rgba(15,17,21,0.92));">
-                <span class="badge badge-neutral" style="font-size: 0.65rem; margin-bottom: 0.25rem;">MENSWEAR · MODEL</span>
-                <h4 style="font-size: 0.95rem; margin: 0; font-family: var(--font-display);">Jordan Williams</h4>
-                <p style="font-size: 0.72rem; color: var(--muted); margin: 0; font-family: var(--font-mono);">Amherst College '27</p>
+            <!-- Collage Card 2: Jordan Williams -->
+            <div class="collage-card" onclick="window.location.hash='#creators/jordan-williams'" style="cursor: pointer;">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Jordan Williams, Amherst College Model" loading="lazy">
+              <div class="collage-card-overlay">
+                <span class="badge badge-neutral" style="font-size: 0.65rem; margin-bottom: 0.2rem;">Model / Stylist</span>
+                <h4 class="collage-card-name">Jordan Williams</h4>
+                <p class="collage-card-meta">Amherst College '27 · Tailoring</p>
               </div>
             </div>
 
-            <div class="collage-item" style="border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; background: var(--ink-2); position: relative; aspect-ratio: 3/4; transition: transform var(--duration-normal) var(--ease-out);">
-              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Aaliyah Brooks - Microinfluencer" style="width: 100%; height: 100%; object-fit: cover;">
-              <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(180deg, transparent, rgba(15,17,21,0.92));">
-                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.25rem;">CONTENT CREATOR</span>
-                <h4 style="font-size: 0.95rem; margin: 0; font-family: var(--font-display);">Aaliyah Brooks</h4>
-                <p style="font-size: 0.72rem; color: var(--muted); margin: 0; font-family: var(--font-mono);">UMass Amherst '28</p>
+            <!-- Collage Card 3: Aaliyah Brooks -->
+            <div class="collage-card" onclick="window.location.hash='#creators/aaliyah-brooks'" style="cursor: pointer;">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80" alt="Aaliyah Brooks, UMass Amherst Creator" loading="lazy">
+              <div class="collage-card-overlay">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.2rem;">Content Creator</span>
+                <h4 class="collage-card-name">Aaliyah Brooks</h4>
+                <p class="collage-card-meta">UMass Amherst '28 · Y2K / Thrift</p>
               </div>
             </div>
 
-            <div class="collage-item" style="border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; background: var(--ink-2); position: relative; aspect-ratio: 3/4; transition: transform var(--duration-normal) var(--ease-out);">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Chris Rivera - Streetwear Stylist" style="width: 100%; height: 100%; object-fit: cover;">
-              <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(180deg, transparent, rgba(15,17,21,0.92));">
-                <span class="badge badge-neutral" style="font-size: 0.65rem; margin-bottom: 0.25rem;">STYLIST · CREATOR</span>
-                <h4 style="font-size: 0.95rem; margin: 0; font-family: var(--font-display);">Chris Rivera</h4>
-                <p style="font-size: 0.72rem; color: var(--muted); margin: 0; font-family: var(--font-mono);">Northeastern '26</p>
+            <!-- Collage Card 4: Chris Rivera -->
+            <div class="collage-card" onclick="window.location.hash='#creators/chris-rivera'" style="cursor: pointer;">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80" alt="Chris Rivera, Northeastern Stylist" loading="lazy">
+              <div class="collage-card-overlay">
+                <span class="badge badge-neutral" style="font-size: 0.65rem; margin-bottom: 0.2rem;">Stylist / 35mm</span>
+                <h4 class="collage-card-name">Chris Rivera</h4>
+                <p class="collage-card-meta">Northeastern '26 · Vintage Skate</p>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Scrolling Talent Marquee Strip -->
-        <div class="marquee-container" aria-hidden="true" style="margin-top: 3rem;">
-          <div class="marquee-track">
-            <span class="marquee-item">CAMPUS TALENT</span>
-            <span class="marquee-item">COLLEGE MODELS</span>
-            <span class="marquee-item">MICRO-INFLUENCERS</span>
-            <span class="marquee-item">STREETWEAR</span>
-            <span class="marquee-item">EDITORIAL CASTING</span>
-            <span class="marquee-item">FASHION LABELS</span>
-            <span class="marquee-item">CAMPUS TALENT</span>
-            <span class="marquee-item">COLLEGE MODELS</span>
-            <span class="marquee-item">MICRO-INFLUENCERS</span>
-            <span class="marquee-item">STREETWEAR</span>
-            <span class="marquee-item">EDITORIAL CASTING</span>
-            <span class="marquee-item">FASHION LABELS</span>
           </div>
         </div>
       </section>
 
-      <!-- Section 6: Network Introduction -->
+      <!-- 2. Immediate Talent Showcase (Section 10) -->
       <section class="section section-line-top">
         <div class="container">
-          <div class="section-header-row" style="margin-bottom: var(--space-8);">
+          <div class="section-header-row">
             <div>
-              <span class="section-eyebrow">THE TALENT ROSTER</span>
-              <h2 class="section-title">Built around the people shaping what's next.</h2>
-              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">
-                Casting cards for college models, creators, and microinfluencers ready for brand collaborations.
-              </p>
+              <span class="section-eyebrow">THE NETWORK</span>
+              <h2 class="section-title">Meet the people shaping <span class="editorial-italic">what's next.</span></h2>
+              <p class="section-lead">Casting cards from our emerging roster of collegiate models, creators and stylists.</p>
             </div>
-            <a href="#discover" class="btn btn-secondary">Explore All Creators →</a>
+            <a href="#discover" class="btn btn-secondary">Explore the network →</a>
           </div>
 
           <div id="home-creators-grid" class="creators-market-grid">
-            <!-- Dynamically populated via JS with Casting Cards -->
+            <!-- Dynamically populated via renderHome() -->
           </div>
         </div>
       </section>
 
-      <!-- Section 7: What Can Brands Find on Fashow? -->
+      <!-- 3. Discover Interactive Preview (Section 11) -->
+      <section class="section section-line-top" style="background-color: var(--bg-subtle);">
+        <div class="container">
+          <div style="max-width: 760px; margin-bottom: var(--space-8);">
+            <span class="section-eyebrow">DISCOVERY</span>
+            <h2 class="section-title">Find people who fit <span class="editorial-italic">your brand.</span></h2>
+            <p class="section-lead">Search by style, campus, location, talent and audience.</p>
+          </div>
+
+          <!-- Interactive Search & Filter Preview Bar -->
+          <div style="background-color: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-6); box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+            <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-5); flex-wrap: wrap;">
+              <input type="text" id="home-search-preview" class="form-input" placeholder="Search people, styles, schools (e.g. UMass, Streetwear, Tailoring)..." style="flex: 1; min-width: 260px;">
+              <a href="#discover" class="btn btn-primary">Search Network →</a>
+            </div>
+
+            <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: center;">
+              <span style="font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-right: 0.5rem;">QUICK FILTERS:</span>
+              <button class="filter-pill active" onclick="window.fashow.filterDiscoverByCampus('UMass Amherst')">UMass Amherst</button>
+              <button class="filter-pill" onclick="window.fashow.filterDiscoverByCampus('Amherst College')">Amherst College</button>
+              <button class="filter-pill" onclick="window.fashow.filterDiscoverByStyle('Streetwear')">Streetwear</button>
+              <button class="filter-pill" onclick="window.fashow.filterDiscoverByStyle('Minimal')">Minimal</button>
+              <button class="filter-pill" onclick="window.fashow.filterDiscoverByStyle('Vintage')">Vintage</button>
+              <button class="filter-pill" onclick="window.fashow.filterDiscoverByRole('Model')">Models</button>
+              <button class="filter-pill" onclick="window.fashow.filterDiscoverByRole('Creator')">Content Creators</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Fashion-Specific Talent Types (Section 12) -->
       <section class="section section-line-top">
         <div class="container">
-          <div class="section-header-row" style="margin-bottom: var(--space-8);">
+          <div class="section-header-row">
             <div>
-              <span class="section-eyebrow">SERVICES & DELIVERABLES</span>
-              <h2 class="section-title">Find talent for whatever you're building.</h2>
-              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">
-                From seasonal lookbooks to viral TikToks and on-campus activations.
-              </p>
+              <span class="section-eyebrow">TALENT DISCIPLINES</span>
+              <h2 class="section-title">Built for every discipline <span class="editorial-italic">in fashion.</span></h2>
+              <p class="section-lead">Real creative talent with point of view, aesthetic authority and cultural presence.</p>
+            </div>
+          </div>
+
+          <div class="disciplines-grid">
+            <!-- Discipline 1: Models -->
+            <div class="category-card" onclick="window.fashow.filterDiscoverByRole('Model')">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" alt="Fashion Models" loading="lazy">
+              <div class="category-content">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.35rem;">CASTING</span>
+                <h3 class="category-title">Models</h3>
+                <p class="category-count">Runway, studio lookbooks and collection casting.</p>
+              </div>
+            </div>
+
+            <!-- Discipline 2: Creators -->
+            <div class="category-card" onclick="window.fashow.filterDiscoverByRole('Creator')">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80" alt="Content Creators" loading="lazy">
+              <div class="category-content">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.35rem;">VIDEO & MOTION</span>
+                <h3 class="category-title">Creators</h3>
+                <p class="category-count">TikToks, Reels, product storytelling and organic styling.</p>
+              </div>
+            </div>
+
+            <!-- Discipline 3: Microinfluencers -->
+            <div class="category-card" onclick="window.fashow.filterDiscoverByRole('Micro-Influencer')">
+              <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=700&q=80" alt="Microinfluencers" loading="lazy">
+              <div class="category-content">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.35rem;">CAMPUS REACH</span>
+                <h3 class="category-title">Microinfluencers</h3>
+                <p class="category-count">High-intent collegiate and regional peer audiences.</p>
+              </div>
+            </div>
+
+            <!-- Discipline 4: Photographers -->
+            <div class="category-card" onclick="window.fashow.filterDiscoverByRole('Photographer')">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80" alt="Fashion Photographers" loading="lazy">
+              <div class="category-content">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.35rem;">VISUAL PRODUCTION</span>
+                <h3 class="category-title">Photographers</h3>
+                <p class="category-count">35mm analogue, studio lookbooks and street candid stills.</p>
+              </div>
+            </div>
+
+            <!-- Discipline 5: Stylists -->
+            <div class="category-card" onclick="window.fashow.filterDiscoverByRole('Stylist')">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=80" alt="Fashion Stylists" loading="lazy">
+              <div class="category-content">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.35rem;">CURATION</span>
+                <h3 class="category-title">Stylists</h3>
+                <p class="category-count">Wardrobe curation, sample pulls and archival styling.</p>
+              </div>
+            </div>
+
+            <!-- Discipline 6: Campus Ambassadors -->
+            <div class="category-card" onclick="window.fashow.filterDiscoverByRole('Campus Ambassador')">
+              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=700&q=80" alt="Campus Ambassadors" loading="lazy">
+              <div class="category-content">
+                <span class="badge badge-gold" style="font-size: 0.65rem; margin-bottom: 0.35rem;">COMMUNITY</span>
+                <h3 class="category-title">Campus Ambassadors</h3>
+                <p class="category-count">Authentic student leaders connecting brands to campus culture.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Campaign Categories (Section 13) -->
+      <section class="section section-line-top" style="background-color: var(--bg-subtle);">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">CAMPAIGN FORMATS</span>
+              <h2 class="section-title">What are you <span class="editorial-italic">building?</span></h2>
+              <p class="section-lead">Find talent for whatever your fashion label needs next.</p>
             </div>
             <a href="#campaigns" class="btn btn-secondary">View Open Briefs →</a>
           </div>
 
           <div class="categories-grid">
-            <!-- Card 1: Campaigns -->
             <div class="category-card" onclick="window.location.hash='#campaigns'">
-              <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Campaigns" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80" alt="Campaigns" loading="lazy">
               <div class="category-content">
-                <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">EDITORIAL</span>
                 <h3 class="category-title">Campaigns</h3>
-                <span class="category-count">Models and creators for your next collection.</span>
+                <p class="category-count">Models and creators for your next collection.</p>
               </div>
             </div>
 
-            <!-- Card 2: Social Content -->
-            <div class="category-card" onclick="window.location.hash='#discover'">
-              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Social Content" loading="lazy">
-              <div class="category-content">
-                <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">ORGANIC REACH</span>
-                <h3 class="category-title">Social Content</h3>
-                <span class="category-count">TikToks, Reels, product videos and organic content.</span>
-              </div>
-            </div>
-
-            <!-- Card 3: Lookbooks -->
-            <div class="category-card" onclick="window.location.hash='#discover'">
-              <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80" alt="Lookbooks" loading="lazy">
-              <div class="category-content">
-                <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">VISUAL IDENTITY</span>
-                <h3 class="category-title">Lookbooks</h3>
-                <span class="category-count">Models who fit your visual identity and silhouettes.</span>
-              </div>
-            </div>
-
-            <!-- Card 4: Campus Campaigns -->
-            <div class="category-card" onclick="window.location.hash='#for-brands'">
-              <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80" alt="Campus Campaigns" loading="lazy">
-              <div class="category-content">
-                <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">COMMUNITY</span>
-                <h3 class="category-title">Campus Campaigns</h3>
-                <span class="category-count">Reach college communities through people who actually belong to them.</span>
-              </div>
-            </div>
-
-            <!-- Card 5: Launches -->
             <div class="category-card" onclick="window.location.hash='#campaigns'">
-              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=600&q=80" alt="Launches" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="Lookbooks" loading="lazy">
               <div class="category-content">
-                <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">PRODUCT DROPS</span>
-                <h3 class="category-title">Launches</h3>
-                <span class="category-count">Creators who can help make your next drop visible.</span>
+                <h3 class="category-title">Lookbooks</h3>
+                <p class="category-count">Models who fit your visual identity and silhouette.</p>
               </div>
             </div>
 
-            <!-- Card 6: Brand Ambassadors -->
-            <div class="category-card" onclick="window.location.hash='#for-brands'">
-              <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80" alt="Brand Ambassadors" loading="lazy">
+            <div class="category-card" onclick="window.location.hash='#campaigns'">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80" alt="Social Content" loading="lazy">
               <div class="category-content">
-                <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">LONG-TERM PARTNERS</span>
+                <h3 class="category-title">Social Content</h3>
+                <p class="category-count">TikToks, Reels, product videos and organic content.</p>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="window.location.hash='#campaigns'">
+              <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=700&q=80" alt="Campus Activations" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Campus Activations</h3>
+                <p class="category-count">Reach college communities through people who actually belong to them.</p>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="window.location.hash='#campaigns'">
+              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=700&q=80" alt="Product Launches" loading="lazy">
+              <div class="category-content">
+                <h3 class="category-title">Product Launches</h3>
+                <p class="category-count">Creators who can help make your next drop visible.</p>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="window.location.hash='#campaigns'">
+              <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80" alt="Brand Ambassadors" loading="lazy">
+              <div class="category-content">
                 <h3 class="category-title">Brand Ambassadors</h3>
-                <span class="category-count">Build repeat relationships with creators who understand your brand.</span>
+                <p class="category-count">Build long-term relationships with creators who understand your brand.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Campus Network Section -->
+      <!-- 6. Brand Workflow (Section 14: Four-Step Editorial Flow) -->
       <section class="section section-line-top">
         <div class="container">
-          <div class="section-header-row" style="margin-bottom: var(--space-6);">
-            <div>
-              <span class="section-eyebrow">CAMPUS ECOSYSTEM</span>
-              <h2 class="section-title">The College Network</h2>
-              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">
-                Verified student models and creators across top universities and design colleges.
-              </p>
-            </div>
-          </div>
-
-          <div class="campus-chips-grid">
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('UMass Amherst')">
-              <span class="campus-name">UMass Amherst</span>
-              <span class="campus-stat">42 Creators</span>
-            </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('NYU')">
-              <span class="campus-name">NYU Tisch / Stern</span>
-              <span class="campus-stat">38 Creators</span>
-            </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('FIT')">
-              <span class="campus-name">FIT New York</span>
-              <span class="campus-stat">56 Creators</span>
-            </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Parsons')">
-              <span class="campus-name">Parsons School of Design</span>
-              <span class="campus-stat">49 Creators</span>
-            </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Northeastern')">
-              <span class="campus-name">Northeastern</span>
-              <span class="campus-stat">29 Creators</span>
-            </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Boston University')">
-              <span class="campus-name">Boston University</span>
-              <span class="campus-stat">34 Creators</span>
-            </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('USC')">
-              <span class="campus-name">USC Los Angeles</span>
-              <span class="campus-stat">31 Creators</span>
-            </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Columbia')">
-              <span class="campus-name">Columbia University</span>
-              <span class="campus-stat">25 Creators</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How It Works Section: Onboarding Workflow -->
-      <section id="how-it-works-sec" class="section section-line-top">
-        <div class="container">
-          <div class="section-header-row" style="margin-bottom: var(--space-8);">
+          <div class="section-header-row">
             <div>
               <span class="section-eyebrow">HOW IT WORKS</span>
-              <h2 class="section-title">The Three-Step Flow</h2>
-              <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem;">Designed specifically for emerging college creatives and modern fashion labels.</p>
+              <h2 class="section-title">From idea to <span class="editorial-italic">campaign.</span></h2>
+              <p class="section-lead">A disciplined workflow designed for fashion casting and direct collaboration.</p>
             </div>
           </div>
 
-          <div class="three-steps-container">
+          <div class="workflow-grid">
             <div class="step-card-editorial">
               <span class="step-num-big">01</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Build Profile or Post Brief</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Creators create an editorial lookbook with their aesthetic tags, campus, and rates. Brands post targeted campaign briefs with moodboards.
-              </p>
+              <span class="section-eyebrow" style="margin-bottom: 0.25rem;">DISCOVER</span>
+              <h3>Find talent</h3>
+              <p>Filter by style, school, location and audience point of view.</p>
             </div>
 
             <div class="step-card-editorial">
               <span class="step-num-big">02</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Match & Collaborate</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Brands scout talent directly or review applications. 1-click approvals create structured collaboration workspaces with progress steppers.
-              </p>
+              <span class="section-eyebrow" style="margin-bottom: 0.25rem;">CAST</span>
+              <h3>Invite or brief</h3>
+              <p>Invite creators directly or publish a targeted campaign brief with moodboard.</p>
             </div>
 
             <div class="step-card-editorial">
               <span class="step-num-big">03</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Deliver & Scale</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Creators upload high-res photo assets and video edits. Brands approve deliverables and build long-term ambassador rosters.
-              </p>
+              <span class="section-eyebrow" style="margin-bottom: 0.25rem;">COLLABORATE</span>
+              <h3>Coordinate</h3>
+              <p>Message, brief and coordinate deliverables directly in one workspace.</p>
+            </div>
+
+            <div class="step-card-editorial">
+              <span class="step-num-big">04</span>
+              <span class="section-eyebrow" style="margin-bottom: 0.25rem;">BUILD</span>
+              <h3>Approve & rebook</h3>
+              <p>Review deliverables, approve content and save your best talent for the next campaign.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Two Sides Split Section -->
-      <section class="two-sides-section">
-        <div class="two-sides-split">
-          <!-- Left: Creators (Ink) -->
-          <div class="side-panel side-panel-dark">
-            <span class="section-eyebrow">FOR CREATIVE TALENT</span>
-            <h2 style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; line-height: 1.15; margin: var(--space-2) 0 var(--space-4);">Your style is your portfolio.</h2>
-            <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">
-              Get booked by fashion brands who care about aesthetic fit, not just follower counts.
-            </p>
-            
-            <ul class="plain-bullets">
-              <li>
-                <span class="bullet-dash">—</span>
-                <span><strong>100% free</strong> for college students, models, and content creators.</span>
-              </li>
-              <li>
-                <span class="bullet-dash">—</span>
-                <span><strong>Direct campaign bookings</strong> with transparent rates and guaranteed payouts.</span>
-              </li>
-              <li>
-                <span class="bullet-dash">—</span>
-                <span><strong>Keep 100% copyright ownership</strong> of your images, style identity, and creative work.</span>
-              </li>
-            </ul>
-
-            <a href="#for-creators" class="btn btn-primary">Join as a Creator →</a>
+      <!-- 7. Campaign Example (Section 15: Realistic Campaign Preview) -->
+      <section class="section section-line-top" style="background-color: var(--bg-subtle);">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">LIVE EXAMPLE</span>
+              <h2 class="section-title">See how brands cast <span class="editorial-italic">on Fashow.</span></h2>
+              <p class="section-lead">Real brief and applicant review in action.</p>
+            </div>
+            <a href="#brand/campaigns/new" class="btn btn-primary">+ Post a Campaign</a>
           </div>
 
-          <!-- Right: Brands (Paper) -->
-          <div class="side-panel side-panel-light">
-            <span class="section-eyebrow" style="color: var(--orange);">FOR FASHION BRANDS</span>
-            <h2 style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; line-height: 1.15; margin: var(--space-2) 0 var(--space-4);">Stop searching for "influencers".</h2>
-            <p style="font-size: 0.95rem; line-height: 1.6; color: #374151;">
-              Cast real students who naturally wear your aesthetic and hold authentic cultural influence on campus.
-            </p>
-            
-            <ul class="plain-bullets" style="color: #1f2937;">
-              <li>
-                <span class="bullet-dash" style="color: var(--orange); font-weight: bold;">—</span>
-                <span><strong>Direct access to college models & creators</strong> across top universities.</span>
-              </li>
-              <li>
-                <span class="bullet-dash" style="color: var(--orange); font-weight: bold;">—</span>
-                <span><strong>Structured campaign workflow:</strong> brief, application review, asset approval, and payout.</span>
-              </li>
-              <li>
-                <span class="bullet-dash" style="color: var(--orange); font-weight: bold;">—</span>
-                <span><strong>Zero agency markups:</strong> collaborate directly with rising creative talent.</span>
-              </li>
-            </ul>
+          <!-- Campaign Preview Card -->
+          <div class="campaign-demo-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: var(--space-6); flex-wrap: wrap;">
+              <div>
+                <span class="section-eyebrow" style="color: var(--accent);">SPRING / SUMMER 2027</span>
+                <h3 style="font-family: var(--font-serif); font-size: 2rem; margin: 0.25rem 0 0.5rem;">Boston Streetwear Campaign</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
+                  Atelier Marais · Looking for 3 creators · Streetwear · College audience · TikTok + Instagram · Paid ($500 Flat Fee)
+                </p>
+              </div>
+              <div style="text-align: right;">
+                <span class="badge badge-neutral">Application Deadline: May 10</span>
+              </div>
+            </div>
 
-            <a href="#for-brands" class="btn btn-primary" style="background: var(--ink); color: #FFFFFF;">Explore Brand Platform →</a>
+            <!-- Applicant Preview Row -->
+            <div style="border-top: 1px solid var(--line); padding-top: var(--space-6);">
+              <span style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: var(--space-4); display: block;">
+                APPLICANT ROSTER (3 SUBMISSIONS)
+              </span>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4);">
+                <!-- Applicant 1: Maya Chen -->
+                <div style="background-color: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-4); display: flex; gap: var(--space-3); align-items: center;">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Maya Chen" style="width: 52px; height: 52px; border-radius: var(--radius-xs); object-fit: cover;">
+                  <div style="flex: 1; overflow: hidden;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.1rem; margin: 0;">Maya Chen</h4>
+                    <p style="font-size: 0.78rem; color: var(--muted); margin: 0;">UMass Amherst '28 · Model / Creator</p>
+                    <span class="badge badge-available" style="font-size: 0.65rem; margin-top: 0.25rem;">Accepted ✓</span>
+                  </div>
+                </div>
+
+                <!-- Applicant 2: Chris Rivera -->
+                <div style="background-color: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-4); display: flex; gap: var(--space-3); align-items: center;">
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" alt="Chris Rivera" style="width: 52px; height: 52px; border-radius: var(--radius-xs); object-fit: cover;">
+                  <div style="flex: 1; overflow: hidden;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.1rem; margin: 0;">Chris Rivera</h4>
+                    <p style="font-size: 0.78rem; color: var(--muted); margin: 0;">Northeastern '26 · Stylist / 35mm</p>
+                    <span class="badge badge-gold" style="font-size: 0.65rem; margin-top: 0.25rem;">In Review</span>
+                  </div>
+                </div>
+
+                <!-- Applicant 3: Jordan Williams -->
+                <div style="background-color: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-4); display: flex; gap: var(--space-3); align-items: center;">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Jordan Williams" style="width: 52px; height: 52px; border-radius: var(--radius-xs); object-fit: cover;">
+                  <div style="flex: 1; overflow: hidden;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.1rem; margin: 0;">Jordan Williams</h4>
+                    <p style="font-size: 0.78rem; color: var(--muted); margin: 0;">Amherst College '27 · Tailoring</p>
+                    <span class="badge badge-gold" style="font-size: 0.65rem; margin-top: 0.25rem;">In Review</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Final Call to Action -->
-      <section class="section section-line-top" style="text-align: center; padding: 6.5rem 0;">
-        <div class="container" style="max-width: 760px;">
-          <span class="section-eyebrow" style="justify-content: center;">BACKSTAGE PASS</span>
-          <!-- Final Headline from Spec -->
-          <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 800; line-height: 1.1; margin: var(--space-3) 0 var(--space-4);">Find your people.</h2>
-          <p style="font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem; line-height: 1.6;">
-            Whether you're a college creative looking to get booked or a fashion label casting your next campaign, Fashow is where college culture meets the industry.
+      <!-- 8. Creator Proposition & Philosophy (Section 16 & 17) -->
+      <section class="section section-line-top">
+        <div class="container">
+          <div class="manifesto-box">
+            <span class="section-eyebrow" style="color: var(--accent); justify-content: center;">THE FASHOW PHILOSOPHY</span>
+            <h2>Aesthetic fit &gt; follower count.</h2>
+            <p style="font-size: 1.15rem; line-height: 1.7; max-width: 740px; margin: 0 auto var(--space-8); opacity: 0.92;">
+              Fashion is about point of view. Fashow helps brands discover people because of how they look, create, style and influence their communities — not simply because they have the largest following.
+            </p>
+            <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
+              <button class="btn btn-lg btn-primary" style="background-color: #FFFFFF; color: var(--bg-dark);" onclick="window.fashow.openCreatorOnboarding()">Create your profile →</button>
+              <a href="#discover" class="btn btn-lg btn-secondary" style="border-color: rgba(255,255,255,0.3); color: #FFFFFF;">Browse the network</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Campus Network (Section 18 & 19: Truthful Scaling) -->
+      <section class="section section-line-top">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">THE CAMPUS NETWORK</span>
+              <h2 class="section-title">Start on campus. <span class="editorial-italic">Go everywhere.</span></h2>
+              <p class="section-lead">Fashow begins with the communities where style and culture move fastest.</p>
+            </div>
+          </div>
+
+          <div class="campus-chips-grid">
+            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Amherst')">
+              <span class="campus-name">Amherst</span>
+              <span class="campus-stat">Starting Market · Live</span>
+            </div>
+            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Boston')">
+              <span class="campus-name">Boston</span>
+              <span class="campus-stat">Collegiate Hub · Live</span>
+            </div>
+            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('New York')">
+              <span class="campus-name">New York</span>
+              <span class="campus-stat">Fashion Capital · Live</span>
+            </div>
+            <div class="campus-chip">
+              <span class="campus-name">Los Angeles</span>
+              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+            </div>
+            <div class="campus-chip">
+              <span class="campus-name">Chicago</span>
+              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+            </div>
+            <div class="campus-chip">
+              <span class="campus-name">Miami</span>
+              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+            </div>
+            <div class="campus-chip">
+              <span class="campus-name">Atlanta</span>
+              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+            </div>
+            <div class="campus-chip">
+              <span class="campus-name">London</span>
+              <span class="campus-stat" style="color: var(--muted);">International Expansion</span>
+            </div>
+            <div class="campus-chip">
+              <span class="campus-name">Paris</span>
+              <span class="campus-stat" style="color: var(--muted);">International Expansion</span>
+            </div>
+            <div class="campus-chip">
+              <span class="campus-name">Tokyo</span>
+              <span class="campus-stat" style="color: var(--muted);">International Expansion</span>
+            </div>
+          </div>
+
+          <p style="font-size: 0.88rem; color: var(--muted); margin-top: var(--space-6); font-style: italic;">
+            Starting in Amherst. Expanding across the country. Built for everywhere.
           </p>
-          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <a href="#for-brands" class="btn btn-lg btn-primary">
-              I'm a Brand
-            </a>
-            <a href="#for-creators" class="btn btn-lg btn-secondary">
-              I'm a Creator
-            </a>
+        </div>
+      </section>
+
+      <!-- 10. Long-Term Relationship Loop (Section 2 & 37) -->
+      <section class="section section-line-top" style="background-color: var(--bg-subtle);">
+        <div class="container" style="text-align: center; max-width: 860px;">
+          <span class="section-eyebrow" style="justify-content: center;">THE MARKETPLACE ARCHITECTURE</span>
+          <h2 class="section-title">The relationship loop.</h2>
+          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-8);">
+            Discover talent on campus. Cast them for your seasonal drop. Collaborate on content. Approve deliverables. Save your best creators to your roster, and bring them back campaign after campaign.
+          </p>
+
+          <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap; font-size: 0.82rem; font-weight: 600; color: var(--text); letter-spacing: 0.08em; text-transform: uppercase;">
+            <span>Discover</span>
+            <span style="color: var(--accent);">→</span>
+            <span>Cast</span>
+            <span style="color: var(--accent);">→</span>
+            <span>Collaborate</span>
+            <span style="color: var(--accent);">→</span>
+            <span>Create</span>
+            <span style="color: var(--accent);">→</span>
+            <span>Approve</span>
+            <span style="color: var(--accent);">→</span>
+            <span>Save</span>
+            <span style="color: var(--accent);">→</span>
+            <span style="color: var(--accent);">Rebook</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. Final Call to Action (Section 54) -->
+      <section class="section section-line-top" style="text-align: center; padding: var(--space-24) 0;">
+        <div class="container" style="max-width: 780px;">
+          <h2 style="font-family: var(--font-serif); font-size: var(--text-hero); line-height: 1.02; margin-bottom: var(--space-5);">
+            Find your <span class="editorial-italic">people.</span>
+          </h2>
+          <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-8);">
+            Whether you're casting your next campaign or looking for your next opportunity, Fashow connects the people shaping fashion with the brands building what's next.
+          </p>
+          <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
+            <a href="#for-brands" class="btn btn-lg btn-primary">For Brands</a>
+            <a href="#for-creators" class="btn btn-lg btn-secondary">For Creators</a>
           </div>
         </div>
       </section>
@@ -579,16 +641,16 @@
     </section>
 
     <!-- ====================================================================
-         VIEW 2: DISCOVER / CREATOR MARKETPLACE
+         VIEW 2: DISCOVER / CREATOR MARKETPLACE (SECTION 23 & 24)
          ==================================================================== -->
-    <section id="view-discover" class="view-section" style="display: none; padding: 2.5rem 0 5rem;">
+    <section id="view-discover" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
       <div class="container">
         
-        <div style="margin-bottom: 2rem;">
-          <span class="section-label">MARKETPLACE DISCOVERY</span>
-          <h1 class="font-serif" style="font-size: 2.75rem; margin-bottom: 0.5rem;">Discover Creators</h1>
-          <p id="discover-results-count" style="font-size: 1rem; color: var(--muted);">
-            Showing verified college models, content creators, and stylists.
+        <div style="margin-bottom: var(--space-8);">
+          <span class="section-eyebrow">DISCOVER</span>
+          <h1 class="font-serif" style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">Find your people.</h1>
+          <p id="discover-results-count" style="font-size: 1rem; color: var(--text-secondary);">
+            Search college models, creators, stylists and campus talent ready to collaborate.
           </p>
         </div>
 
@@ -596,28 +658,28 @@
           <!-- Left Filter Sidebar -->
           <aside class="filter-sidebar" role="search" aria-label="Talent filters">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
-              <span class="filter-heading" style="margin: 0;">Filters</span>
-              <button id="filter-reset-btn" class="btn btn-sm btn-ghost" style="padding: 0.2rem 0.5rem; font-size: 0.75rem; color: var(--gold);">Reset All</button>
+              <span class="filter-heading" style="margin: 0;">Filter Talent</span>
+              <button id="filter-reset-btn" class="btn btn-sm btn-ghost" style="padding: 0.2rem 0.5rem; font-size: 0.75rem; color: var(--accent);">Reset</button>
             </div>
 
             <!-- Search input -->
             <div class="filter-section">
-              <label for="filter-search-input" class="form-label" style="font-size: 0.72rem;">Search Talent</label>
-              <input type="text" id="filter-search-input" class="form-input" placeholder="Search by name, campus, style..." style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+              <label for="filter-search-input" class="form-label">Search</label>
+              <input type="text" id="filter-search-input" class="form-input" placeholder="Search people, styles, schools...">
             </div>
 
-            <!-- Campus / University Filter -->
+            <!-- Campus / College Filter -->
             <div class="filter-section">
-              <label for="filter-campus-select" class="form-label" style="font-size: 0.72rem;">Campus / College</label>
-              <select id="filter-campus-select" class="form-select" style="font-size: 0.85rem;">
+              <label for="filter-campus-select" class="form-label">School / Campus</label>
+              <select id="filter-campus-select" class="form-select">
                 <option value="All">All Campuses</option>
                 <option value="UMass Amherst">UMass Amherst</option>
                 <option value="Amherst College">Amherst College</option>
+                <option value="Northeastern">Northeastern</option>
+                <option value="Boston University">Boston University</option>
                 <option value="NYU">NYU Tisch / Stern</option>
                 <option value="FIT">FIT New York</option>
                 <option value="Parsons">Parsons School of Design</option>
-                <option value="Northeastern">Northeastern</option>
-                <option value="Boston University">Boston University</option>
                 <option value="USC">USC Los Angeles</option>
                 <option value="Columbia">Columbia University</option>
                 <option value="RISD">RISD</option>
@@ -627,54 +689,52 @@
 
             <!-- Location Filter -->
             <div class="filter-section">
-              <label for="filter-location-select" class="form-label" style="font-size: 0.72rem;">Location</label>
-              <select id="filter-location-select" class="form-select" style="font-size: 0.85rem;">
+              <label for="filter-location-select" class="form-label">Location</label>
+              <select id="filter-location-select" class="form-select">
                 <option value="All">All Locations</option>
+                <option value="Boston">Boston & Amherst, MA</option>
                 <option value="New York">New York, NY</option>
-                <option value="Boston">Boston, MA</option>
                 <option value="Los Angeles">Los Angeles, CA</option>
-                <option value="Providence">Providence, RI</option>
-                <option value="Remote">Remote</option>
+                <option value="Remote">Remote / Campus</option>
               </select>
             </div>
 
             <!-- Talent Type Filter -->
             <div class="filter-section">
-              <span class="filter-heading">Talent Type</span>
+              <span class="filter-heading">Talent Discipline</span>
               <div class="filter-option-row">
                 <input type="checkbox" id="type-model" class="filter-checkbox" value="Model" checked>
-                <label for="type-model" style="font-size: 0.85rem; cursor: pointer;">Model</label>
+                <label for="type-model" style="font-size: 0.88rem; cursor: pointer;">Model</label>
               </div>
               <div class="filter-option-row">
                 <input type="checkbox" id="type-creator" class="filter-checkbox" value="Creator" checked>
-                <label for="type-creator" style="font-size: 0.85rem; cursor: pointer;">Content Creator</label>
+                <label for="type-creator" style="font-size: 0.88rem; cursor: pointer;">Content Creator</label>
               </div>
               <div class="filter-option-row">
                 <input type="checkbox" id="type-stylist" class="filter-checkbox" value="Stylist" checked>
-                <label for="type-stylist" style="font-size: 0.85rem; cursor: pointer;">Stylist</label>
+                <label for="type-stylist" style="font-size: 0.88rem; cursor: pointer;">Stylist</label>
               </div>
               <div class="filter-option-row">
                 <input type="checkbox" id="type-photographer" class="filter-checkbox" value="Photographer" checked>
-                <label for="type-photographer" style="font-size: 0.85rem; cursor: pointer;">Photographer</label>
+                <label for="type-photographer" style="font-size: 0.88rem; cursor: pointer;">Photographer</label>
               </div>
               <div class="filter-option-row">
                 <input type="checkbox" id="type-ambassador" class="filter-checkbox" value="Campus Ambassador" checked>
-                <label for="type-ambassador" style="font-size: 0.85rem; cursor: pointer;">Campus Ambassador</label>
+                <label for="type-ambassador" style="font-size: 0.88rem; cursor: pointer;">Campus Ambassador</label>
               </div>
             </div>
 
-            <!-- Aesthetic / Style Filter -->
+            <!-- Style / Aesthetic Filter -->
             <div class="filter-section">
-              <span class="filter-heading">Aesthetic / Style</span>
+              <span class="filter-heading">Style / Aesthetic</span>
               <div class="pills-selector-grid">
-                <button class="filter-style-btn active" data-style="All">All Styles</button>
+                <button class="filter-style-btn active" data-style="All">All</button>
                 <button class="filter-style-btn" data-style="Streetwear">Streetwear</button>
                 <button class="filter-style-btn" data-style="Minimal">Minimal</button>
-                <button class="filter-style-btn" data-style="Y2K">Y2K / Thrift</button>
-                <button class="filter-style-btn" data-style="Luxury">Luxury / RTW</button>
                 <button class="filter-style-btn" data-style="Vintage">Vintage</button>
+                <button class="filter-style-btn" data-style="Y2K">Y2K / Thrift</button>
+                <button class="filter-style-btn" data-style="Luxury">Tailoring / RTW</button>
                 <button class="filter-style-btn" data-style="Avant-Garde">Avant-Garde</button>
-                <button class="filter-style-btn" data-style="Athleisure">Athleisure</button>
               </div>
             </div>
 
@@ -683,15 +743,15 @@
               <span class="filter-heading">Availability</span>
               <div class="filter-option-row">
                 <input type="radio" name="filter-avail" id="avail-all" value="All" checked>
-                <label for="avail-all" style="font-size: 0.85rem; cursor: pointer;">All Availability</label>
+                <label for="avail-all" style="font-size: 0.88rem; cursor: pointer;">All</label>
               </div>
               <div class="filter-option-row">
                 <input type="radio" name="filter-avail" id="avail-now" value="Available">
-                <label for="avail-now" style="font-size: 0.85rem; cursor: pointer;">Available Now</label>
+                <label for="avail-now" style="font-size: 0.88rem; cursor: pointer;">Available Now</label>
               </div>
               <div class="filter-option-row">
                 <input type="radio" name="filter-avail" id="avail-booking" value="Booking">
-                <label for="avail-booking" style="font-size: 0.85rem; cursor: pointer;">Booking for Upcoming</label>
+                <label for="avail-booking" style="font-size: 0.88rem; cursor: pointer;">Booking for Upcoming</label>
               </div>
             </div>
           </aside>
@@ -699,7 +759,7 @@
           <!-- Right Grid of Casting Cards -->
           <div class="marketplace-feed">
             <div id="creators-marketplace-grid" class="creators-market-grid">
-              <!-- Dynamically populated via JS -->
+              <!-- Dynamically populated via renderDiscoverFeed() -->
             </div>
           </div>
         </div>
@@ -708,255 +768,203 @@
     </section>
 
     <!-- ====================================================================
-         VIEW 3: CREATOR PROFILE & LOOKBOOK DETAIL
+         VIEW 3: CREATOR PROFILE (SECTION 25)
          ==================================================================== -->
-    <section id="view-creator-profile" class="view-section" style="display: none; padding: 2rem 0 5rem;">
+    <section id="view-creator-profile" class="view-section" style="display: none; padding: var(--space-8) 0 var(--space-20);">
       <div class="container" id="creator-profile-container">
         <!-- Dynamically rendered via renderCreatorProfile(username) -->
       </div>
     </section>
 
     <!-- ====================================================================
-         VIEW 4: FOR BRANDS (DEDICATED LANDING PAGE)
+         VIEW 4: FOR BRANDS (DEDICATED EDITORIAL PAGE)
          ==================================================================== -->
-    <section id="view-for-brands" class="view-section" style="display: none; padding: 3rem 0 5rem;">
+    <section id="view-for-brands" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
       <div class="container">
         
-        <!-- Hero Section for Brands -->
-        <div class="editorial-lead-section" style="text-align: center; max-width: 860px; margin: 0 auto 4rem;">
-          <span class="section-eyebrow" style="justify-content: center; color: var(--gold);">FOR ATELIERS & FASHION LABELS</span>
-          <!-- Headline from spec -->
-          <h1 class="hero-title-main" style="margin: 0.75rem 0 1.25rem;">
+        <div style="max-width: 820px; margin: 0 auto var(--space-16); text-align: center;">
+          <span class="section-eyebrow" style="justify-content: center;">FOR FASHION BRANDS & ATELIERS</span>
+          <h1 class="hero-editorial-title">
             Stop searching for <span class="editorial-italic">"influencers".</span>
           </h1>
-          <!-- Subheadline from spec -->
-          <p class="hero-subline" style="font-size: 1.15rem; max-width: 720px; margin: 0 auto 2rem;">
+          <p class="hero-editorial-subline">
             Find models, creators, and college talent who actually wear your clothes and fit your aesthetic.
           </p>
-          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
             <a href="#brand/campaigns/new" class="btn btn-lg btn-primary">Post a Campaign</a>
             <a href="#discover" class="btn btn-lg btn-secondary">Scout Creators</a>
           </div>
         </div>
 
-        <!-- 3-Step Process from Spec -->
-        <div style="margin-bottom: 5rem;">
-          <div class="section-header-row" style="margin-bottom: 2.5rem; text-align: center;">
-            <div style="width: 100%;">
-              <span class="section-eyebrow" style="justify-content: center;">HOW FASHOW WORKS FOR BRANDS</span>
-              <h2 class="section-title">A modern casting & collaboration workflow.</h2>
+        <!-- 3-Step Process -->
+        <div style="margin-bottom: var(--space-20);">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">THE BRAND WORKFLOW</span>
+              <h2 class="section-title">Casting built for modern fashion.</h2>
             </div>
           </div>
 
-          <div class="three-steps-container">
-            <!-- Step 1 -->
+          <div class="workflow-grid" style="grid-template-columns: repeat(3, 1fr);">
             <div class="step-card-editorial">
               <span class="step-num-big">01</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Discover talent</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Filter student models and creators by campus, styling aesthetic, visual lookbook, and authentic audience engagement.
-              </p>
+              <h3>Discover talent</h3>
+              <p>Filter student models and creators by campus, styling aesthetic, visual lookbook, and authentic audience engagement.</p>
             </div>
-
-            <!-- Step 2 -->
             <div class="step-card-editorial">
               <span class="step-num-big">02</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Invite creators</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Send direct campaign invitations with clear deliverable briefs, moodboards, timeline dates, and agreed compensation.
-              </p>
+              <h3>Invite creators</h3>
+              <p>Send direct campaign invitations with clear deliverable briefs, moodboards, timeline dates, and agreed compensation.</p>
             </div>
-
-            <!-- Step 3 -->
             <div class="step-card-editorial">
               <span class="step-num-big">03</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Manage campaigns</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Track content deliverables in production, review high-res lookbook stills, approve assets, and build repeat ambassador rosters.
-              </p>
+              <h3>Manage campaigns</h3>
+              <p>Track content deliverables in production, review high-res lookbook stills, approve assets, and build repeat ambassador rosters.</p>
             </div>
           </div>
         </div>
 
-        <!-- The Campus Advantage Section from Spec -->
-        <div style="background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 3rem 2.5rem; margin-bottom: 5rem;">
-          <div style="max-width: 720px; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow" style="color: var(--gold);">THE UNFAIR ADVANTAGE</span>
-            <h2 class="section-title" style="margin-top: 0.5rem;">The Campus Advantage</h2>
-            <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.5rem;">
-              Why the world's most innovative fashion houses are building ambassador networks inside college culture:
-            </p>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-            <div style="border-left: 2px solid var(--gold); padding-left: 1.25rem;">
-              <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.4rem;">Authentic college style</h4>
-              <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.5;">Real fits worn on campus sidewalks, creative studios, and college events—not staged agency shoots.</p>
+        <!-- The Campus Advantage -->
+        <div style="background-color: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-12); margin-bottom: var(--space-16);">
+          <span class="section-eyebrow">THE UNFAIR ADVANTAGE</span>
+          <h2 class="section-title" style="margin-bottom: var(--space-6);">The Campus Advantage</h2>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-8);">
+            <div>
+              <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.35rem;">Authentic college style</h4>
+              <p style="font-size: 0.92rem; line-height: 1.5;">Real fits worn on campus sidewalks, creative studios, and college events—not staged agency shoots.</p>
             </div>
-
-            <div style="border-left: 2px solid var(--gold); padding-left: 1.25rem;">
-              <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.4rem;">Natural local communities</h4>
-              <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.5;">College creators hold genuine social trust and peer influence within their student bodies.</p>
+            <div>
+              <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.35rem;">Natural local communities</h4>
+              <p style="font-size: 0.92rem; line-height: 1.5;">College creators hold genuine social trust and peer influence within their student bodies.</p>
             </div>
-
-            <div style="border-left: 2px solid var(--gold); padding-left: 1.25rem;">
-              <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.4rem;">Creative independence</h4>
-              <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.5;">Talented design, photography, and styling students who bring fresh vision to your brand.</p>
+            <div>
+              <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.35rem;">Creative independence</h4>
+              <p style="font-size: 0.92rem; line-height: 1.5;">Talented design, photography, and styling students who bring fresh vision to your brand.</p>
             </div>
-
-            <div style="border-left: 2px solid var(--gold); padding-left: 1.25rem;">
-              <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.4rem;">High engagement</h4>
-              <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.5;">Micro-audiences deliver 4x to 8x higher comment and save rates than saturated commercial creators.</p>
-            </div>
-
-            <div style="border-left: 2px solid var(--gold); padding-left: 1.25rem;">
-              <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.4rem;">Cost-efficient collaboration</h4>
-              <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.5;">Work directly with rising models and creators without predatory talent agency markups.</p>
+            <div>
+              <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.35rem;">High engagement</h4>
+              <p style="font-size: 0.92rem; line-height: 1.5;">Micro-audiences deliver 4x to 8x higher comment and save rates than saturated commercial creators.</p>
             </div>
           </div>
         </div>
 
-        <!-- Brand CTA Bar -->
-        <div style="text-align: center; padding: 3rem 1rem; border-top: 1px solid var(--line);">
-          <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem;">Ready to launch your campus campaign?</h2>
-          <p style="color: var(--muted); max-width: 600px; margin: 0 auto 2rem;">Post your campaign brief in under 3 minutes or browse the creator roster.</p>
-          <div style="display: flex; gap: 1rem; justify-content: center;">
-            <a href="#brand/campaigns/new" class="btn btn-primary">Post a Campaign Now →</a>
-            <a href="#discover" class="btn btn-secondary">Scout Creators</a>
-          </div>
+        <div style="text-align: center;">
+          <a href="#brand/campaigns/new" class="btn btn-lg btn-primary">Post a Campaign Brief Now →</a>
         </div>
 
       </div>
     </section>
 
     <!-- ====================================================================
-         VIEW 5: FOR CREATORS (DEDICATED LANDING PAGE)
+         VIEW 5: FOR CREATORS (DEDICATED EDITORIAL PAGE)
          ==================================================================== -->
-    <section id="view-for-creators" class="view-section" style="display: none; padding: 3rem 0 5rem;">
+    <section id="view-for-creators" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
       <div class="container">
         
-        <!-- Hero Section for Creators -->
-        <div class="editorial-lead-section" style="text-align: center; max-width: 860px; margin: 0 auto 4rem;">
-          <span class="section-eyebrow" style="justify-content: center; color: var(--gold);">FOR COLLEGE MODELS & CREATORS</span>
-          <!-- Headline from spec -->
-          <h1 class="hero-title-main" style="margin: 0.75rem 0 1.25rem;">
+        <div style="max-width: 820px; margin: 0 auto var(--space-16); text-align: center;">
+          <span class="section-eyebrow" style="justify-content: center;">FOR COLLEGE MODELS & CREATORS</span>
+          <h1 class="hero-editorial-title">
             Your style is your <span class="editorial-italic">portfolio.</span>
           </h1>
-          <!-- Subheadline from spec -->
-          <p class="hero-subline" style="font-size: 1.15rem; max-width: 720px; margin: 0 auto 2rem;">
-            Connect with fashion brands, get booked for campaigns, and build your creative career while you're in college.
+          <p class="hero-editorial-subline">
+            Find fashion brands that care about your point of view — not just your follower count.
           </p>
-          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
             <button class="btn btn-lg btn-primary" onclick="window.fashow.openCreatorOnboarding()">Create Creator Profile</button>
             <a href="#campaigns" class="btn btn-lg btn-secondary">Browse Open Campaigns</a>
           </div>
         </div>
 
-        <!-- 3-Step Process from Spec -->
-        <div style="margin-bottom: 5rem;">
-          <div class="section-header-row" style="margin-bottom: 2.5rem; text-align: center;">
-            <div style="width: 100%;">
-              <span class="section-eyebrow" style="justify-content: center;">HOW IT WORKS FOR CREATORS</span>
-              <h2 class="section-title">From campus style to paid brand campaigns.</h2>
-            </div>
+        <!-- 3-Step Process -->
+        <div class="workflow-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: var(--space-20);">
+          <div class="step-card-editorial">
+            <span class="step-num-big">01</span>
+            <h3>Create your profile</h3>
+            <p>Build an editorial lookbook card with your portrait, styling tags, campus affiliation, and preferred collaboration rates.</p>
           </div>
-
-          <div class="three-steps-container">
-            <!-- Step 1 -->
-            <div class="step-card-editorial">
-              <span class="step-num-big">01</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Create your profile</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Build an editorial lookbook card with your 3:4 portrait, styling tags, campus affiliation, and preferred collaboration rates.
-              </p>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="step-card-editorial">
-              <span class="step-num-big">02</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Apply to campaigns</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Browse open casting calls, lookbook shoots, and social campaigns from verified fashion houses. Pitch in 1 click.
-              </p>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="step-card-editorial">
-              <span class="step-num-big">03</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.75rem;">Build brand relationships</h3>
-              <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.6;">
-                Submit deliverables, receive transparent compensation, and become a go-to recurring ambassador for your favorite labels.
-              </p>
-            </div>
+          <div class="step-card-editorial">
+            <span class="step-num-big">02</span>
+            <h3>Apply to campaigns</h3>
+            <p>Browse open casting calls, lookbook shoots, and social campaigns from verified fashion houses. Pitch in 1 click.</p>
+          </div>
+          <div class="step-card-editorial">
+            <span class="step-num-big">03</span>
+            <h3>Build brand relationships</h3>
+            <p>Submit deliverables, receive transparent compensation, and become a go-to recurring ambassador for your favorite labels.</p>
           </div>
         </div>
 
-        <!-- Manifesto: "You don't need millions of followers" from Spec -->
-        <div class="manifesto-box" style="margin-bottom: 5rem;">
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.5rem;">THE FASHOW MANIFESTO</span>
-          <h2 style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem;">
-            You don't need millions of followers.
-          </h2>
-          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--paper); opacity: 0.9; margin-bottom: 1.5rem;">
-            Old-school talent agencies look at follower metrics. Real fashion houses look at visual identity, point of view, and authenticity. On Fashow:
+        <!-- Manifesto Box -->
+        <div class="manifesto-box" style="margin-bottom: var(--space-16);">
+          <span class="section-eyebrow" style="color: var(--accent); justify-content: center;">THE FASHOW MANIFESTO</span>
+          <h2>Aesthetic fit &gt; follower count.</h2>
+          <p style="font-size: 1.15rem; line-height: 1.7; max-width: 720px; margin: 0 auto; opacity: 0.9;">
+            Fashion is about point of view. Fashow helps brands discover people because of how they look, create, style and influence their communities — not simply because they have the largest following.
           </p>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 2rem;">
-            <div style="background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--line);">
-              <h4 style="color: var(--gold); font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;">Aesthetic Fit > Follower Count</h4>
-              <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.6;">Brands care how you style garments and represent their world, not whether you have 500K random followers.</p>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--line);">
-              <h4 style="color: var(--gold); font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;">Real Campus Presence</h4>
-              <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.6;">Your campus community and social circle are where trends actually start. Your influence is real, not algorithmic.</p>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--line);">
-              <h4 style="color: var(--gold); font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;">Zero Agency Middlemen</h4>
-              <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.6;">Keep 100% of your earnings. Work directly with brand founders and creative directors.</p>
-            </div>
-          </div>
         </div>
 
-        <!-- Creator CTA Bar -->
-        <div style="text-align: center; padding: 3rem 1rem; border-top: 1px solid var(--line);">
-          <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem;">Ready to claim your creator profile?</h2>
-          <p style="color: var(--muted); max-width: 600px; margin: 0 auto 2rem;">Takes 2 minutes. Free forever for students.</p>
-          <button class="btn btn-primary btn-lg" onclick="window.fashow.openCreatorOnboarding()">Create Creator Profile Now →</button>
+        <div style="text-align: center;">
+          <button class="btn btn-lg btn-primary" onclick="window.fashow.openCreatorOnboarding()">Join as a Creator (100% Free) →</button>
         </div>
 
       </div>
     </section>
 
     <!-- ====================================================================
-         VIEW 6: CAMPAIGNS DIRECTORY
+         VIEW 6: ABOUT FASHOW (SCALING STORY)
          ==================================================================== -->
-    <section id="view-campaigns" class="view-section" style="display: none; padding: 2.5rem 0 5rem;">
-      <div class="container">
-        
-        <div class="dashboard-title-row" style="margin-bottom: 2rem;">
-          <div>
-            <span class="section-label">CAMPAIGN CASTING BOARD</span>
-            <h1 class="font-serif" style="font-size: 2.75rem; margin-bottom: 0.5rem;">Open Campaigns</h1>
-            <p style="font-size: 1rem; color: var(--muted);">
-              Browse active casting calls and content briefs from verified fashion brands.
-            </p>
-          </div>
-          <a href="#brand/campaigns/new" class="btn btn-primary">+ Post a Campaign</a>
+    <section id="view-about" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
+      <div class="container-narrow">
+        <span class="section-eyebrow">ABOUT FASHOW</span>
+        <h1 class="hero-editorial-title" style="margin-bottom: var(--space-6);">
+          A fashion talent and creator network built around <span class="editorial-italic">college culture.</span>
+        </h1>
+
+        <div style="font-size: 1.15rem; line-height: 1.8; color: var(--text-secondary); display: flex; flex-direction: column; gap: var(--space-6);">
+          <p>
+            Fashow is not simply another influencer marketing dashboard or UGC platform. We believe the future of fashion is being shaped in college communities—on university walkways, in dorm room studios, on student runways, and in independent collegiate design collectives.
+          </p>
+          <p>
+            Our mission is to give emerging college models, creators, photographers and stylists direct access to verified fashion houses, without gatekeepers or agency commissions.
+          </p>
+          <p>
+            Starting in Amherst, Massachusetts, Fashow is designed from day one to expand across major college markets, fashion capitals, and eventually globally.
+          </p>
         </div>
 
-        <!-- Quick Filter Pills -->
-        <div class="filter-pills-row" style="margin-bottom: 2rem;">
+        <div style="margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid var(--line); display: flex; gap: var(--space-4);">
+          <a href="#discover" class="btn btn-primary">Discover Creators</a>
+          <a href="#for-brands" class="btn btn-secondary">Brand Platform</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 7: CAMPAIGNS DIRECTORY
+         ==================================================================== -->
+    <section id="view-campaigns" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <span class="section-eyebrow">CASTING BOARD</span>
+            <h1 class="font-serif" style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">Open Campaigns</h1>
+            <p style="font-size: 1rem; color: var(--text-secondary);">Browse active briefs from verified fashion labels.</p>
+          </div>
+          <a href="#brand/campaigns/new" class="btn btn-primary">+ Post a Campaign Brief</a>
+        </div>
+
+        <!-- Filter pills -->
+        <div class="filter-pills-row" style="margin-bottom: var(--space-8);">
           <button class="filter-pill active" data-campaign-filter="All">All Briefs</button>
           <button class="filter-pill" data-campaign-filter="Lookbook">Lookbooks</button>
           <button class="filter-pill" data-campaign-filter="Social Video">TikTok & Video</button>
-          <button class="filter-pill" data-campaign-filter="Modeling">Modeling & Castings</button>
-          <button class="filter-pill" data-campaign-filter="Ambassador">Campus Ambassador</button>
+          <button class="filter-pill" data-campaign-filter="Modeling">Runway & Modeling</button>
+          <button class="filter-pill" data-campaign-filter="Ambassador">Ambassadors</button>
         </div>
 
-        <!-- Campaigns Grid -->
-        <div id="campaigns-feed-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem;">
+        <div id="campaigns-feed-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--space-6);">
           <!-- Dynamically populated via renderCampaignsFeed() -->
         </div>
 
@@ -964,34 +972,35 @@
     </section>
 
     <!-- ====================================================================
-         VIEW 7: CAMPAIGN DETAIL / CREATIVE BRIEF
+         VIEW 8: CAMPAIGN DETAIL / CREATIVE BRIEF
          ==================================================================== -->
-    <section id="view-campaign-detail" class="view-section" style="display: none; padding: 2rem 0 5rem;">
+    <section id="view-campaign-detail" class="view-section" style="display: none; padding: var(--space-8) 0 var(--space-20);">
       <div class="container" id="campaign-detail-container">
         <!-- Dynamically populated via renderCampaignDetail(id) -->
       </div>
     </section>
 
     <!-- ====================================================================
-         VIEW 8: BRAND DASHBOARD & APPLICATIONS REVIEW
+         VIEW 9: BRAND DASHBOARD (SECTION 26 & 30)
          ==================================================================== -->
-    <section id="view-brand-dashboard" class="view-section" style="display: none; padding: 2.5rem 0 5rem;">
+    <section id="view-brand-dashboard" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
       <div class="container">
         
-        <div class="dashboard-title-row" style="margin-bottom: 2rem;">
+        <!-- Header from Spec: "Good morning, Atelier." + "+ Create Campaign" -->
+        <div class="section-header-row" style="margin-bottom: var(--space-8);">
           <div>
-            <span class="section-label">BRAND MANAGEMENT HUB</span>
-            <h1 class="font-serif" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Atelier Marais · Soho Studio</h1>
-            <p style="color: var(--muted);">Manage campaign briefs, evaluate applicant portfolios, and coordinate deliverables.</p>
+            <span class="section-eyebrow">BRAND HUB</span>
+            <h1 class="font-serif" style="font-size: 2.75rem; margin-bottom: 0.25rem;">Good morning, Atelier.</h1>
+            <p style="color: var(--text-secondary);">Manage campaigns, evaluate applicant portfolios, and coordinate deliverables.</p>
           </div>
-          <div style="display: flex; gap: 0.75rem;">
-            <a href="#brand/campaigns/new" class="btn btn-primary">+ New Campaign Brief</a>
-            <a href="#discover" class="btn btn-secondary">Scout More Talent</a>
+          <div style="display: flex; gap: var(--space-3);">
+            <a href="#brand/campaigns/new" class="btn btn-primary">+ Create Campaign</a>
+            <a href="#discover" class="btn btn-secondary">Scout Creators</a>
           </div>
         </div>
 
-        <!-- Stats Overview Cards -->
-        <div class="dash-stat-grid" style="margin-bottom: 2.5rem;">
+        <!-- Action Dashboard Stats Bar -->
+        <div class="dash-stat-grid" style="margin-bottom: var(--space-10);">
           <div class="dash-stat-card">
             <span class="stat-num" id="stat-active-campaigns">3</span>
             <span class="stat-label">Active Campaigns</span>
@@ -1006,14 +1015,14 @@
           </div>
           <div class="dash-stat-card">
             <span class="stat-num" id="stat-saved-talent">8</span>
-            <span class="stat-label">Talent on Roster</span>
+            <span class="stat-label">Talent Roster</span>
           </div>
         </div>
 
-        <!-- Dashboard Navigation Tabs -->
-        <div class="dashboard-tabs" style="margin-bottom: 2rem;">
+        <!-- Dashboard Tabs -->
+        <div class="dashboard-tabs" style="margin-bottom: var(--space-8);">
           <button class="dashboard-tab active" data-dash-tab="applications">
-            Creator Applications (<span id="dash-app-count">14</span>)
+            Applications (<span id="dash-app-count">14</span>)
           </button>
           <button class="dashboard-tab" data-dash-tab="campaigns">
             Active Campaigns (<span id="dash-camp-count">3</span>)
@@ -1022,35 +1031,33 @@
             Collaborations Workspace
           </button>
           <button class="dashboard-tab" data-dash-tab="saved">
-            Saved Talent Roster
+            My Talent
           </button>
         </div>
 
-        <!-- Tab 1: Applications Review (Vidovo Benchmark Mechanics) -->
+        <!-- Applications Review Tab (Section 30) -->
         <div id="dash-tab-content-applications">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6); flex-wrap: wrap; gap: 1rem;">
             <div>
-              <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.25rem;">Applicant Submissions</h3>
-              <p style="color: var(--muted); font-size: 0.85rem;">Review creator pitches, inspect visual lookbooks, and accept or decline in 1 click.</p>
+              <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.2rem;">Applicant Submissions</h3>
+              <p style="color: var(--text-secondary); font-size: 0.88rem;">Review visual applications and accept or decline in 1 click.</p>
             </div>
-            <div style="display: flex; gap: 0.5rem;">
-              <select id="dash-filter-app-status" class="form-select" style="font-size: 0.82rem; padding: 0.4rem 0.75rem;">
-                <option value="All">All Statuses</option>
-                <option value="Pending">Pending Review</option>
-                <option value="Accepted">Accepted</option>
-                <option value="Declined">Declined</option>
-              </select>
-            </div>
+            <select id="dash-filter-app-status" class="form-select" style="width: auto; font-size: 0.82rem; padding: 0.4rem 0.85rem;">
+              <option value="All">All Statuses</option>
+              <option value="Pending">Pending Review</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Declined">Declined</option>
+            </select>
           </div>
 
-          <div id="brand-applications-list" class="applications-list">
+          <div id="brand-applications-list">
             <!-- Dynamically populated via renderBrandApplications() -->
           </div>
         </div>
 
-        <!-- Tab 2: Brand's Active Campaigns -->
+        <!-- Active Campaigns Tab -->
         <div id="dash-tab-content-campaigns" style="display: none;">
-          <div id="brand-campaigns-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
+          <div id="brand-campaigns-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-6);">
             <!-- Dynamically populated via renderBrandCampaigns() -->
           </div>
         </div>
@@ -1059,133 +1066,121 @@
     </section>
 
     <!-- ====================================================================
-         VIEW 9: CAMPAIGN BUILDER (POST A CAMPAIGN)
+         VIEW 10: SIMPLIFIED CAMPAIGN BUILDER (SECTION 27)
          ==================================================================== -->
-    <section id="view-campaign-builder" class="view-section" style="display: none; padding: 2.5rem 0 5rem;">
-      <div class="container" style="max-width: 800px;">
+    <section id="view-campaign-builder" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
+      <div class="container-narrow">
         
-        <div style="margin-bottom: 2rem;">
-          <a href="#brand/dashboard" class="btn btn-sm btn-ghost" style="padding-left: 0; color: var(--gold); margin-bottom: 0.5rem;">← Back to Brand Hub</a>
-          <span class="section-label">CAMPAIGN BUILDER</span>
-          <h1 class="font-serif" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Create Campaign Brief</h1>
-          <p style="color: var(--muted);">Publish a structured brief to receive targeted applications from college models and creators.</p>
+        <div style="margin-bottom: var(--space-8);">
+          <a href="#brand/dashboard" class="btn btn-sm btn-ghost" style="padding-left: 0; color: var(--accent); margin-bottom: 0.5rem;">← Back to Brand Hub</a>
+          <span class="section-eyebrow">CAMPAIGN BUILDER</span>
+          <h1 class="font-serif" style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">Create Campaign Brief</h1>
+          <p style="color: var(--text-secondary);">Publish a brief to cast models, creators and campus talent.</p>
         </div>
 
-        <form id="campaign-builder-form" style="background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 2rem;">
+        <form id="campaign-builder-form" style="background-color: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-8);">
           
-          <!-- Step 1: Basics -->
-          <div class="campaign-builder-step">
-            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--gold);">
-              01 · Title & Category
+          <!-- Step 1: What are you looking for? -->
+          <div style="margin-bottom: var(--space-8);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: var(--space-3);">
+              01 · What are you looking for?
             </h3>
             <div class="form-group">
-              <label class="form-label" for="cb-title">Campaign Title</label>
-              <input type="text" id="cb-title" class="form-input" placeholder="e.g. Autumn / Winter Capsule Lookbook & TikTok Series" required>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div class="form-group">
-                <label class="form-label" for="cb-category">Primary Category</label>
-                <select id="cb-category" class="form-select">
-                  <option value="Lookbook">Lookbook & Editorial</option>
-                  <option value="Social Video">TikTok & Instagram Reels</option>
-                  <option value="Modeling">Runway & Studio Casting</option>
-                  <option value="Ambassador">Campus Ambassador</option>
-                  <option value="Product Drop">Collection Launch</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="cb-talent-type">Ideal Talent Type</label>
-                <select id="cb-talent-type" class="form-select">
-                  <option value="Model & Content Creator">Model & Content Creator</option>
-                  <option value="Runway Model">Runway Model</option>
-                  <option value="Micro-Influencer">Micro-Influencer (5K-30K)</option>
-                  <option value="Stylist & Creative">Stylist & Creative Director</option>
-                </select>
-              </div>
+              <label class="form-label" for="cb-talent-type">Talent Type</label>
+              <select id="cb-talent-type" class="form-select">
+                <option value="Model">Model (Runway, Lookbook, Stills)</option>
+                <option value="Creator">Creator (TikTok, Video, Motion)</option>
+                <option value="Micro-Influencer">Micro-Influencer (Campus reach)</option>
+                <option value="Photographer">Photographer (35mm, Lookbooks)</option>
+                <option value="Stylist">Stylist (Curated wardrobe, sample pulls)</option>
+              </select>
             </div>
           </div>
 
-          <!-- Step 2: Creative Brief & Moodboard -->
-          <div class="campaign-builder-step" style="border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem;">
-            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--gold);">
-              02 · Creative Brief & Aesthetic
+          <!-- Step 2: What's the campaign? -->
+          <div style="margin-bottom: var(--space-8); border-top: 1px solid var(--line); padding-top: var(--space-6);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: var(--space-3);">
+              02 · What's the campaign?
             </h3>
             <div class="form-group">
-              <label class="form-label" for="cb-description">Creative Brief Description</label>
-              <textarea id="cb-description" class="form-textarea" rows="4" placeholder="Describe the aesthetic vision, styling direction, shoot vibe, and what you want creators to highlight..." required></textarea>
+              <label class="form-label" for="cb-title">Campaign Name</label>
+              <input type="text" id="cb-title" class="form-input" placeholder="e.g. Autumn / Winter Capsule Lookbook" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cb-description">Creative Direction</label>
+              <textarea id="cb-description" class="form-textarea" rows="4" placeholder="Describe the aesthetic vision, styling direction, shoot vibe, and silhouette..." required></textarea>
             </div>
             <div class="form-group">
               <label class="form-label" for="cb-moodboard">Moodboard Image URL</label>
-              <input type="url" id="cb-moodboard" class="form-input" placeholder="https://images.unsplash.com/photo-..." value="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80">
-              <p class="form-hint">Visual reference photo defining the tone and silhouette.</p>
+              <input type="url" id="cb-moodboard" class="form-input" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80">
             </div>
           </div>
 
-          <!-- Step 3: Deliverables Required -->
-          <div class="campaign-builder-step" style="border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem;">
-            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--gold);">
-              03 · Deliverables Expected
+          <!-- Step 3: Who fits? -->
+          <div style="margin-bottom: var(--space-8); border-top: 1px solid var(--line); padding-top: var(--space-6);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: var(--space-3);">
+              03 · Who fits?
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+              <div class="form-group">
+                <label class="form-label" for="cb-campuses">Campuses</label>
+                <input type="text" id="cb-campuses" class="form-input" placeholder="e.g. UMass Amherst, Northeastern, NYU" value="UMass Amherst, Amherst College, Boston, NYC" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cb-location">Location</label>
+                <input type="text" id="cb-location" class="form-input" placeholder="e.g. Boston, MA or Campus / Remote" value="Boston & Amherst, MA" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: What will they create? -->
+          <div style="margin-bottom: var(--space-8); border-top: 1px solid var(--line); padding-top: var(--space-6);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: var(--space-3);">
+              04 · What will they create?
             </h3>
             <div class="form-group">
-              <label class="form-label" for="cb-deliverables">Required Content Deliverables (comma-separated)</label>
-              <input type="text" id="cb-deliverables" class="form-input" placeholder="e.g. 2x TikTok Styling Videos, 5x High-Res Editorial Stills, 1x IG Story" value="2x TikTok Videos, 4x High-Res Lookbook Photos" required>
+              <label class="form-label" for="cb-deliverables">Required Deliverables</label>
+              <input type="text" id="cb-deliverables" class="form-input" placeholder="e.g. 2x TikToks, 4x High-Res Lookbook Photos" value="2x TikTok Styling Videos, 4x High-Res Lookbook Stills" required>
             </div>
           </div>
 
-          <!-- Step 4: Campuses & Locations -->
-          <div class="campaign-builder-step" style="border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem;">
-            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--gold);">
-              04 · Campuses & Location Requirements
+          <!-- Step 5: Compensation -->
+          <div style="margin-bottom: var(--space-8); border-top: 1px solid var(--line); padding-top: var(--space-6);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: var(--space-3);">
+              05 · Compensation
             </h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
               <div class="form-group">
-                <label class="form-label" for="cb-location">Shoot Location / Modality</label>
-                <input type="text" id="cb-location" class="form-input" placeholder="e.g. New York, NY or Campus / Remote" value="New York, NY" required>
+                <label class="form-label" for="cb-compensation">Payment</label>
+                <input type="text" id="cb-compensation" class="form-input" placeholder="e.g. $500 Flat Fee" value="$500 Flat Fee" required>
               </div>
               <div class="form-group">
-                <label class="form-label" for="cb-campuses">Target Campuses</label>
-                <input type="text" id="cb-campuses" class="form-input" placeholder="e.g. UMass Amherst, NYU, FIT, or All Campuses" value="UMass Amherst, NYU, FIT, Parsons" required>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 5: Compensation & Perks -->
-          <div class="campaign-builder-step" style="border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem;">
-            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--gold);">
-              05 · Compensation & Gifting
-            </h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div class="form-group">
-                <label class="form-label" for="cb-compensation">Creator Payment</label>
-                <input type="text" id="cb-compensation" class="form-input" placeholder="e.g. $450 flat fee or $25 / hr" value="$500 Flat Fee" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="cb-perks">Product Gifting / Wardrobe</label>
-                <input type="text" id="cb-perks" class="form-input" placeholder="e.g. Full capsule wardrobe gifted ($400 value)" value="Full Lookbook Wardrobe Gifted ($450 retail value)">
+                <label class="form-label" for="cb-perks">Product Gifting</label>
+                <input type="text" id="cb-perks" class="form-input" placeholder="e.g. Full capsule wardrobe gifted" value="Full Lookbook Wardrobe Gifted ($450 retail value)">
               </div>
             </div>
           </div>
 
-          <!-- Step 6: Timeline & Deadline -->
-          <div class="campaign-builder-step" style="border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem;">
-            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--gold);">
-              06 · Timeline & Applications Deadline
+          <!-- Step 6: Timeline -->
+          <div style="margin-bottom: var(--space-8); border-top: 1px solid var(--line); padding-top: var(--space-6);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: var(--space-3);">
+              06 · Timeline
             </h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
               <div class="form-group">
-                <label class="form-label" for="cb-deadline">Applications Close Date</label>
-                <input type="text" id="cb-deadline" class="form-input" placeholder="e.g. Nov 15, 2026" value="Nov 15, 2026" required>
+                <label class="form-label" for="cb-deadline">Application Deadline</label>
+                <input type="text" id="cb-deadline" class="form-input" placeholder="e.g. May 10, 2027" value="May 10, 2027" required>
               </div>
               <div class="form-group">
-                <label class="form-label" for="cb-slots">Creator Slots Available</label>
+                <label class="form-label" for="cb-slots">Creator Slots</label>
                 <input type="number" id="cb-slots" class="form-input" value="3" min="1" max="20">
               </div>
             </div>
           </div>
 
-          <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">
+          <div style="display: flex; gap: var(--space-3); justify-content: flex-end; border-top: 1px solid var(--line); padding-top: var(--space-6);">
             <a href="#brand/dashboard" class="btn btn-secondary">Cancel</a>
-            <button type="submit" class="btn btn-primary" id="cb-submit-btn">Publish Campaign Brief →</button>
+            <button type="submit" class="btn btn-primary">Publish Campaign →</button>
           </div>
 
         </form>
@@ -1194,25 +1189,20 @@
     </section>
 
     <!-- ====================================================================
-         VIEW 10: COLLABORATION WORKSPACE (VIDOVO BENCHMARK MECHANICS)
+         VIEW 11: COLLABORATION WORKSPACE (SECTION 32 & 33)
          ==================================================================== -->
-    <section id="view-collaborations" class="view-section" style="display: none; padding: 2.5rem 0 5rem;">
+    <section id="view-collaborations" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
       <div class="container">
         
-        <div class="dashboard-title-row" style="margin-bottom: 2rem;">
+        <div class="section-header-row">
           <div>
-            <span class="section-label">MARKETPLACE WORKFLOW · STAGE PROGRESSION</span>
-            <h1 class="font-serif" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Collaborations Workspace</h1>
-            <p style="color: var(--muted);">Track accepted campaigns from brief to content submission and final brand sign-off.</p>
-          </div>
-          <div style="display: flex; gap: 0.5rem;">
-            <button id="collab-filter-all" class="btn btn-sm btn-secondary active">All Collabs</button>
-            <button id="collab-filter-active" class="btn btn-sm btn-secondary">In Progress</button>
-            <button id="collab-filter-completed" class="btn btn-sm btn-secondary">Completed</button>
+            <span class="section-eyebrow">WORKFLOW & DELIVERABLES</span>
+            <h1 class="font-serif" style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">Collaborations Workspace</h1>
+            <p style="color: var(--text-secondary);">Track accepted campaigns from brief to content submission, review and sign-off.</p>
           </div>
         </div>
 
-        <div id="collaborations-workspace-list" style="display: flex; flex-direction: column; gap: 2rem;">
+        <div id="collaborations-workspace-list" style="display: flex; flex-direction: column; gap: var(--space-8);">
           <!-- Dynamically populated via renderCollaborationsWorkspace() -->
         </div>
 
@@ -1220,16 +1210,17 @@
     </section>
 
     <!-- ====================================================================
-         VIEW 11: MY TALENT ROSTER
+         VIEW 12: MY TALENT ROSTER (SECTION 35 & 37)
          ==================================================================== -->
-    <section id="view-my-talent" class="view-section" style="display: none; padding: 2.5rem 0 5rem;">
+    <section id="view-my-talent" class="view-section" style="display: none; padding: var(--space-12) 0 var(--space-20);">
       <div class="container">
         
-        <div class="dashboard-title-row" style="margin-bottom: 2rem;">
+        <div class="section-header-row">
           <div>
-            <span class="section-label">BRAND ROSTER</span>
-            <h1 class="font-serif" style="font-size: 2.5rem; margin-bottom: 0.5rem;">My Saved Talent</h1>
-            <p style="color: var(--muted);">College models and creators bookmarked for upcoming campaigns and seasonal lookbooks.</p>
+            <span class="section-eyebrow">RELATIONSHIP MANAGEMENT</span>
+            <!-- Headline & Description from Spec -->
+            <h1 class="font-serif" style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">My Talent</h1>
+            <p style="color: var(--text-secondary);">Creators you've worked with, saved, or want to bring back.</p>
           </div>
           <a href="#discover" class="btn btn-primary">Scout New Creators</a>
         </div>
@@ -1242,36 +1233,36 @@
     </section>
 
     <!-- ====================================================================
-         VIEW 12: MESSAGES (IN-PLATFORM BRAND/CREATOR CHAT)
+         VIEW 13: DIRECT MESSAGES (SECTION 31)
          ==================================================================== -->
-    <section id="view-messages" class="view-section" style="display: none; padding: 2rem 0 5rem;">
+    <section id="view-messages" class="view-section" style="display: none; padding: var(--space-10) 0 var(--space-20);">
       <div class="container">
         
-        <div style="margin-bottom: 1.5rem;">
-          <span class="section-label">COMMUNICATION</span>
+        <div style="margin-bottom: var(--space-6);">
+          <span class="section-eyebrow">COMMUNICATION</span>
           <h1 class="font-serif" style="font-size: 2.25rem; margin-bottom: 0.25rem;">Direct Messages</h1>
-          <p style="color: var(--muted); font-size: 0.9rem;">Chat directly with brands and creators regarding briefs, styling, and deliverables.</p>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Chat directly regarding creative briefs, styling, and deliverables.</p>
         </div>
 
         <div class="messages-layout">
-          <!-- Left: Conversation Threads -->
+          <!-- Left: Threads -->
           <div class="threads-sidebar" id="messages-threads-list">
-            <!-- Dynamically populated via renderMessageThreads() -->
+            <!-- Dynamically populated via renderMessages() -->
           </div>
 
-          <!-- Right: Active Chat Stream -->
+          <!-- Right: Chat Pane -->
           <div class="chat-main-pane">
             <div class="chat-header" id="chat-active-header">
-              <!-- Dynamically populated with recipient info -->
+              <!-- Dynamically populated -->
             </div>
 
             <div class="chat-messages-scroll" id="chat-messages-stream">
-              <!-- Dynamically populated with chat bubbles -->
+              <!-- Dynamically populated -->
             </div>
 
             <form class="chat-input-bar" id="chat-send-form">
-              <input type="text" id="chat-input-field" class="form-input" placeholder="Type a message, styling question, or delivery update..." required autocomplete="off" style="font-size: 0.9rem;">
-              <button type="submit" class="btn btn-primary" style="padding: 0.6rem 1.25rem;">Send ↵</button>
+              <input type="text" id="chat-input-field" class="form-input" placeholder="Type a message, styling question, or delivery update..." required autocomplete="off">
+              <button type="submit" class="btn btn-primary" style="padding: 0.65rem 1.4rem;">Send ↵</button>
             </form>
           </div>
         </div>
@@ -1285,180 +1276,86 @@
        MODALS & DIALOGS
        ==================================================================== -->
 
-  <!-- Modal: Creator Onboarding Wizard (8-Step Progressive Profile Builder) -->
+  <!-- Modal: Creator Registration (Section 16) -->
   <div id="creator-onboarding-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="creator-onboard-title">
     <div class="modal-card modal-card-lg">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">CREATOR REGISTRATION · STEP <span id="onboard-step-num">1</span> OF 8</span>
-          <h3 id="creator-onboard-title" class="modal-title">Build Your Creator Profile</h3>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">CREATOR PROFILE</span>
+          <h3 id="creator-onboard-title" class="modal-title">Create Your Profile</h3>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
 
-      <div class="intro-progress-bar" style="height: 3px; border-radius: 0; background: var(--ink-3);">
-        <div id="onboard-progress-fill" style="width: 12.5%; height: 100%; background: var(--gradient-brand); transition: width 0.3s ease;"></div>
-      </div>
-
       <form id="creator-onboarding-form">
-        <div class="modal-body" id="onboard-steps-container">
-          
-          <!-- Step 1: Basics -->
-          <div class="onboard-step" data-step="1">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">Let's start with your basics.</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">How fashion brands will address you.</p>
+        <div class="modal-body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
             <div class="form-group">
               <label class="form-label" for="onboard-name">Full Name</label>
               <input type="text" id="onboard-name" class="form-input" placeholder="e.g. Maya Chen" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="onboard-email">College or Personal Email</label>
+              <label class="form-label" for="onboard-email">Email Address</label>
               <input type="email" id="onboard-email" class="form-input" placeholder="e.g. maya@umass.edu" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="onboard-location">Current Metro Area</label>
-              <input type="text" id="onboard-location" class="form-input" placeholder="e.g. Boston, MA or New York, NY" required>
             </div>
           </div>
 
-          <!-- Step 2: Campus & Academic -->
-          <div class="onboard-step" data-step="2" style="display: none;">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">Where are you studying?</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Brands love casting talent from specific college communities.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-4);">
             <div class="form-group">
-              <label class="form-label" for="onboard-school">University / College</label>
+              <label class="form-label" for="onboard-school">University / Campus</label>
               <input type="text" id="onboard-school" class="form-input" placeholder="e.g. UMass Amherst" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="onboard-major">Major / Field of Study</label>
-              <input type="text" id="onboard-major" class="form-input" placeholder="e.g. Fashion Marketing & Art History" required>
+              <label class="form-label" for="onboard-major">Field of Study</label>
+              <input type="text" id="onboard-major" class="form-input" placeholder="e.g. Fashion Marketing" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="onboard-grad">Graduation Year</label>
+              <label class="form-label" for="onboard-grad">Class Year</label>
               <select id="onboard-grad" class="form-select">
-                <option value="Class of 2029">Class of 2029</option>
-                <option value="Class of 2028" selected>Class of 2028</option>
+                <option value="Class of 2028">Class of 2028</option>
                 <option value="Class of 2027">Class of 2027</option>
                 <option value="Class of 2026">Class of 2026</option>
-                <option value="Alumni">Recent Graduate / Alumni</option>
+                <option value="Class of 2029">Class of 2029</option>
               </select>
             </div>
           </div>
 
-          <!-- Step 3: Creator Categories -->
-          <div class="onboard-step" data-step="3" style="display: none;">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">What are your creative roles?</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Select all that apply to you.</p>
-            <div class="pills-selector-grid" id="onboard-roles-pills">
-              <button type="button" class="pill-choice-btn selected" data-value="Model">Model</button>
-              <button type="button" class="pill-choice-btn selected" data-value="Creator">Content Creator</button>
-              <button type="button" class="pill-choice-btn" data-value="Micro-Influencer">Micro-Influencer</button>
-              <button type="button" class="pill-choice-btn" data-value="Stylist">Stylist</button>
-              <button type="button" class="pill-choice-btn" data-value="Photographer">Photographer</button>
-              <button type="button" class="pill-choice-btn" data-value="Campus Ambassador">Campus Ambassador</button>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="onboard-avatar">Profile Portrait Photo URL (3:4 aspect ratio)</label>
+            <input type="url" id="onboard-avatar" class="form-input" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" required>
           </div>
 
-          <!-- Step 4: Aesthetics & Style -->
-          <div class="onboard-step" data-step="4" style="display: none;">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">What is your styling aesthetic?</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Helps brands match their silhouette to your personal wardrobe.</p>
-            <div class="pills-selector-grid" id="onboard-styles-pills">
-              <button type="button" class="pill-choice-btn selected" data-value="Streetwear">Streetwear</button>
-              <button type="button" class="pill-choice-btn selected" data-value="Lifestyle">Lifestyle</button>
-              <button type="button" class="pill-choice-btn" data-value="Minimal">Minimal</button>
-              <button type="button" class="pill-choice-btn" data-value="Y2K">Y2K / Thrift</button>
-              <button type="button" class="pill-choice-btn" data-value="Vintage">Vintage</button>
-              <button type="button" class="pill-choice-btn" data-value="Luxury">Luxury / RTW</button>
-              <button type="button" class="pill-choice-btn" data-value="Avant-Garde">Avant-Garde</button>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="onboard-bio">Creative Bio & Style Statement</label>
+            <textarea id="onboard-bio" class="form-textarea" rows="3" placeholder="Describe your styling aesthetic and creative focus..." required>College model and streetwear content creator blending campus culture with contemporary ready-to-wear aesthetics.</textarea>
           </div>
 
-          <!-- Step 5: Portrait Photo -->
-          <div class="onboard-step" data-step="5" style="display: none;">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">Add your 3:4 portrait photo.</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">High-resolution portrait photo for your casting card.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
             <div class="form-group">
-              <label class="form-label" for="onboard-avatar">Profile Image URL</label>
-              <input type="url" id="onboard-avatar" class="form-input" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" required>
-              <p class="form-hint">Paste an image link or Unsplash photo URL.</p>
+              <label class="form-label" for="onboard-tiktok-handle">TikTok Handle</label>
+              <input type="text" id="onboard-tiktok-handle" class="form-input" placeholder="@maya.chen" value="@maya.chen">
             </div>
             <div class="form-group">
-              <label class="form-label" for="onboard-hover-img">Secondary Lookbook Image URL (Revealed on hover)</label>
-              <input type="url" id="onboard-hover-img" class="form-input" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80">
+              <label class="form-label" for="onboard-ig-handle">Instagram Handle</label>
+              <input type="text" id="onboard-ig-handle" class="form-input" placeholder="@mayachen_fit" value="@mayachen_fit">
             </div>
           </div>
-
-          <!-- Step 6: Social Presence -->
-          <div class="onboard-step" data-step="6" style="display: none;">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">Where can brands see your reach?</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Remember, high-intent engagement beats raw follower counts.</p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div class="form-group">
-                <label class="form-label" for="onboard-tiktok-handle">TikTok Handle</label>
-                <input type="text" id="onboard-tiktok-handle" class="form-input" placeholder="@maya.chen">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="onboard-tiktok-count">TikTok Followers</label>
-                <input type="text" id="onboard-tiktok-count" class="form-input" placeholder="e.g. 14.2K">
-              </div>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div class="form-group">
-                <label class="form-label" for="onboard-ig-handle">Instagram Handle</label>
-                <input type="text" id="onboard-ig-handle" class="form-input" placeholder="@mayachen_fit">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="onboard-ig-count">Instagram Followers</label>
-                <input type="text" id="onboard-ig-count" class="form-input" placeholder="e.g. 5.1K">
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 7: Collaboration Details & Rates -->
-          <div class="onboard-step" data-step="7" style="display: none;">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">What are your collaboration terms?</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Set expectations for brands who want to book you.</p>
-            <div class="form-group">
-              <label class="form-label" for="onboard-avail">Current Availability</label>
-              <select id="onboard-avail" class="form-select">
-                <option value="Available">Available for Bookings</option>
-                <option value="Booking for Fall">Booking for Upcoming Drop</option>
-                <option value="In Production">Currently in Production</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="onboard-rate">Starting Base Rate / Preferences</label>
-              <input type="text" id="onboard-rate" class="form-input" placeholder="e.g. $300 - $600 per campaign / Paid + Gifting" value="$350 - $600 per campaign">
-            </div>
-          </div>
-
-          <!-- Step 8: Creative Bio & Review -->
-          <div class="onboard-step" data-step="8" style="display: none;">
-            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem;">Write your creative bio statement.</h4>
-            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Editorial statement describing your style and perspective.</p>
-            <div class="form-group">
-              <label class="form-label" for="onboard-bio">Creative Bio</label>
-              <textarea id="onboard-bio" class="form-textarea" rows="4" placeholder="e.g. College model and streetwear content creator blending Boston campus culture with NYC downtown aesthetics..." required>College model and streetwear content creator blending campus culture with contemporary ready-to-wear aesthetics. Experienced in on-camera modeling, lookbook styling, and short-form TikTok video production.</textarea>
-            </div>
-          </div>
-
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="onboard-prev-btn" class="btn btn-secondary" style="display: none;">Back</button>
-          <button type="button" id="onboard-next-btn" class="btn btn-primary" style="margin-left: auto;">Continue →</button>
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Complete Profile & Launch →</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal: Brand Registration Modal -->
+  <!-- Modal: Brand Registration -->
   <div id="brand-onboarding-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="brand-modal-title">
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">FOR ATELIERS & FASHION LABELS</span>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">FOR FASHION BRANDS</span>
           <h3 id="brand-modal-title" class="modal-title">Register Your Brand</h3>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
@@ -1479,17 +1376,12 @@
               <option value="Ready-to-Wear">Ready-to-Wear / High Fashion</option>
               <option value="Streetwear">Streetwear & Contemporary</option>
               <option value="Footwear">Footwear & Accessories</option>
-              <option value="Denim & Workwear">Denim & Workwear</option>
               <option value="Sustainable Apparel">Sustainable Apparel</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" for="reg-brand-location">Studio City / HQ</label>
-            <input type="text" id="reg-brand-location" class="form-input" placeholder="e.g. Soho, New York" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="reg-brand-site">Website or Instagram Link</label>
-            <input type="url" id="reg-brand-site" class="form-input" placeholder="https://ateliermarais.com">
+            <label class="form-label" for="reg-brand-location">Studio Location / City</label>
+            <input type="text" id="reg-brand-location" class="form-input" placeholder="e.g. Soho, New York or Boston, MA" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -1500,14 +1392,14 @@
     </div>
   </div>
 
-  <!-- Modal: Apply to Campaign Modal -->
+  <!-- Modal: Apply to Campaign (Section 29) -->
   <div id="campaign-apply-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="apply-campaign-title">
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">CREATOR APPLICATION</span>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">CAMPAIGN APPLICATION</span>
           <h3 id="apply-campaign-title" class="modal-title">Apply to Campaign</h3>
-          <p id="apply-campaign-subtitle" style="font-size: 0.85rem; color: var(--muted); margin: 0;"></p>
+          <p id="apply-campaign-subtitle" style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"></p>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
@@ -1519,36 +1411,36 @@
             <input type="text" id="apply-creator-name" class="form-input" value="Maya Chen (UMass Amherst · Model)" readonly>
           </div>
           <div class="form-group">
-            <label class="form-label" for="apply-pitch-note">Pitch Note & Styling Concept</label>
-            <textarea id="apply-pitch-note" class="form-textarea" rows="4" placeholder="Explain why you're a great fit for this campaign, how you plan to style the garments, or your concept for the content..." required>I would love to collaborate on this campaign! My personal aesthetic aligns with your tailored, minimalist silhouettes. I can deliver 2 dynamic TikTok styling videos showcasing morning-to-night transitions on campus, plus high-res 3:4 lookbook photos.</textarea>
+            <label class="form-label" for="apply-pitch-note">Why are you a fit? (Pitch & Concept)</label>
+            <textarea id="apply-pitch-note" class="form-textarea" rows="4" placeholder="Explain why you fit the aesthetic direction and how you plan to shoot/style..." required>I would love to collaborate on this campaign. My aesthetic aligns with your tailored silhouette, and I can deliver 2 TikTok styling cuts on campus plus high-res 3:4 lookbook stills.</textarea>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
             <div class="form-group">
               <label class="form-label" for="apply-proposed-rate">Proposed Fee</label>
               <input type="text" id="apply-proposed-rate" class="form-input" value="$500 Flat Fee" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="apply-portfolio-link">Portfolio / Lookbook Link</label>
+              <label class="form-label" for="apply-portfolio-link">Portfolio Link</label>
               <input type="url" id="apply-portfolio-link" class="form-input" value="https://fashow2007.github.io/Fashow/#profile">
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="submit-application-btn">Submit Application →</button>
+          <button type="submit" class="btn btn-primary">Submit Application →</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal: Invite Creator to Campaign Modal -->
+  <!-- Modal: Invite Creator to Campaign (Section 37) -->
   <div id="invite-campaign-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="invite-modal-title">
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">BRAND INVITATION</span>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">CAMPAIGN INVITATION</span>
           <h3 id="invite-modal-title" class="modal-title">Invite to Campaign</h3>
-          <p id="invite-creator-subtitle" style="font-size: 0.85rem; color: var(--muted);"></p>
+          <p id="invite-creator-subtitle" style="font-size: 0.85rem; color: var(--text-secondary);"></p>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
@@ -1558,29 +1450,29 @@
           <div class="form-group">
             <label class="form-label" for="invite-campaign-select">Select Campaign Brief</label>
             <select id="invite-campaign-select" class="form-select" required>
-              <!-- Populated dynamically with active brand campaigns -->
+              <!-- Dynamically populated -->
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" for="invite-custom-message">Invitation Note & Offer</label>
-            <textarea id="invite-custom-message" class="form-textarea" rows="3" placeholder="Add a personal note to the creator about why you chose them..." required>We love your editorial style on campus and would be thrilled to feature you in our upcoming seasonal lookbook!</textarea>
+            <label class="form-label" for="invite-custom-message">Invitation Note</label>
+            <textarea id="invite-custom-message" class="form-textarea" rows="3" placeholder="Add a note to the creator about why you chose them..." required>We love your editorial style on campus and would love to cast you in our upcoming seasonal lookbook!</textarea>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
-          <button type="submit" class="btn btn-primary">Send Campaign Invitation →</button>
+          <button type="submit" class="btn btn-primary">Send Invitation →</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal: Submit Deliverables (Vidovo Workspace Workflow) -->
+  <!-- Modal: Submit Deliverables (Section 33) -->
   <div id="submit-deliverable-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="submit-deliv-title">
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">CONTENT SUBMISSION</span>
-          <h3 id="submit-deliv-title" class="modal-title">Submit Deliverables</h3>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">DELIVERABLES</span>
+          <h3 id="submit-deliv-title" class="modal-title">Submit Campaign Content</h3>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
@@ -1589,20 +1481,19 @@
         <div class="modal-body">
           <div class="form-group">
             <label class="form-label" for="deliv-preview-img">Preview Photo / Lookbook Still URL</label>
-            <input type="url" id="deliv-preview-img" class="form-input" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" required>
+            <input type="url" id="deliv-preview-img" class="form-input" value="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" required>
           </div>
           <div class="form-group">
-            <label class="form-label" for="deliv-assets-link">Google Drive / Dropbox / Frame.io Assets Link</label>
-            <input type="url" id="deliv-assets-link" class="form-input" placeholder="https://drive.google.com/drive/folders/..." value="https://drive.google.com/drive/folders/fashow-campaign-assets" required>
-            <p class="form-hint">Link to high-resolution raw or final video/photo files.</p>
+            <label class="form-label" for="deliv-assets-link">Google Drive / Dropbox Assets Link</label>
+            <input type="url" id="deliv-assets-link" class="form-input" value="https://drive.google.com/drive/folders/fashow-campaign-assets" required>
           </div>
           <div class="form-group">
-            <label class="form-label" for="deliv-social-link">Live TikTok / Reel Link (Optional)</label>
-            <input type="url" id="deliv-social-link" class="form-input" placeholder="https://www.tiktok.com/@maya.chen/video/..." value="https://www.tiktok.com/@maya.chen/video/734891234">
+            <label class="form-label" for="deliv-social-link">Live TikTok or Instagram Link (Optional)</label>
+            <input type="url" id="deliv-social-link" class="form-input" placeholder="https://www.tiktok.com/@..." value="https://www.tiktok.com/@maya.chen/video/734891234">
           </div>
           <div class="form-group">
-            <label class="form-label" for="deliv-notes">Creator Delivery Notes</label>
-            <textarea id="deliv-notes" class="form-textarea" rows="3" placeholder="Notes for the brand regarding music, edit cuts, or caption tags...">All required lookbook shots and 2 TikTok video edits uploaded. Let me know if you would like any minor color grading adjustments!</textarea>
+            <label class="form-label" for="deliv-notes">Delivery Notes</label>
+            <textarea id="deliv-notes" class="form-textarea" rows="3" placeholder="Notes for the brand regarding cuts, tags, or raw files...">All lookbook stills uploaded in full resolution. Video cuts ready for review!</textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -1613,12 +1504,12 @@
     </div>
   </div>
 
-  <!-- Modal: Request Deliverable Revision -->
+  <!-- Modal: Request Revision (Section 33) -->
   <div id="request-revision-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="revision-modal-title">
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--orange); margin-bottom: 0.25rem;">REVISION FEEDBACK</span>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">REVISION FEEDBACK</span>
           <h3 id="revision-modal-title" class="modal-title">Request Modifications</h3>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
@@ -1627,25 +1518,25 @@
         <input type="hidden" id="revision-collab-id">
         <div class="modal-body">
           <div class="form-group">
-            <label class="form-label" for="revision-notes">Feedback & Requested Changes</label>
-            <textarea id="revision-notes" class="form-textarea" rows="4" placeholder="Detail specific adjustments required (e.g., lighting, garment logo visibility, hook timing)..." required>The styling looks fantastic! Could you just adjust the second video cut to show the outerwear collar detail slightly longer?</textarea>
+            <label class="form-label" for="revision-notes">Requested Adjustments</label>
+            <textarea id="revision-notes" class="form-textarea" rows="4" placeholder="Detail requested adjustments (e.g. lighting, logo clarity, timing)..." required>The styling looks fantastic! Could you just adjust the second video cut to show the outerwear collar detail slightly longer?</textarea>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
-          <button type="submit" class="btn btn-primary" style="background: var(--orange);">Send Revision Request →</button>
+          <button type="submit" class="btn btn-primary">Send Revision Request →</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal: General Log In -->
+  <!-- Modal: Log In with Quick Perspective Switcher -->
   <div id="login-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">AUTHENTICATION</span>
-          <h3 id="login-modal-title" class="modal-title">Log in to Fashow</h3>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">AUTHENTICATION</span>
+          <h3 id="login-modal-title" class="modal-title">Sign in to Fashow</h3>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
@@ -1659,8 +1550,20 @@
             <label class="form-label" for="login-password">Password</label>
             <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
           </div>
-          <div style="background: var(--ink-3); padding: 0.75rem 1rem; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--muted); border: 1px solid var(--line);">
-            💡 <strong>Quick Demo Mode:</strong> You can test without logging in by using the <strong>Simulated Perspective</strong> bar in the header to switch between Atelier Marais (Brand) and Maya Chen (Creator).
+
+          <!-- Discrete Quick Switcher for Testing -->
+          <div style="background-color: var(--bg-subtle); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--line); margin-top: var(--space-4);">
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: block; margin-bottom: 0.5rem;">
+              FAST DEMO SIGN-IN
+            </span>
+            <div style="display: flex; gap: var(--space-2);">
+              <button type="button" class="btn btn-sm btn-secondary" style="flex: 1;" onclick="window.fashow.setSimulatedRole('brand'); window.fashow.closeModal('login-modal'); window.location.hash='#brand/dashboard';">
+                Atelier Marais (Brand)
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary" style="flex: 1;" onclick="window.fashow.setSimulatedRole('creator'); window.fashow.closeModal('login-modal'); window.location.hash='#profile';">
+                Maya Chen (Creator)
+              </button>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -1676,34 +1579,22 @@
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <span class="section-eyebrow" style="color: var(--gold); margin-bottom: 0.25rem;">JOIN THE NETWORK</span>
-          <h3 id="choice-modal-title" class="modal-title">Join Fashow</h3>
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">JOIN FASHOW</span>
+          <h3 id="choice-modal-title" class="modal-title">Choose your path</h3>
         </div>
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
-      <div class="modal-body" style="display: flex; flex-direction: column; gap: 1rem;">
-        <div class="entry-path-card" onclick="window.fashow.closeModal('signup-choice-modal'); window.fashow.openCreatorOnboarding();" role="button" tabindex="0">
-          <div>
-            <span class="entry-path-label">FOR STUDENTS & CREATIVES</span>
-            <h4 class="entry-path-title" style="margin: 0.25rem 0;">I'm a Model / Creator</h4>
-            <p class="entry-path-desc">Create your portfolio lookbook, get discovered by verified fashion labels, and get booked for campaigns.</p>
-          </div>
-          <div class="entry-path-cta">
-            <span>Create Profile</span>
-            <span class="entry-path-arrow">→</span>
-          </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: var(--space-4);">
+        <div style="background-color: var(--bg-subtle); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-6); cursor: pointer; transition: all var(--duration-fast);" onclick="window.fashow.closeModal('signup-choice-modal'); window.fashow.openCreatorOnboarding();" role="button" tabindex="0">
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">FOR STUDENTS & CREATIVES</span>
+          <h4 style="font-family: var(--font-serif); font-size: 1.4rem; margin: 0 0 0.25rem;">I'm a Model / Creator</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Build your editorial lookbook, get discovered by fashion labels, and get booked for paid campaigns.</p>
         </div>
 
-        <div class="entry-path-card" onclick="window.fashow.closeModal('signup-choice-modal'); window.fashow.openBrandOnboarding();" role="button" tabindex="0">
-          <div>
-            <span class="entry-path-label">FOR FASHION BRANDS</span>
-            <h4 class="entry-path-title" style="margin: 0.25rem 0;">I'm a Fashion Brand</h4>
-            <p class="entry-path-desc">Post campaign briefs, scout college talent, and build authentic ambassador relationships.</p>
-          </div>
-          <div class="entry-path-cta">
-            <span>Register Brand</span>
-            <span class="entry-path-arrow">→</span>
-          </div>
+        <div style="background-color: var(--bg-subtle); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-6); cursor: pointer; transition: all var(--duration-fast);" onclick="window.fashow.closeModal('signup-choice-modal'); window.fashow.openBrandOnboarding();" role="button" tabindex="0">
+          <span class="section-eyebrow" style="margin-bottom: 0.2rem;">FOR FASHION BRANDS</span>
+          <h4 style="font-family: var(--font-serif); font-size: 1.4rem; margin: 0 0 0.25rem;">I'm a Fashion Brand</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Publish campaign briefs, scout college talent by style and campus, and manage deliverables.</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -1712,58 +1603,14 @@
     </div>
   </div>
 
-  <!-- Modal: Supabase Backend Settings -->
-  <div id="supabase-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="supabase-modal-title">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div>
-          <h3 id="supabase-modal-title" class="modal-title">⚡ Supabase Database</h3>
-          <p style="font-size: 0.85rem; color: var(--muted);">Connect your free Supabase PostgreSQL database & Auth</p>
-        </div>
-        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
-      </div>
-      <form id="supabase-config-form">
-        <div class="modal-body">
-          <div id="supabase-status-badge" style="padding: 0.75rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; font-size: 0.875rem; border: 1px solid var(--line); background: var(--ink-3);">
-            <strong>Status:</strong> <span id="supabase-status-desc">Checking...</span>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="supabase-url-input">Project URL</label>
-            <input type="url" id="supabase-url-input" class="form-input" placeholder="https://your-project-id.supabase.co" required>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="supabase-anon-input">Anon Public API Key</label>
-            <textarea id="supabase-anon-input" class="form-textarea" rows="3" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." required></textarea>
-          </div>
-
-          <div style="background: var(--ink-3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--line); font-size: 0.825rem; line-height: 1.6;">
-            <strong>Setup Checklist (Takes 2 minutes):</strong>
-            <ol style="padding-left: 1.25rem; margin-top: 0.4rem; color: var(--muted);">
-              <li>Create a free account and project at <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: underline;">supabase.com</a></li>
-              <li>Go to <strong>SQL Editor</strong> in Supabase → Paste the contents of <code>supabase-schema.sql</code> and click <strong>Run</strong></li>
-              <li>Copy your Project URL & Anon Key into this modal and click <strong>Save & Connect</strong></li>
-            </ol>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="supabase-disconnect-btn" class="btn btn-secondary" style="margin-right: auto; display: none;">Disconnect</button>
-          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="supabase-save-btn">Save & Connect</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Site Footer -->
+  <!-- Site Footer (Clean, Editorial, Architectural) -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
-          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: var(--space-4);">
-            <svg class="nav-logo-svg" viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g stroke="url(#navLogoGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: var(--space-4);">
+            <svg viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 26px; height: 26px;" aria-hidden="true">
+              <g stroke="#C87D32" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
                 <path d="M 126 172 C 95 172, 64 190, 64 220 C 64 254, 98 274, 136 274 C 174 274, 192 238, 200 200 C 208 162, 236 150, 276 150 C 315 150, 336 175, 336 208 C 336 244, 305 272, 270 272 C 238 272, 218 250, 216 226" />
                 <path d="M 136 186 C 110 186, 78 198, 78 220 C 78 244, 104 260, 136 260 C 166 260, 184 228, 200 200 C 216 172, 244 164, 276 164 C 304 164, 322 182, 322 208 C 322 234, 296 258, 270 258 C 248 258, 230 242, 228 226" />
                 <path d="M 136 200 C 122 200, 92 208, 92 220 C 92 234, 112 246, 136 246 C 158 246, 178 222, 200 200 C 222 178, 248 172, 274 172" />
@@ -1771,58 +1618,66 @@
                 <path d="M 180 160 L 200 118 L 220 160" />
               </g>
             </svg>
-            <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: 0.15em; margin: 0; color: #FFFFFF;">FASHOW</h2>
+            <span style="font-family: var(--font-serif); font-size: 1.6rem; letter-spacing: 0.05em; color: #FFFFFF;">FASHOW</span>
           </div>
-          <p style="color: var(--muted); line-height: 1.6; font-size: 0.9rem; margin-bottom: var(--space-4);">
-            The fashion talent & creator marketplace built around college culture. Connecting college models, creators, and microinfluencers directly with fashion labels.
+          <p style="color: var(--text-muted-dark); font-size: 0.92rem; line-height: 1.6; max-width: 320px; margin-bottom: var(--space-4);">
+            The fashion talent & creator network built around college culture. Connecting college models, creators, and microinfluencers with fashion brands.
           </p>
-          <div class="footer-business-details" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); line-height: 1.7;">
-            <p><strong style="color: #FFFFFF;">Fashow Technologies Inc.</strong></p>
-            <p>540 Broadway, Soho, New York, NY 10012</p>
-            <p>Direct Inquiries: <a href="mailto:sales@gennis.shop" style="color: var(--gold); text-decoration: underline;">sales@gennis.shop</a></p>
+          <div style="font-size: 0.75rem; color: var(--text-muted-dark); line-height: 1.6;">
+            <p>Fashow Technologies Inc. · Amherst & New York</p>
+            <p>Inquiries: <a href="mailto:contact@fashow.fashion" style="color: var(--accent);">contact@fashow.fashion</a></p>
           </div>
         </div>
 
         <div>
-          <h3 class="footer-title">Platform</h3>
+          <h4 class="footer-title">Network</h4>
           <ul class="footer-links">
             <li><a href="#discover">Discover Creators</a></li>
             <li><a href="#for-brands">For Brands</a></li>
             <li><a href="#for-creators">For Creators</a></li>
             <li><a href="#campaigns">Open Campaigns</a></li>
-            <li><a href="#brand/campaigns/new">Post a Campaign</a></li>
+            <li><a href="#about">About Fashow</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="footer-title">Campuses</h3>
+          <h4 class="footer-title">Campuses</h4>
           <ul class="footer-links">
-            <li><a href="#discover">UMass Amherst</a></li>
-            <li><a href="#discover">NYU Tisch / Stern</a></li>
-            <li><a href="#discover">FIT New York</a></li>
-            <li><a href="#discover">Parsons Design</a></li>
-            <li><a href="#discover">Northeastern</a></li>
+            <li><a href="#discover">Amherst</a></li>
+            <li><a href="#discover">Boston</a></li>
+            <li><a href="#discover">New York</a></li>
+            <li><a href="#discover">Los Angeles</a></li>
+            <li><a href="#discover">Chicago</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="footer-title">Compliance & Terms</h3>
-          <ul class="footer-links">
-            <li><a href="#" onclick="alert('Privacy Policy: Fashow respects creator privacy and does not sell user data.'); return false;">Privacy Policy</a></li>
-            <li><a href="#" onclick="alert('Terms: Creators retain 100% intellectual property rights to their content.'); return false;">Terms of Service</a></li>
-            <li><a href="mailto:sales@gennis.shop">Support & Inquiries</a></li>
-          </ul>
+          <h4 class="footer-title">Perspective (Demo)</h4>
+          <p style="font-size: 0.8rem; color: var(--text-muted-dark); margin-bottom: var(--space-3); line-height: 1.4;">
+            Switch simulated role to test both sides of the marketplace:
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <button class="btn btn-sm btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #FFFFFF; justify-content: flex-start;" onclick="window.fashow.setSimulatedRole('brand');">
+              Switch to Brand View
+            </button>
+            <button class="btn btn-sm btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #FFFFFF; justify-content: flex-start;" onclick="window.fashow.setSimulatedRole('creator');">
+              Switch to Creator View
+            </button>
+            <button class="btn btn-sm btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #FFFFFF; justify-content: flex-start;" onclick="window.fashow.setSimulatedRole('guest');">
+              Public Guest View
+            </button>
+          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Fashow Technologies Inc. All rights reserved. Zero fake stats · No misleading reviews · 100% CC0/licensed photography.</p>
-        <p>Models, creators, and brands featured represent verified talent and authentic collegiate fashion culture.</p>
+        <span>&copy; 2027 Fashow Technologies Inc. All rights reserved.</span>
+        <span>A fashion network first. A marketplace second. Software underneath.</span>
       </div>
     </div>
   </footer>
 
-  <!-- Supabase JS SDK & Backend Scripts -->
+  <!-- Supabase JS SDK & Backend Scripts (Gracefully offline-safe) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
   <script src="supabase-client.js"></script>
