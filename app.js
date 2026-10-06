@@ -887,7 +887,7 @@
           </div>
 
           <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="#creators/${creator.username}" class="btn btn-sm btn-secondary" style="flex: 1; text-align: center;">View Profile</a>
+            <a href="#creators/${creator.username}" class="btn btn-sm btn-secondary" style="flex: 1; text-align: center;">View profile</a>
             <button class="btn btn-sm btn-primary invite-btn" data-creator-id="${creator.id}">Invite</button>
           </div>
         </div>
@@ -1103,7 +1103,7 @@
             <span style="font-size: 0.85rem; color: var(--text-secondary);">${creator.location}</span>
           </div>
 
-          <h1 style="font-family: var(--font-serif); font-size: 3.25rem; font-weight: 400; line-height: 1.05; margin-bottom: 0.35rem;">
+          <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 3.5vw + 0.5rem, 3rem); font-weight: 500; letter-spacing: var(--tracking-heading); line-height: var(--leading-heading); margin-bottom: 0.35rem;">
             ${creator.name}
           </h1>
 
@@ -1117,8 +1117,8 @@
 
           <!-- Style Tags -->
           <div style="margin-bottom: var(--space-6);">
-            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: block; margin-bottom: 0.4rem;">
-              Style & Aesthetic
+            <span style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); display: block; margin-bottom: 0.4rem;">
+              Style & aesthetic
             </span>
             <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
               ${creator.styles.map(s => `<span class="badge badge-neutral" style="font-size: 0.82rem; padding: 0.25rem 0.65rem;">${s}</span>`).join('')}
@@ -1148,13 +1148,13 @@
           <!-- Actions -->
           <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
             <button class="btn btn-lg btn-primary" onclick="window.fashow.openInviteModal('${creator.id}')">
-              Invite to Campaign
+              Invite to campaign
             </button>
             <button class="btn btn-lg btn-secondary" onclick="window.fashow.startDirectMessage('${creator.id}')">
               Message
             </button>
             <button class="btn btn-lg btn-ghost" onclick="window.fashow.toggleSaveTalent('${creator.id}', null)">
-              ${isSaved ? '★ Saved to My Talent' : '☆ Save to My Talent'}
+              ${isSaved ? '★ Saved to my talent' : '☆ Save to my talent'}
             </button>
           </div>
         </div>
@@ -1164,8 +1164,8 @@
       <section style="margin-bottom: var(--space-20); border-top: 1px solid var(--line); padding-top: var(--space-12);">
         <div class="section-header-row" style="margin-bottom: var(--space-8);">
           <div>
-            <span class="section-eyebrow">PORTFOLIO</span>
-            <h2 class="section-title">Lookbook & Creative Work</h2>
+            <span class="section-eyebrow">Portfolio</span>
+            <h2 class="section-title">Lookbook & creative work</h2>
           </div>
         </div>
 
@@ -1174,7 +1174,7 @@
             <div class="masonry-item">
               <img src="${p.img}" alt="${p.title}" loading="lazy">
               <div style="padding: var(--space-4);">
-                <h4 style="font-family: var(--font-serif); font-size: 1.15rem; margin-bottom: 0.25rem;">${p.title}</h4>
+                <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: 0.25rem;">${p.title}</h4>
                 <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">${p.caption}</p>
               </div>
             </div>
@@ -1185,8 +1185,8 @@
       <!-- Collaboration Details & Reviews -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10); border-top: 1px solid var(--line); padding-top: var(--space-12);">
         <div>
-          <span class="section-eyebrow">SERVICES</span>
-          <h3 style="font-family: var(--font-serif); font-size: 1.75rem; margin-bottom: var(--space-4);">Available For</h3>
+          <span class="section-eyebrow">Services</span>
+          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: var(--space-4);">Available for</h3>
           <ul class="plain-bullets">
             ${creator.collabPreferences.map(pref => `
               <li>
@@ -1198,8 +1198,8 @@
         </div>
 
         <div>
-          <span class="section-eyebrow">COLLABORATION HISTORY</span>
-          <h3 style="font-family: var(--font-serif); font-size: 1.75rem; margin-bottom: var(--space-4);">Past Brand Work</h3>
+          <span class="section-eyebrow">Collaboration history</span>
+          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: var(--space-4);">Past brand work</h3>
           ${creator.pastCollabs.map(c => `
             <div style="background-color: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-5); margin-bottom: var(--space-4);">
               <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem;">
@@ -1230,16 +1230,16 @@
         <div style="position: relative; height: 200px; overflow: hidden; background-color: var(--bg-subtle);">
           <img src="${c.moodboard}" alt="${c.title}" style="width: 100%; height: 100%; object-fit: cover;">
           <div style="position: absolute; top: var(--space-3); left: var(--space-3);">
-            <span class="badge badge-gold">${c.category.toUpperCase()}</span>
+            <span class="badge badge-gold">${c.category}</span>
           </div>
           <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: var(--space-3) var(--space-4); background: linear-gradient(180deg, transparent 0%, rgba(20,21,24,0.85) 100%); display: flex; align-items: center; gap: 0.5rem;">
             <img src="${c.brandLogo}" alt="${c.brandName}" style="width: 24px; height: 24px; border-radius: 2px;">
-            <span style="font-family: var(--font-serif); font-size: 0.95rem; color: #FFFFFF;">${c.brandName}</span>
+            <span style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 500; color: #FFFFFF;">${c.brandName}</span>
           </div>
         </div>
 
         <div style="padding: var(--space-6); display: flex; flex-direction: column; flex: 1;">
-          <h3 style="font-family: var(--font-serif); font-size: 1.35rem; line-height: 1.25; margin-bottom: var(--space-2);">
+          <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 500; letter-spacing: var(--tracking-card); line-height: 1.25; margin-bottom: var(--space-2);">
             <a href="#campaigns/${c.id}">${c.title}</a>
           </h3>
 
@@ -1260,7 +1260,7 @@
 
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
             <span style="font-size: 0.78rem; color: var(--muted);">Closes ${c.deadline}</span>
-            <a href="#campaigns/${c.id}" class="btn btn-sm btn-primary">View Brief & Apply →</a>
+            <a href="#campaigns/${c.id}" class="btn btn-sm btn-primary">View brief & apply →</a>
           </div>
         </div>
       </article>
@@ -1283,15 +1283,15 @@
 
     container.innerHTML = `
       <div style="margin-bottom: var(--space-6);">
-        <a href="#campaigns" class="btn btn-sm btn-ghost" style="padding-left: 0; color: var(--accent);">← Back to Campaigns</a>
+        <a href="#campaigns" class="btn btn-sm btn-ghost" style="padding-left: 0; color: var(--accent);">← Back to campaigns</a>
       </div>
 
       <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-12); align-items: start;">
         <div>
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: var(--space-3);">
             <img src="${camp.brandLogo}" alt="${camp.brandName}" style="width: 32px; height: 32px; border-radius: 4px;">
-            <span style="font-family: var(--font-serif); font-size: 1.25rem;">${camp.brandName}</span>
-            <span class="badge badge-gold">${camp.category.toUpperCase()}</span>
+            <span style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 500;">${camp.brandName}</span>
+            <span class="badge badge-gold">${camp.category}</span>
           </div>
 
           <h1 style="font-family: var(--font-serif); font-size: 2.75rem; line-height: 1.1; margin-bottom: var(--space-6);">${camp.title}</h1>
@@ -1301,14 +1301,14 @@
           </div>
 
           <section style="margin-bottom: var(--space-8);">
-            <span class="section-eyebrow">CREATIVE DIRECTION</span>
-            <h3 style="font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: var(--space-3);">Campaign Brief</h3>
+            <span class="section-eyebrow">Creative direction</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: var(--space-3);">Campaign brief</h3>
             <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text);">${camp.description}</p>
           </section>
 
           <section style="margin-bottom: var(--space-8);">
-            <span class="section-eyebrow">DELIVERABLES</span>
-            <h3 style="font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: var(--space-3);">What You'll Create</h3>
+            <span class="section-eyebrow">Deliverables</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: var(--space-3);">What you'll create</h3>
             <ul class="plain-bullets">
               ${camp.deliverables.map(d => `<li><span class="bullet-dash">—</span><span><strong>${d}</strong></span></li>`).join('')}
             </ul>
@@ -1317,30 +1317,30 @@
 
         <!-- Sticky Application Box -->
         <div style="background-color: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-8); position: sticky; top: calc(var(--nav-height) + var(--space-6));">
-          <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: var(--space-6);">Campaign Details</h3>
+          <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: var(--space-6);">Campaign details</h3>
 
           <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);">
             <div>
-              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); font-weight: 600;">Compensation</span>
-              <p style="font-family: var(--font-serif); font-size: 1.75rem; color: var(--accent); margin: 0.1rem 0 0;">${camp.compensation}</p>
+              <span style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted);">Compensation</span>
+              <p style="font-family: var(--font-heading); font-size: 1.65rem; font-weight: 500; color: var(--accent); margin: 0.1rem 0 0;">${camp.compensation}</p>
               <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">${camp.perks}</p>
             </div>
             <div>
-              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); font-weight: 600;">Campuses</span>
+              <span style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted);">Campuses</span>
               <p style="font-size: 0.95rem; margin: 0.1rem 0 0;">${camp.campuses}</p>
             </div>
             <div>
-              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); font-weight: 600;">Location</span>
+              <span style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted);">Location</span>
               <p style="font-size: 0.95rem; margin: 0.1rem 0 0;">${camp.location}</p>
             </div>
             <div>
-              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); font-weight: 600;">Deadline</span>
+              <span style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted);">Deadline</span>
               <p style="font-size: 0.95rem; margin: 0.1rem 0 0; color: var(--accent);">${camp.deadline}</p>
             </div>
           </div>
 
           <button class="btn btn-primary" style="width: 100%; padding: 0.85rem;" onclick="window.fashow.openApplyModal('${camp.id}')">
-            Apply to Campaign →
+            Apply to campaign →
           </button>
         </div>
       </div>
@@ -1380,16 +1380,16 @@
               <div style="display: flex; gap: var(--space-4); align-items: center;">
                 <img src="${app.creatorAvatar}" alt="${app.creatorName}" style="width: 56px; height: 56px; border-radius: var(--radius-xs); object-fit: cover;">
                 <div>
-                  <h4 style="font-family: var(--font-serif); font-size: 1.35rem; margin: 0 0 0.15rem;">
+                  <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 500; letter-spacing: var(--tracking-card); margin: 0 0 0.15rem;">
                     <a href="#creators/${app.creatorId === 'creator-1' ? 'maya-chen' : 'jordan-williams'}">${app.creatorName}</a>
-                    <span class="badge ${app.status === 'Accepted' ? 'badge-available' : 'badge-neutral'}" style="font-size: 0.68rem; margin-left: 0.4rem;">${app.status.toUpperCase()}</span>
+                    <span class="badge ${app.status === 'Accepted' ? 'badge-available' : 'badge-neutral'}" style="font-size: 0.68rem; margin-left: 0.4rem;">${app.status}</span>
                   </h4>
                   <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">${app.creatorSchool} · Applied for: <strong>${app.campaignTitle}</strong></p>
                 </div>
               </div>
 
               <div style="text-align: right;">
-                <span style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--accent);">${app.proposedRate}</span>
+                <span style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 500; color: var(--accent);">${app.proposedRate}</span>
                 <p style="font-size: 0.75rem; color: var(--muted); margin: 0.15rem 0 0;">Submitted ${app.submittedAt}</p>
               </div>
             </div>
@@ -1400,7 +1400,7 @@
 
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
               <a href="${app.portfolioLink}" class="btn btn-sm btn-ghost" style="padding-left: 0; color: var(--accent);">
-                View Full Lookbook →
+                View full lookbook →
               </a>
 
               <div style="display: flex; gap: 0.5rem;">
@@ -1409,7 +1409,7 @@
                   <button class="btn btn-sm btn-secondary" onclick="window.fashow.handleDeclineApplication('${app.id}')">Decline</button>
                   <button class="btn btn-sm btn-primary" onclick="window.fashow.handleAcceptApplication('${app.id}')">Accept ✓</button>
                 ` : app.status === 'Accepted' ? `
-                  <a href="#collaborations" class="btn btn-sm btn-secondary">Open in Collaborations →</a>
+                  <a href="#collaborations" class="btn btn-sm btn-secondary">Open in collaborations →</a>
                 ` : `
                   <span style="font-size: 0.82rem; color: var(--muted);">Declined</span>
                 `}
@@ -1423,9 +1423,9 @@
     if (campList) {
       campList.innerHTML = activeCamps.map(c => `
         <div style="background-color: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-6);">
-          <h4 style="font-family: var(--font-serif); font-size: 1.35rem; margin-bottom: 0.35rem;">${c.title}</h4>
+          <h4 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: 0.35rem;">${c.title}</h4>
           <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: var(--space-4);">Compensation: <strong style="color: var(--accent);">${c.compensation}</strong> · Closes: ${c.deadline}</p>
-          <a href="#campaigns/${c.id}" class="btn btn-sm btn-secondary">View Brief</a>
+          <a href="#campaigns/${c.id}" class="btn btn-sm btn-secondary">View brief</a>
         </div>
       `).join('');
     }
@@ -1535,18 +1535,18 @@
             <div>
               <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
                 <img src="${collab.brandLogo}" alt="${collab.brandName}" style="width: 24px; height: 24px; border-radius: 2px;">
-                <span style="font-family: var(--font-serif); font-size: 1.1rem;">${collab.brandName}</span>
+                <span style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 500;">${collab.brandName}</span>
                 <span style="color: var(--muted);">✕</span>
                 <img src="${collab.creatorAvatar}" alt="${collab.creatorName}" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
-                <span style="font-family: var(--font-serif); font-size: 1.1rem;">${collab.creatorName}</span>
+                <span style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 500;">${collab.creatorName}</span>
               </div>
-              <h2 style="font-family: var(--font-serif); font-size: 1.75rem; margin: 0 0 0.25rem;">${collab.campaignTitle}</h2>
+              <h2 style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 500; letter-spacing: var(--tracking-card); margin: 0 0 0.25rem;">${collab.campaignTitle}</h2>
               <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">Deliverables: ${collab.deliverablesRequired}</p>
             </div>
 
             <div style="text-align: right;">
-              <span class="badge badge-gold">STAGE ${collab.stage} / 6: ${collab.stageName.toUpperCase()}</span>
-              <p style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--accent); margin: 0.35rem 0 0;">${collab.fee}</p>
+              <span class="badge badge-gold">Stage ${collab.stage} of 6: ${collab.stageName}</span>
+              <p style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 500; color: var(--accent); margin: 0.35rem 0 0;">${collab.fee}</p>
             </div>
           </div>
 
@@ -1570,21 +1570,21 @@
           <!-- Deliverables Showcase Box -->
           ${collab.deliverablesSubmitted ? `
             <div style="background-color: var(--bg-subtle); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--space-6); margin: var(--space-6) 0;">
-              <span class="section-eyebrow" style="margin-bottom: 0.5rem;">SUBMITTED CONTENT</span>
+              <span class="section-eyebrow" style="margin-bottom: 0.5rem;">Submitted content</span>
               <div style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-5); align-items: start;">
                 <img src="${collab.deliverablesSubmitted.previewImg}" alt="Deliverable Still" style="width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius-xs);">
                 <div>
-                  <h4 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.35rem;">Lookbook Package</h4>
+                  <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: 0.35rem;">Lookbook package</h4>
                   <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: var(--space-4);">
                     "${collab.deliverablesSubmitted.notes}"
                   </p>
                   <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
                     <a href="${collab.deliverablesSubmitted.assetsLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
-                      📁 Open Drive Assets ↗
+                      📁 Open drive assets ↗
                     </a>
                     ${collab.deliverablesSubmitted.socialLink ? `
                       <a href="${collab.deliverablesSubmitted.socialLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost">
-                        📱 Video Link ↗
+                        📱 Video link ↗
                       </a>
                     ` : ''}
                   </div>
@@ -1687,7 +1687,7 @@
         <img src="${conv.recipientAvatar}" alt="${conv.recipientName}" style="width: 44px; height: 44px; border-radius: var(--radius-xs); object-fit: cover;">
         <div style="overflow: hidden; flex: 1;">
           <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <h4 style="font-family: var(--font-serif); font-size: 1.05rem; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 500; letter-spacing: var(--tracking-card); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
               ${conv.recipientName}
             </h4>
             <span style="font-size: 0.72rem; color: var(--muted);">${conv.lastTime}</span>
@@ -1713,11 +1713,11 @@
       <div style="display: flex; align-items: center; gap: 0.75rem;">
         <img src="${activeConv.recipientAvatar}" alt="${activeConv.recipientName}" style="width: 38px; height: 38px; border-radius: var(--radius-xs); object-fit: cover;">
         <div>
-          <h4 style="font-family: var(--font-serif); font-size: 1.25rem; margin: 0;">${activeConv.recipientName}</h4>
+          <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 500; margin: 0;">${activeConv.recipientName}</h4>
           <span style="font-size: 0.78rem; color: var(--accent);">${activeConv.recipientRole}</span>
         </div>
       </div>
-      <a href="#creators/${activeConv.recipientId === 'creator-1' ? 'maya-chen' : 'jordan-williams'}" class="btn btn-sm btn-ghost">View Lookbook ↗</a>
+      <a href="#creators/${activeConv.recipientId === 'creator-1' ? 'maya-chen' : 'jordan-williams'}" class="btn btn-sm btn-ghost">View lookbook ↗</a>
     `;
 
     streamEl.innerHTML = activeConv.messages.map(msg => `

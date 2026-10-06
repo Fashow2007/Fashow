@@ -26,10 +26,12 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.55;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -63,29 +65,91 @@ body {
 }
 
 /* ==========================================================================
-   2. Typography
+   2. Typographic Hierarchy & Multi-Font System (Sections 1-9)
    ========================================================================== */
-h1, h2, h3, h4, h5, h6,
-.font-serif,
-.font-display {
-  font-family: var(--font-serif);
-  font-weight: 400;
+
+/* Base Headings: Crisp Swiss Neutral Grotesk (Neue Haas Grotesk style) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
   color: var(--text);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
 }
 
+h1 { font-size: var(--text-3xl); font-weight: 500; }
+h2 { font-size: var(--text-2xl); font-weight: 500; }
+h3 { font-size: var(--text-xl); font-weight: 500; }
+h4 { font-size: var(--text-lg); font-weight: 500; }
+h5 { font-size: var(--text-base); font-weight: 500; }
+h6 { font-size: var(--text-sm); font-weight: 500; }
+
+/* Level 1: Major Editorial Headlines & Fashion Statements (Instrument Serif) */
+.font-serif,
+.font-display,
+.editorial-title,
+.hero-editorial-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: var(--leading-editorial);
+  letter-spacing: var(--tracking-editorial);
+}
+
+.hero-editorial-title {
+  font-size: var(--text-hero);
+  line-height: var(--leading-hero);
+  letter-spacing: var(--tracking-hero);
+}
+
+/* Level 2: Section Title Variants */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-editorial-lg);
+  font-weight: 400;
+  line-height: var(--leading-editorial);
+  letter-spacing: var(--tracking-editorial);
+  margin-bottom: var(--space-3);
+  color: var(--text);
+}
+
+.section-title-sans,
+.page-title-sans {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+  margin-bottom: var(--space-3);
+  color: var(--text);
+}
+
+/* Level 5: Editorial Accent — Instrument Serif Italic (Section 5) */
 .editorial-italic,
-em.editorial {
+em.editorial,
+.serif-italic {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
 }
 
-p {
+/* Level 5: Body Copy (Source Sans 3 - Section 4) */
+p,
+.body-text {
+  font-family: var(--font-body);
   color: var(--text-secondary);
   font-size: var(--text-base);
-  line-height: 1.6;
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  max-width: var(--max-width-prose);
+}
+
+p + p {
+  margin-top: var(--space-4);
+}
+
+strong, b {
+  font-weight: 600;
+  color: var(--text);
 }
 
 a {
@@ -94,7 +158,17 @@ a {
   transition: color var(--duration-fast) var(--ease-editorial);
 }
 
-/* Eyebrows & Section Labels */
+/* Section Lead Text */
+.section-lead {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  letter-spacing: var(--tracking-body);
+  max-width: 65ch;
+}
+
+/* Level 6: Eyebrows & Small Editorial Labels (Section 7 & 8) */
 .section-eyebrow,
 .section-label {
   display: inline-flex;
@@ -102,27 +176,11 @@ a {
   gap: 0.5rem;
   font-family: var(--font-sans);
   font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: var(--space-3);
-}
-
-.section-title {
-  font-family: var(--font-serif);
-  font-size: var(--text-3xl);
-  font-weight: 400;
-  line-height: 1.08;
-  margin-bottom: var(--space-3);
-  color: var(--text);
-}
-
-.section-lead {
-  font-size: var(--text-lg);
-  color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 640px;
+  margin-bottom: var(--space-2);
 }
 
 /* ==========================================================================
@@ -178,10 +236,11 @@ a {
   justify-content: center;
   gap: 0.5rem;
   font-family: var(--font-sans);
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.7rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-ui);
+  text-transform: none;
+  padding: 0.65rem 1.35rem;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
   cursor: pointer;
@@ -224,25 +283,27 @@ a {
 }
 
 .btn-sm {
-  padding: 0.42rem 0.9rem;
+  padding: 0.38rem 0.85rem;
   font-size: 0.82rem;
+  font-weight: 500;
 }
 
 .btn-lg {
-  padding: 0.9rem 2.2rem;
-  font-size: 1.05rem;
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-/* Badges & Status Pills */
+/* Badges & Status Pills (Level 6: Neue Haas Grotesk, 12-13px, weight 500, sentence case) */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: none;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-xs);
   border: 1px solid transparent;
@@ -313,11 +374,11 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  font-family: var(--font-serif);
-  font-size: 1.65rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
   color: var(--text);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .brand-logo svg {
@@ -334,8 +395,10 @@ a {
 
 .nav-link {
   font-family: var(--font-sans);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 500;
+  letter-spacing: var(--tracking-ui);
+  text-transform: none;
   color: var(--text-secondary);
   position: relative;
   padding: 0.4rem 0;
@@ -382,7 +445,7 @@ a {
   align-items: center;
   justify-content: center;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .mobile-nav-toggle {
@@ -427,8 +490,10 @@ a {
 }
 
 .mobile-nav-links a {
-  font-family: var(--font-serif);
-  font-size: 2rem;
+  font-family: var(--font-sans);
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--text);
 }
 
@@ -451,11 +516,11 @@ a {
 
 .hero-editorial-eyebrow {
   font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  letter-spacing: 0.14em;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: var(--space-4);
   display: inline-block;
 }
@@ -464,17 +529,19 @@ a {
   font-family: var(--font-serif);
   font-size: var(--text-hero);
   font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+  line-height: var(--leading-hero);
+  letter-spacing: var(--tracking-hero);
   margin-bottom: var(--space-6);
   color: var(--text);
 }
 
 .hero-editorial-subline {
+  font-family: var(--font-body);
   font-size: var(--text-lg);
   color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 680px;
+  line-height: 1.55;
+  letter-spacing: var(--tracking-body);
+  max-width: 65ch;
   margin: 0 auto var(--space-8);
 }
 
@@ -524,17 +591,19 @@ a {
 }
 
 .collage-card-name {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: var(--tracking-card);
   color: #FFFFFF;
 }
 
 .collage-card-meta {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
   margin-top: 0.15rem;
 }
 
@@ -599,14 +668,15 @@ a {
   top: var(--space-3);
   left: var(--space-3);
   z-index: 2;
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-xs);
   background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(4px);
   color: var(--text);
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -657,9 +727,10 @@ a {
 }
 
 .casting-name {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-card);
   color: var(--text);
   margin-bottom: 0.2rem;
   display: flex;
@@ -668,7 +739,9 @@ a {
 }
 
 .casting-school {
+  font-family: var(--font-body);
   font-size: 0.85rem;
+  font-weight: 400;
   color: var(--text-secondary);
   margin-bottom: var(--space-3);
 }
@@ -677,7 +750,9 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
+  font-weight: 400;
   color: var(--muted);
   padding-top: var(--space-3);
   margin-top: auto;
@@ -685,6 +760,7 @@ a {
 }
 
 .casting-metrics-strip strong {
+  font-weight: 500;
   color: var(--text);
 }
 
@@ -708,10 +784,11 @@ a {
 }
 
 .filter-heading {
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: var(--text);
   margin-bottom: var(--space-3);
   display: block;
@@ -750,12 +827,14 @@ a {
   border: 1px solid var(--line);
   color: var(--text-secondary);
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 500;
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--duration-fast);
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .filter-pill:hover,
@@ -820,17 +899,20 @@ a {
 }
 
 .category-title {
-  font-family: var(--font-serif);
-  font-size: 1.85rem;
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-card);
   color: #FFFFFF;
   margin-bottom: 0.35rem;
 }
 
 .category-count {
+  font-family: var(--font-body);
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.4;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.45;
 }
 
 /* ==========================================================================
@@ -858,21 +940,24 @@ a {
   font-size: 2.75rem;
   color: var(--accent);
   line-height: 1;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .step-card-editorial h3 {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  font-weight: 400;
-  margin-bottom: var(--space-3);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-card);
+  margin-bottom: var(--space-2);
   color: var(--text);
 }
 
 .step-card-editorial p {
+  font-family: var(--font-body);
   font-size: 0.92rem;
+  font-weight: 400;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 /* ==========================================================================
@@ -1008,14 +1093,16 @@ a {
 }
 
 .campus-name {
-  font-family: var(--font-sans);
+  font-family: var(--font-heading);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text);
 }
 
 .campus-stat {
-  font-size: 0.78rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
   color: var(--accent);
 }
 
@@ -1063,17 +1150,20 @@ a {
 }
 
 .creator-stat-card .stat-num {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 1.85rem;
   color: var(--text);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .creator-stat-card .stat-label {
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  text-transform: none;
+  letter-spacing: 0.02em;
   color: var(--muted);
+  font-weight: 500;
 }
 
 .masonry-gallery {
@@ -1116,18 +1206,21 @@ a {
 }
 
 .dash-stat-card .stat-num {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 2rem;
   color: var(--text);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .dash-stat-card .stat-label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  text-transform: none;
+  letter-spacing: 0.02em;
   color: var(--muted);
+  font-weight: 500;
 }
 
 .dashboard-tabs {
@@ -1143,11 +1236,13 @@ a {
   border-bottom: 2px solid transparent;
   padding: var(--space-3) var(--space-5);
   font-family: var(--font-sans);
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all var(--duration-fast);
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .dashboard-tab:hover {
@@ -1200,8 +1295,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   transition: all var(--duration-fast);
 }
 
@@ -1218,10 +1314,11 @@ a {
 }
 
 .collab-step-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 
@@ -1294,8 +1391,10 @@ a {
   max-width: 72%;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
+  font-family: var(--font-body);
   font-size: 0.92rem;
-  line-height: 1.5;
+  line-height: 1.55;
+  letter-spacing: var(--tracking-body);
 }
 
 .chat-bubble-received {
@@ -1364,9 +1463,10 @@ a {
 }
 
 .modal-title {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
   color: var(--text);
   margin: 0;
 }
@@ -1407,9 +1507,10 @@ a {
 
 .form-label {
   display: block;
+  font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  letter-spacing: 0;
   color: var(--text);
   margin-bottom: var(--space-2);
 }
@@ -1418,8 +1519,9 @@ a {
 .form-select,
 .form-textarea {
   width: 100%;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.95rem;
+  font-weight: 400;
   padding: 0.65rem 0.85rem;
   border-radius: var(--radius-xs);
   border: 1px solid var(--line-strong);
@@ -1436,6 +1538,7 @@ a {
 }
 
 .form-hint {
+  font-family: var(--font-body);
   font-size: 0.75rem;
   color: var(--muted);
   margin-top: 0.25rem;
@@ -1461,9 +1564,9 @@ a {
 
 .footer-title {
   font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #FFFFFF;
   margin-bottom: var(--space-4);
@@ -1477,7 +1580,8 @@ a {
 }
 
 .footer-links a {
-  font-size: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
   color: var(--text-muted-dark);
 }
 
@@ -1562,7 +1666,16 @@ a {
     display: block;
   }
   .hero-editorial-title {
-    font-size: 2.6rem;
+    font-size: clamp(2.4rem, 8vw, 3.25rem); /* 38–52px mobile */
+    line-height: 1.02;
+  }
+  .section-title {
+    font-size: clamp(2.1rem, 6.5vw, 2.75rem); /* 34–44px mobile */
+    line-height: 1.06;
+  }
+  .page-title-sans {
+    font-size: clamp(1.65rem, 5vw, 2.1rem); /* 26–34px mobile */
+    line-height: 1.15;
   }
   .workflow-grid {
     grid-template-columns: 1fr;
