@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="fashowLogoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F6C453" />
+      <stop offset="50%" stop-color="#F4A83D" />
+      <stop offset="100%" stop-color="#F28A2E" />
+    </linearGradient>
+    <filter id="fashowLogoGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0.96  0 1 0 0 0.77  0 0 1 0 0.33  0 0 0 0.45 0"/>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Group for Logo Path Art -->
+  <g id="fashow-logo-mark" stroke="url(#fashowLogoGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    
+    <!-- Infinity Loop Stroke 1 (Outer Ribbon) -->
+    <path id="loop-outer" class="anim-stroke loop-stroke-1" d="M 126 172 C 95 172, 64 190, 64 220 C 64 254, 98 274, 136 274 C 174 274, 192 238, 200 200 C 208 162, 236 150, 276 150 C 315 150, 336 175, 336 208 C 336 244, 305 272, 270 272 C 238 272, 218 250, 216 226" />
+
+    <!-- Infinity Loop Stroke 2 (Middle Ribbon) -->
+    <path id="loop-mid" class="anim-stroke loop-stroke-2" d="M 136 186 C 110 186, 78 198, 78 220 C 78 244, 104 260, 136 260 C 166 260, 184 228, 200 200 C 216 172, 244 164, 276 164 C 304 164, 322 182, 322 208 C 322 234, 296 258, 270 258 C 248 258, 230 242, 228 226" />
+
+    <!-- Infinity Loop Stroke 3 (Inner Ribbon & Diagonal Crossing) -->
+    <path id="loop-inner" class="anim-stroke loop-stroke-3" d="M 136 200 C 122 200, 92 208, 92 220 C 92 234, 112 246, 136 246 C 158 246, 178 222, 200 200 C 222 178, 248 172, 274 172" />
+
+    <!-- Crown Structure (Five Peaks) -->
+    <path id="crown-body" class="anim-stroke crown-stroke" d="M 126 172 L 106 110 L 138 126 L 160 103 L 180 126 L 200 79 L 220 126 L 240 103 L 262 126 L 294 110 L 274 172" />
+
+    <!-- Crown Inner Chevron -->
+    <path id="crown-chevron" class="anim-stroke chevron-stroke" d="M 180 160 L 200 118 L 220 160" />
+  </g>
+</svg>
