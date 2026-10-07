@@ -12,7 +12,7 @@
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
       <rect width="100" height="100" rx="4" fill="${bg}"/>
       <rect x="6" y="6" width="88" height="88" rx="2" fill="none" stroke="${fg}" stroke-width="1.2" opacity="0.25"/>
-      <text x="50" y="58" text-anchor="middle" dominant-baseline="central" fill="${fg}" font-family="Instrument Serif, Georgia, serif" font-size="38" font-weight="400" letter-spacing="1">${initials}</text>
+      <text x="50" y="58" text-anchor="middle" dominant-baseline="central" fill="${fg}" font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="36" font-weight="600" letter-spacing="1">${initials}</text>
     </svg>`;
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
   }
@@ -868,6 +868,7 @@
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem;">
             <h3 class="casting-name">
               <a href="#creators/${creator.username}">${creator.name}</a>
+              ${creator.verified ? `<span class="verified-check" title="Verified" aria-label="Verified" style="display:inline-flex; align-items:center; margin-left:4px; vertical-align:middle;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></span>` : ''}
             </h3>
             <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);">${creator.aesthetic}</span>
           </div>
@@ -879,11 +880,18 @@
           </div>
 
           <div class="casting-metrics-strip">
-            <span><strong>${creator.tiktok.followers}</strong> TikTok</span>
-            <span>·</span>
-            <span><strong>${creator.instagram.followers}</strong> IG</span>
-            <span>·</span>
-            <span><strong>${creator.engagementRate}</strong> Eng</span>
+            <div class="metric-item">
+              <span class="metric-num">${creator.tiktok.followers}</span>
+              <span class="metric-label">TikTok</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-num">${creator.instagram.followers}</span>
+              <span class="metric-label">Instagram</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-num">${creator.engagementRate}</span>
+              <span class="metric-label">Eng rate</span>
+            </div>
           </div>
 
           <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
@@ -1099,12 +1107,12 @@
         <div>
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: var(--space-2); flex-wrap: wrap;">
             <span class="section-eyebrow" style="margin: 0;">${creator.primaryRole}</span>
-            <span class="badge badge-neutral">Verified Student</span>
             <span style="font-size: 0.85rem; color: var(--text-secondary);">${creator.location}</span>
           </div>
 
-          <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 3.5vw + 0.5rem, 3rem); font-weight: 500; letter-spacing: var(--tracking-heading); line-height: var(--leading-heading); margin-bottom: 0.35rem;">
+          <h1 style="font-family: var(--font-display); font-size: clamp(2.2rem, 4vw + 0.5rem, 3.25rem); font-weight: 800; letter-spacing: -0.03em; line-height: 0.98; margin-bottom: 0.35rem;">
             ${creator.name}
+            ${creator.verified ? `<span class="verified-check" title="Verified" aria-label="Verified" style="display:inline-flex; align-items:center; margin-left:8px; vertical-align:middle;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></span>` : ''}
           </h1>
 
           <p style="font-size: 1.05rem; color: var(--accent); margin-bottom: var(--space-5);">
@@ -1294,7 +1302,7 @@
             <span class="badge badge-gold">${camp.category}</span>
           </div>
 
-          <h1 style="font-family: var(--font-serif); font-size: 2.75rem; line-height: 1.1; margin-bottom: var(--space-6);">${camp.title}</h1>
+          <h1 style="font-family: var(--font-display); font-size: 2.75rem; font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; margin-bottom: var(--space-6);">${camp.title}</h1>
 
           <div style="border-radius: var(--radius-sm); overflow: hidden; margin-bottom: var(--space-8); border: 1px solid var(--line);">
             <img src="${camp.moodboard}" alt="Moodboard" style="width: 100%; height: 360px; object-fit: cover;">
@@ -1854,7 +1862,8 @@
       e.preventDefault();
       const newName = document.getElementById('onboard-name').value || 'New Creator';
       const newSchool = document.getElementById('onboard-school').value || 'University';
-      const newAvatar = document.getElementById('onboard-avatar').value || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80';
+      const customAvatar = (document.getElementById('onboard-avatar').value || '').trim();
+      const newAvatar = customAvatar || generateAvatarSvg(newName, '#171A20', '#E8B04A');
       const newBio = document.getElementById('onboard-bio').value || 'College model & creator.';
       const newUsername = newName.toLowerCase().replace(/[^a-z0-9]/g, '-');
 

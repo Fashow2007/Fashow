@@ -6,15 +6,14 @@
   <title>FASHOW — Fashion Talent & Creator Network</title>
   <meta name="description" content="Fashow connects fashion brands with college models, creators and microinfluencers ready to collaborate. Starting in Amherst, expanding everywhere.">
   
-  <!-- Typography: Instrument Serif (Display) + Schibsted Grotesk (Interface/Body) + DM Mono (Credits/Labels) -->
+  <!-- Typography: Bricolage Grotesque (Display) + Bodoni Moda (Accent) + Hanken Grotesk (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..700&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="fashow-refine.css">
   
   <style>
     /* Skip link for accessibility */
@@ -37,6 +36,33 @@
   </style>
 </head>
 <body>
+
+  <!-- Full-Screen Logo Intro Overlay (Section 9) -->
+  <div id="fashow-intro-overlay" class="intro-overlay" aria-hidden="true">
+    <button id="intro-skip-btn" class="intro-skip-btn" type="button" aria-label="Skip animation">Skip</button>
+    <div class="intro-content">
+      <div class="intro-logo">
+        <svg viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="introLogoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F6C453" />
+              <stop offset="50%" stop-color="#F4A83D" />
+              <stop offset="100%" stop-color="#F28A2E" />
+            </linearGradient>
+          </defs>
+          <g stroke="url(#introLogoGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M 126 172 C 95 172, 64 190, 64 220 C 64 254, 98 274, 136 274 C 174 274, 192 238, 200 200 C 208 162, 236 150, 276 150 C 315 150, 336 175, 336 208 C 336 244, 305 272, 270 272 C 238 272, 218 250, 216 226" />
+            <path d="M 136 186 C 110 186, 78 198, 78 220 C 78 244, 104 260, 136 260 C 166 260, 184 228, 200 200 C 216 172, 244 164, 276 164 C 304 164, 322 182, 322 208 C 322 234, 296 258, 270 258 C 248 258, 230 242, 228 226" />
+            <path d="M 136 200 C 122 200, 92 208, 92 220 C 92 234, 112 246, 136 246 C 158 246, 178 222, 200 200 C 222 178, 248 172, 274 172" />
+            <path d="M 126 172 L 106 110 L 138 126 L 160 103 L 180 126 L 200 79 L 220 126 L 240 103 L 262 126 L 294 110 L 274 172" />
+            <path d="M 180 160 L 200 118 L 220 160" />
+          </g>
+        </svg>
+      </div>
+      <div class="intro-wordmark">FASHOW</div>
+      <div class="intro-line"></div>
+    </div>
+  </div>
 
   <!-- Accessible Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -359,6 +385,7 @@
             <div class="category-card" onclick="window.location.hash='#campaigns'">
               <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80" alt="Campaigns" loading="lazy">
               <div class="category-content">
+                <span class="category-eyebrow">CAMPAIGNS</span>
                 <h3 class="category-title">Campaigns</h3>
                 <p class="category-count">Models and creators for your next collection.</p>
               </div>
@@ -367,6 +394,7 @@
             <div class="category-card" onclick="window.location.hash='#campaigns'">
               <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="Lookbooks" loading="lazy">
               <div class="category-content">
+                <span class="category-eyebrow">LOOKBOOKS</span>
                 <h3 class="category-title">Lookbooks</h3>
                 <p class="category-count">Models who fit your visual identity and silhouette.</p>
               </div>
@@ -375,23 +403,26 @@
             <div class="category-card" onclick="window.location.hash='#campaigns'">
               <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80" alt="Social Content" loading="lazy">
               <div class="category-content">
+                <span class="category-eyebrow">SOCIAL</span>
                 <h3 class="category-title">Social Content</h3>
                 <p class="category-count">TikToks, Reels, product videos and organic content.</p>
               </div>
             </div>
 
             <div class="category-card" onclick="window.location.hash='#campaigns'">
-              <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=700&q=80" alt="Campus Activations" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=700&q=80" alt="Campus Campaigns" loading="lazy">
               <div class="category-content">
-                <h3 class="category-title">Campus Activations</h3>
+                <span class="category-eyebrow">CAMPUS</span>
+                <h3 class="category-title">Campus Campaigns</h3>
                 <p class="category-count">Reach college communities through people who actually belong to them.</p>
               </div>
             </div>
 
             <div class="category-card" onclick="window.location.hash='#campaigns'">
-              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=700&q=80" alt="Product Launches" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=700&q=80" alt="Product Drops" loading="lazy">
               <div class="category-content">
-                <h3 class="category-title">Product Launches</h3>
+                <span class="category-eyebrow">DROPS</span>
+                <h3 class="category-title">Product Drops</h3>
                 <p class="category-count">Creators who can help make your next drop visible.</p>
               </div>
             </div>
@@ -399,6 +430,7 @@
             <div class="category-card" onclick="window.location.hash='#campaigns'">
               <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80" alt="Brand Ambassadors" loading="lazy">
               <div class="category-content">
+                <span class="category-eyebrow">AMBASSADORS</span>
                 <h3 class="category-title">Brand Ambassadors</h3>
                 <p class="category-count">Build long-term relationships with creators who understand your brand.</p>
               </div>
@@ -467,7 +499,7 @@
             <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: var(--space-6); flex-wrap: wrap;">
               <div>
                 <span class="section-eyebrow" style="color: var(--accent);">Spring / Summer 2027</span>
-                <h3 style="font-family: var(--font-serif); font-size: 2rem; margin: 0.25rem 0 0.5rem;">Boston Streetwear Campaign</h3>
+                <h3 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin: 0.25rem 0 0.5rem;">Boston Streetwear Campaign</h3>
                 <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
                   Atelier Marais · Looking for 3 creators · Streetwear · College audience · TikTok + Instagram · Paid ($500 Flat Fee)
                 </p>
@@ -548,50 +580,42 @@
           </div>
 
           <div class="campus-chips-grid">
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Amherst')">
-              <span class="campus-name">Amherst</span>
-              <span class="campus-stat">Starting Market · Live</span>
+            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('UMass Amherst')">
+              <span class="campus-name">UMass Amherst</span>
+              <span class="campus-stat">Founding campus</span>
             </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Boston')">
-              <span class="campus-name">Boston</span>
-              <span class="campus-stat">Collegiate Hub · Live</span>
+            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Amherst College')">
+              <span class="campus-name">Amherst College</span>
+              <span class="campus-stat">Amherst</span>
             </div>
-            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('New York')">
-              <span class="campus-name">New York</span>
-              <span class="campus-stat">Fashion Capital · Live</span>
-            </div>
-            <div class="campus-chip">
-              <span class="campus-name">Los Angeles</span>
-              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+            <div class="campus-chip" onclick="window.fashow.filterDiscoverByCampus('Northeastern')">
+              <span class="campus-name">Northeastern</span>
+              <span class="campus-stat">Boston</span>
             </div>
             <div class="campus-chip">
-              <span class="campus-name">Chicago</span>
-              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+              <span class="campus-name">Boston University</span>
+              <span class="campus-stat">Boston</span>
             </div>
             <div class="campus-chip">
-              <span class="campus-name">Miami</span>
-              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+              <span class="campus-name">RISD</span>
+              <span class="campus-stat">Providence</span>
             </div>
             <div class="campus-chip">
-              <span class="campus-name">Atlanta</span>
-              <span class="campus-stat" style="color: var(--muted);">Expanding</span>
+              <span class="campus-name">Parsons</span>
+              <span class="campus-stat">New York</span>
             </div>
             <div class="campus-chip">
-              <span class="campus-name">London</span>
-              <span class="campus-stat" style="color: var(--muted);">International Expansion</span>
+              <span class="campus-name">FIT</span>
+              <span class="campus-stat">New York</span>
             </div>
             <div class="campus-chip">
-              <span class="campus-name">Paris</span>
-              <span class="campus-stat" style="color: var(--muted);">International Expansion</span>
-            </div>
-            <div class="campus-chip">
-              <span class="campus-name">Tokyo</span>
-              <span class="campus-stat" style="color: var(--muted);">International Expansion</span>
+              <span class="campus-name">Harvard</span>
+              <span class="campus-stat">Cambridge</span>
             </div>
           </div>
 
-          <p style="font-size: 0.88rem; color: var(--muted); margin-top: var(--space-6); font-style: italic;">
-            Starting in Amherst. Expanding across the country. Built for everywhere.
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-top: var(--space-6);">
+            Opening to students at UMass Amherst this fall.
           </p>
         </div>
       </section>
@@ -626,7 +650,7 @@
       <!-- 11. Final Call to Action (Section 54) -->
       <section class="section section-line-top" style="text-align: center; padding: var(--space-24) 0;">
         <div class="container" style="max-width: 780px;">
-          <h2 style="font-family: var(--font-serif); font-size: var(--text-hero); line-height: 1.02; margin-bottom: var(--space-5);">
+          <h2 class="hero-editorial-title" style="margin-bottom: var(--space-5);">
             Find your <span class="editorial-italic">people.</span>
           </h2>
           <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-8);">
@@ -845,7 +869,7 @@
             </div>
             <div>
               <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; letter-spacing: var(--tracking-card); margin-bottom: 0.35rem;">High engagement</h4>
-              <p style="font-size: 0.92rem; line-height: 1.5;">Micro-audiences deliver 4x to 8x higher comment and save rates than saturated commercial creators.</p>
+              <p style="font-size: 0.92rem; line-height: 1.5;">Campus micro-audiences offer genuine community ties, organic peer engagement, and credible word-of-mouth.</p>
             </div>
           </div>
         </div>
@@ -1552,9 +1576,9 @@
             <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
           </div>
 
-          <!-- Discrete Quick Switcher for Testing -->
-          <div style="background-color: var(--bg-subtle); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--line); margin-top: var(--space-4);">
-            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: block; margin-bottom: 0.5rem;">
+          <!-- Discrete Quick Switcher for Testing (Demo Only) -->
+          <div class="demo-only-control" style="background-color: var(--bg-subtle); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--line); margin-top: var(--space-4);">
+            <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: block; margin-bottom: 0.5rem; font-family: var(--font-display);">
               Fast demo sign-in
             </span>
             <div style="display: flex; gap: var(--space-2);">
@@ -1652,7 +1676,7 @@
           </ul>
         </div>
 
-        <div>
+        <div class="demo-only-control">
           <h4 class="footer-title">Perspective (Demo)</h4>
           <p style="font-size: 0.8rem; color: var(--text-muted-dark); margin-bottom: var(--space-3); line-height: 1.4;">
             Switch simulated role to test both sides of the marketplace:
@@ -1672,7 +1696,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; 2027 Fashow Technologies Inc. All rights reserved.</span>
+        <span>&copy; 2026 Fashow Technologies Inc. All rights reserved.</span>
         <span>A fashion network first. A marketplace second. Software underneath.</span>
       </div>
     </div>

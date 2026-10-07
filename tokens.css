@@ -1,98 +1,103 @@
 /* ==========================================================================
    FASHOW DESIGN SYSTEM — EDITORIAL TOKENS
    Aesthetic: Contemporary Fashion Editorial Meets Sophisticated Marketplace
-   Two-font system: Instrument Serif (Display) + Source Sans 3 (Interface)
-   Foundation: Warm ivory / off-white with deep near-black typography
+   Typography: Bricolage Grotesque (Display) + Bodoni Moda (Accent) + Hanken Grotesk (Body)
+   Foundation: Near-black canvas with warm ivory & gold editorial accents
    ========================================================================== */
 
 :root {
-  /* --- Foundation & Palette (Warm Editorial Paper) --- */
-  --bg: #FAF8F5;                     /* Warm off-white / ivory canvas */
-  --bg-subtle: #F3EFEA;              /* Secondary warm neutral surface */
-  --bg-card: #FFFFFF;                /* Crisp card & modal surface */
-  --bg-dark: #141518;                /* Deep near-black for selected editorial panels & footer */
-  --bg-dark-surface: #1E2024;        /* Dark raised surface */
+  /* --- Foundation & Palette (Near-Black Editorial Canvas) --- */
+  --bg: #0F1115;                     /* Primary deep near-black background */
+  --bg-subtle: #171A20;              /* Secondary raised dark surface */
+  --bg-card: #171A20;                /* Raised card & modal surface */
+  --bg-dark: #0F1115;                /* Editorial dark panel */
+  --bg-dark-surface: #1E222A;        /* Elevated dark surface */
+  --bg-light: #FAF8F5;               /* Warm ivory for optional light moments */
 
-  /* Typography Colors */
-  --text: #141518;                   /* Deep near-black primary body & display */
-  --text-secondary: #52565E;         /* Soft neutral charcoal for descriptions & metadata */
-  --muted: #7E828A;                  /* Quiet neutral gray for timestamps, breadcrumbs */
-  --text-on-dark: #FAF8F5;           /* Ivory text on dark panels */
-  --text-muted-dark: #9B9FA7;        /* Soft gray on dark panels */
+  /* Typography Colors (WCAG AA compliant) */
+  --text: #FFFFFF;                   /* Crisp white primary body & display */
+  --text-secondary: #C4C8D2;         /* Soft neutral light gray for descriptions & metadata */
+  --muted: #A0A4AE;                  /* Accessible muted gray (passes > 6.8:1 on dark) */
+  --text-on-dark: #FFFFFF;           /* White text on dark panels */
+  --text-muted-dark: #A0A4AE;        /* Accessible muted gray on dark panels */
 
   /* Hairlines & Rules */
-  --line: rgba(20, 21, 24, 0.09);    /* Restrained hairline rule on light */
-  --line-strong: rgba(20, 21, 24, 0.16);
-  --line-dark: rgba(255, 255, 255, 0.12); /* Hairline on dark */
+  --line: rgba(255, 255, 255, 0.12); /* Crisp hairline rule on dark */
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --line-dark: rgba(255, 255, 255, 0.12);
 
-  /* Restrained Fashion Accent (Warm Ochre / Terracotta / Gold) */
-  --accent: #C87D32;                 /* Primary muted accent */
-  --accent-hover: #AE6822;           /* Hover state */
-  --accent-subtle: rgba(200, 125, 50, 0.08); /* Delicate pill background */
-  --accent-border: rgba(200, 125, 50, 0.28);
+  /* Restrained Fashion Accent (Gold / Ochre) */
+  --accent: #E8B04A;                 /* Primary gold accent */
+  --accent-hover: #D69F39;           /* Gold hover state */
+  --accent-ink: #E8B04A;             /* Accent ink for labels & badges */
+  --accent-display: #E8B04A;         /* Accent display for headline italic highlights */
+  --gold-on-dark: #E8B04A;
+  --accent-subtle: rgba(232, 176, 74, 0.12); /* Delicate pill background */
+  --accent-border: rgba(232, 176, 74, 0.35);
 
   /* Status Colors */
-  --status-available: #1B7A43;       /* Editorial forest green for available status */
-  --status-available-bg: rgba(27, 122, 67, 0.08);
-  --status-booking: #C87D32;         /* Warm amber for booking upcoming */
-  --status-booking-bg: rgba(200, 125, 50, 0.08);
+  --status-available: #34D399;       /* Vibrant emerald for available status */
+  --status-available-bg: rgba(52, 211, 153, 0.12);
+  --status-booking: #E8B04A;         /* Warm gold for booking upcoming */
+  --status-booking-bg: rgba(232, 176, 74, 0.12);
 
   /* Legacy token aliases for compatibility */
-  --ink: #141518;
-  --ink-2: #F3EFEA;
-  --ink-3: #ECE7DF;
+  --ink: #0F1115;
+  --ink-2: #171A20;
+  --ink-3: #1E222A;
   --paper: #FAF8F5;
-  --gold: #C87D32;
-  --orange: #B86720;
-  --line-gold: rgba(200, 125, 50, 0.3);
-  --text-main: #141518;
-  --text-paper: #141518;
-  --gradient-brand: linear-gradient(180deg, #141518, #23252B);
+  --gold: #E8B04A;
+  --orange: #F28A2E;
+  --line-gold: rgba(232, 176, 74, 0.35);
+  --text-main: #FFFFFF;
+  --text-paper: #0F1115;
+  --gradient-brand: linear-gradient(180deg, #E8B04A, #F28A2E);
 
-  /* --- Typography: Multi-Font System ---
-     1. Display: Instrument Serif (major editorial statements, hero, fashion moments)
-     2. Brand / UI: Neue Haas Grotesk style (headings, cards, nav, controls, metadata)
-     3. Body: Source Sans 3 (high readability for bios, briefs, messages, long-form UI) --- */
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-display: "Instrument Serif", Georgia, serif;
-  
-  --font-sans: "Neue Haas Grotesk Text Pro", "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-ui: "Neue Haas Grotesk Text Pro", "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-heading: "Neue Haas Grotesk Text Pro", "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  
-  --font-body: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "Neue Haas Grotesk Text Pro", "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* --- Typography System (Section 1) ---
+     Display: Bricolage Grotesque (h1-h3, nav links, buttons, card names, eyebrows, badges)
+     Accent:  Bodoni Moda (single italic word per major headline)
+     Body:    Hanken Grotesk (body copy, cards, bios, inputs, explanatory copy) */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-accent: 'Bodoni Moda', Georgia, serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
 
-  /* --- Fluid Editorial Type Scale (Section 6 & 16) --- */
-  /* Level 1: Hero Display (64–96px desktop, 40–52px mobile) */
-  --text-hero: clamp(2.5rem, 5.5vw + 1rem, 5.75rem);
+  /* Aliases mapped to new system */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-ui: var(--font-display);
+  --font-serif: var(--font-accent);
+  --font-mono: var(--font-body);
+
+  /* --- Fluid Editorial Type Scale --- */
+  /* Level 1: Hero Display */
+  --text-hero: clamp(2.8rem, 6.5vw + 1rem, 6.25rem);
   
-  /* Level 2: Major Section Headings (48–72px desktop, 34–48px mobile) */
-  --text-editorial-lg: clamp(2.2rem, 3.8vw + 0.5rem, 4.25rem);
-  --text-3xl: clamp(1.9rem, 2.6vw + 0.4rem, 3.25rem);
+  /* Level 2: Major Section Headings */
+  --text-editorial-lg: clamp(2.2rem, 4vw + 0.5rem, 4.25rem);
+  --text-3xl: clamp(1.9rem, 2.8vw + 0.4rem, 3.25rem);
   
-  /* Level 3: Product / Page Headings (32–48px desktop, 26–34px mobile) */
+  /* Level 3: Product / Page Headings */
   --text-2xl: clamp(1.6rem, 1.8vw + 0.35rem, 2.35rem);
   
-  /* Level 4: Card / Creator / Brand Titles (18–24px) */
+  /* Level 4: Card / Creator / Brand Titles */
   --text-xl: clamp(1.2rem, 1.1vw + 0.2rem, 1.45rem);
   --text-lg: clamp(1.05rem, 0.6vw + 0.2rem, 1.25rem);
   
-  /* Level 5: Body (15–18px desktop, 15–17px mobile) */
-  --text-base: clamp(0.95rem, 0.25vw + 0.88rem, 1.0625rem);
-  --text-sm: clamp(0.85rem, 0.15vw + 0.78rem, 0.925rem);
+  /* Level 5: Body (15–17px, line-height 1.55) */
+  --text-base: 16px;
+  --text-sm: 14px;
   
-  /* Level 6: UI / Metadata (12–14px) */
-  --text-xs: clamp(0.75rem, 0.1vw + 0.7rem, 0.825rem);
+  /* Level 6: UI / Metadata / Eyebrows */
+  --text-xs: 12px;
 
-  /* --- Letter Spacing (Tracking) Tokens (Section 8) --- */
+  /* --- Letter Spacing (Tracking) Tokens --- */
   --tracking-hero: -0.03em;
   --tracking-editorial: -0.025em;
   --tracking-heading: -0.02em;
   --tracking-card: -0.01em;
   --tracking-body: 0;
-  --tracking-ui: -0.005em;
-  --tracking-label: 0.05em; /* 0.04em - 0.08em max for small labels */
+  --tracking-ui: 0;
+  --tracking-label: 0.08em; /* <= 0.1em max for small uppercase labels */
 
   /* --- Line Heights --- */
   --leading-hero: 0.98;
@@ -118,32 +123,19 @@
   --space-16: 64px;
   --space-20: 80px;
   --space-24: 96px;
-  --space-32: 128px;
 
-  /* --- Corner Radii (Restrained, Sharp & Editorial) --- */
-  --radius-xs: 2px;
-  --radius-sm: 3px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
+  /* --- Component Sizing --- */
+  --nav-height: 70px;
+  --max-width-site: 1320px;
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
   --radius-pill: 9999px;
 
   /* --- Transitions & Timing --- */
-  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 150ms;
   --duration-normal: 250ms;
   --duration-slow: 400ms;
-
-  /* --- Layout Constraints --- */
-  --max-width-site: 1360px;
-  --max-width-narrow: 860px;
-  --nav-height: 70px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }

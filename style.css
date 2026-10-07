@@ -1,8 +1,7 @@
 /* ==========================================================================
-   FASHOW — Editorial Fashion Career & Creator Network Stylesheet
-   Brand Direction: High-fashion editorial publication meets modern marketplace
-   Two-Font System: Instrument Serif (Display) + Source Sans 3 (Interface)
-   Foundation: Warm ivory / off-white paper canvas with deep near-black typography
+   FASHOW — Fashion Platform Stylesheet
+   Type System: Bricolage Grotesque (Display) + Bodoni Moda (Accent) + Hanken Grotesk (Body)
+   Aesthetic: Contemporary Fashion Editorial Meets Sophisticated Marketplace
    ========================================================================== */
 
 @import url('tokens.css');
@@ -68,71 +67,90 @@ body {
    2. Typographic Hierarchy & Multi-Font System (Sections 1-9)
    ========================================================================== */
 
-/* Base Headings: Crisp Swiss Neutral Grotesk (Neue Haas Grotesk style) */
+/* Base Headings & Typography (Section 1) */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 500;
+  font-family: var(--font-display);
   color: var(--text);
-  line-height: var(--leading-heading);
-  letter-spacing: var(--tracking-heading);
+  text-wrap: balance;
 }
 
-h1 { font-size: var(--text-3xl); font-weight: 500; }
-h2 { font-size: var(--text-2xl); font-weight: 500; }
-h3 { font-size: var(--text-xl); font-weight: 500; }
-h4 { font-size: var(--text-lg); font-weight: 500; }
-h5 { font-size: var(--text-base); font-weight: 500; }
-h6 { font-size: var(--text-sm); font-weight: 500; }
+h1 {
+  font-size: var(--text-hero);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
 
-/* Level 1: Major Editorial Headlines & Fashion Statements (Instrument Serif) */
+h2 {
+  font-size: var(--text-editorial-lg);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+h3 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+h4 { font-size: var(--text-lg); font-weight: 600; letter-spacing: -0.01em; }
+h5 { font-size: var(--text-base); font-weight: 600; letter-spacing: -0.01em; }
+h6 { font-size: var(--text-sm); font-weight: 600; letter-spacing: -0.01em; }
+
 .font-serif,
 .font-display,
 .editorial-title,
 .hero-editorial-title {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  line-height: var(--leading-editorial);
-  letter-spacing: var(--tracking-editorial);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
 }
 
 .hero-editorial-title {
   font-size: var(--text-hero);
-  line-height: var(--leading-hero);
-  letter-spacing: var(--tracking-hero);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
 }
 
-/* Level 2: Section Title Variants */
 .section-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--text-editorial-lg);
-  font-weight: 400;
-  line-height: var(--leading-editorial);
-  letter-spacing: var(--tracking-editorial);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
   margin-bottom: var(--space-3);
   color: var(--text);
 }
 
 .section-title-sans,
 .page-title-sans {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: 500;
-  line-height: var(--leading-heading);
-  letter-spacing: var(--tracking-heading);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-3);
   color: var(--text);
 }
 
-/* Level 5: Editorial Accent — Instrument Serif Italic (Section 5) */
+/* One accent word per major headline (Section 1) */
+h1 em,
+h2 em,
+h3 em,
 .editorial-italic,
 em.editorial,
 .serif-italic {
-  font-family: var(--font-serif);
+  font-family: var(--font-accent);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--accent);
 }
 
-/* Level 5: Body Copy (Source Sans 3 - Section 4) */
+/* Level 5: Body Copy (Hanken Grotesk) */
 p,
 .body-text {
   font-family: var(--font-body);
@@ -170,14 +188,15 @@ a {
 
 /* Level 6: Eyebrows & Small Editorial Labels (Section 7 & 8) */
 .section-eyebrow,
-.section-label {
+.section-label,
+.hero-editorial-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: var(--space-2);
@@ -235,13 +254,13 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: var(--tracking-ui);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0;
   text-transform: none;
   padding: 0.65rem 1.35rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
   border: 1px solid transparent;
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-editorial);
@@ -250,15 +269,15 @@ a {
 }
 
 .btn-primary {
-  background-color: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background-color: var(--accent);
+  color: #0F1115;
+  border-color: var(--accent);
 }
 
 .btn-primary:hover {
-  background-color: #2D3038;
-  border-color: #2D3038;
-  color: #FFFFFF;
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #0F1115;
 }
 
 .btn-secondary {
@@ -294,19 +313,19 @@ a {
   font-weight: 500;
 }
 
-/* Badges & Status Pills (Level 6: Neue Haas Grotesk, 12-13px, weight 500, sentence case) */
+/* Badges & Status Pills (Bricolage Grotesque) */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: var(--font-sans);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  text-transform: none;
-  padding: 0.2rem 0.55rem;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
   border-radius: var(--radius-xs);
-  border: 1px solid transparent;
+  border: 1px solid var(--line);
 }
 
 .badge-neutral {
@@ -374,39 +393,45 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-size: 1.15rem;
-  letter-spacing: 0.05em;
-  color: var(--text);
-  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  font-weight: 800;
+  margin-right: 1.5rem;
+  white-space: nowrap;
 }
 
 .brand-logo svg {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: 1.75rem;
   list-style: none;
 }
 
 .nav-link {
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-family: var(--font-body);
+  font-size: 15px;
   font-weight: 500;
-  letter-spacing: var(--tracking-ui);
-  text-transform: none;
-  color: var(--text-secondary);
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: var(--muted);
   position: relative;
   padding: 0.4rem 0;
+  text-decoration: none;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: #FFFFFF;
+}
+
 .nav-link.active {
-  color: var(--text);
+  color: #FFFFFF;
 }
 
 .nav-link.active::after {
@@ -415,8 +440,8 @@ a {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background-color: var(--text);
+  height: 2px;
+  background-color: var(--accent);
 }
 
 .nav-actions {
@@ -668,15 +693,16 @@ a {
   top: var(--space-3);
   left: var(--space-3);
   z-index: 2;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-family: var(--font-body);
+  font-size: 12px;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-xs);
-  background-color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(15, 17, 21, 0.88);
   backdrop-filter: blur(4px);
-  color: var(--text);
+  color: #FFFFFF;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
+  text-transform: none;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -855,7 +881,12 @@ a {
 /* ==========================================================================
    9. Talent Types & Campaign Categories (Section 12 & 13)
    ========================================================================== */
-.categories-grid,
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
 .disciplines-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -894,25 +925,40 @@ a {
   position: absolute;
   inset: auto 0 0 0;
   padding: var(--space-6);
-  background: linear-gradient(180deg, transparent 0%, rgba(20, 21, 24, 0.92) 100%);
+  background: linear-gradient(180deg, rgba(15, 17, 21, 0) 0%, rgba(15, 17, 21, 0.72) 40%, rgba(15, 17, 21, 0.96) 100%);
   color: #FFFFFF;
 }
 
+.category-eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
 .category-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.35rem;
-  font-weight: 500;
-  letter-spacing: var(--tracking-card);
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: #FFFFFF;
   margin-bottom: 0.35rem;
 }
 
 .category-count {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
+  color: #FFFFFF;
   line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ==========================================================================
@@ -1658,13 +1704,19 @@ a {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-links {
     display: none;
   }
   .mobile-nav-toggle {
     display: block;
   }
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
   .hero-editorial-title {
     font-size: clamp(2.4rem, 8vw, 3.25rem); /* 38–52px mobile */
     line-height: 1.02;
@@ -1695,5 +1747,173 @@ a {
   }
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   21. Refinements, Animations & Credibility Controls (Sections 8-10)
+   ========================================================================== */
+
+/* Universal Focus Visible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Subtle Photo Grading across all card imagery */
+.collage-card img,
+.casting-primary-img,
+.casting-hover-img,
+.masonry-item img,
+.category-card img {
+  filter: contrast(1.04) saturate(0.95);
+}
+
+/* Simulated Perspective Demo Switcher: hidden from normal visitors */
+.demo-only-control {
+  display: none !important;
+}
+
+body.is-demo-mode .demo-only-control {
+  display: block !important;
+}
+
+/* Logo Intro Overlay Animation (Section 9) */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #0F1115;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s ease;
+}
+
+.intro-overlay.fade-out {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.intro-locked {
+  overflow: hidden;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.intro-logo {
+  width: 110px;
+  height: 98px;
+  animation: introLogoReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.intro-wordmark {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  opacity: 0;
+  animation: introTextReveal 0.6s ease 0.4s forwards;
+}
+
+.intro-line {
+  width: 80px;
+  height: 2px;
+  background: var(--gradient-brand);
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: introLineDraw 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+}
+
+.intro-skip-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.intro-skip-btn:hover {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes introLogoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes introTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes introLineDraw {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Scroll Reveal (Section 10) */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-reveal .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay {
+    display: none !important;
+  }
+  .js-reveal .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
